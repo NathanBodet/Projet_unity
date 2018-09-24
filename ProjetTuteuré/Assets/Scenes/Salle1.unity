@@ -1701,6 +1701,8 @@ MonoBehaviour:
   isAlive: 1
   maxLife: 100
   currentLife: 100
+  ball: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d, type: 2}
+  fireRate: 0.5
 --- !u!50 &1705855993
 Rigidbody2D:
   serializedVersion: 4
