@@ -6,12 +6,22 @@ using UnityEngine;
 public class Player : Actor {
 
     Vector2 directionMovement;
+
+    //Statistiques du joueur
+    public float strength = 5f;
+    public int health = 20;
+    public float agility = 5f;
+
+    //attributs concernant les tirs
     public GameObject ball;
     Vector2 ballPos;
     public float fireRate = 0.5f;
     float nextFire = 0.0f;
+
+    // attributs concernant le combat
     float switchCooldown = 0.0f;
     bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
+
 
 
     protected override void Start () {
@@ -43,7 +53,7 @@ public class Player : Actor {
             animator.SetTrigger("Attacking");
             if(!typeArmeEquipee && Time.time > nextFire)
             {
-                nextFire = Time.time + fireRate; //firerate -> cooldown de tir
+                nextFire = Time.time + fireRate-0.01f*agility; //firerate -> cooldown de tir
                 fire();
             }
         }
@@ -57,8 +67,7 @@ public class Player : Actor {
 
         //récupération des coordonnées de la souris et création du vecteur du projectile tiré
         Vector3 ballDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
-        Debug.Log(ballDir);
-        ballDir.x  = ballDir.x - transform.position.x;
+        ballDir.x  = ballDir.x - transform.position.x-0.6f;
         ballDir.y = ballDir.y - transform.position.y;
         ballDir.Normalize();
 
@@ -71,6 +80,6 @@ public class Player : Actor {
 
     void FixedUpdate()
     {
-        rigidBody.MovePosition(rigidBody.position + directionMovement * speed * Time.deltaTime);
+        rigidBody.MovePosition(rigidBody.position + directionMovement * speed * (agility/5f) * Time.deltaTime);
     }
 }
