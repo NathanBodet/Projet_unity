@@ -47,11 +47,14 @@ public class Player : Actor {
 
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
-            if(!typeArmeEquipee && Time.time > nextFire)
+            if (Time.timeScale==1)
             {
-                nextFire = Time.time + fireRate-0.01f*agility; //firerate -> cooldown de tir
-                Fire();
+                Attack();
+                if (!typeArmeEquipee && Time.time > nextFire)
+                {
+                    nextFire = Time.time + fireRate - 0.01f * agility; //firerate -> cooldown de tir
+                    Fire();
+                }
             }
         }
     }
