@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Player : Actor {
 
-    Vector2 directionMovement;
+    Vector2 currentDir;
 
     //Statistiques du joueur
-    public float strength = 5f;
-    public int health = 20;
-    public float agility = 5f;
+    private int strength = 5;
+    private int endurance = 5;
+    private int agility = 5;
 
     //attributs concernant les tirs
     public GameObject ball;
@@ -22,64 +22,58 @@ public class Player : Actor {
     float switchCooldown = 0.0f;
     bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
-
-
     protected override void Start () {
         base.Start();
 	}
 
     void Update() {
 
-        directionMovement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        currentDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        currentDir.Normalize();
 
-        if(directionMovement != Vector2.zero)
+        if(currentDir == Vector2.zero)
         {
-            animator.SetFloat("DirectionX", directionMovement.x);
-            animator.SetFloat("DirectionY", directionMovement.y);
-            animator.SetBool("IsMoving", true);
+            Stop();
         } else
         {
-            animator.SetBool("IsMoving", false);
+            Walk();
         }
 
-        if (Input.GetKey("e") && Time.time > switchCooldown) { //switch le type d'arme : cooldown de 1s
+        /*if (Input.GetKey("e") && Time.time > switchCooldown) { //switch le type d'arme : cooldown de 1s
             switchCooldown = Time.time + 1f;
             Debug.Log("switch");
             typeArmeEquipee = !typeArmeEquipee;
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Attacking");
-            if(!typeArmeEquipee && Time.time > nextFire)
+            Attack();
+            /*if(!typeArmeEquipee && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate-0.01f*agility; //firerate -> cooldown de tir
-                fire();
-            }
+                Fire();
+            }*/
         }
-    }
-
-    public void fire()
-    {
-
-        ballPos = transform.position;
-        ballPos += new Vector2(0.5f,0f);
-
-        //récupération des coordonnées de la souris et création du vecteur du projectile tiré
-        Vector3 ballDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
-        ballDir.x  = ballDir.x - transform.position.x-0.6f;
-        ballDir.y = ballDir.y - transform.position.y;
-        ballDir.Normalize();
-
-        //instanciation du projectile et addition du vecteur vitesse
-        GameObject ballInstance = Instantiate(ball, ballPos, Quaternion.identity);
-        ballInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(ballDir.x * 5, ballDir.y * 5);
-
-
     }
 
     void FixedUpdate()
     {
-        rigidBody.MovePosition(rigidBody.position + directionMovement * speed * (agility/5f) * Time.deltaTime);
+        Vector3 moveVector = currentDir * speed;
+        //rigidBody.MovePosition(transform.position + moveVector * Time.deltaTime);
+        rigidBody.velocity = moveVector;
+    }
+
+    public void Stop()
+    {
+        speed = 0f;
+        animator.SetBool("IsMoving", false);
+    }
+
+    public void Walk()
+    {
+        speed = 2f;
+        animator.SetFloat("DirectionX", currentDir.x);
+        animator.SetFloat("DirectionY", currentDir.y);
+        animator.SetBool("IsMoving", true);
     }
 }
