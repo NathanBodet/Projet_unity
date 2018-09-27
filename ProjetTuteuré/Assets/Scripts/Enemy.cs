@@ -6,10 +6,14 @@ public class Enemy : Actor {
 
     public static int TotalEnemies;
     public AutoWalk walker;
-
     public bool stopMovementWhenHit = true;
 
     public EnemyAI ai;
+
+    protected override void Start()
+    {
+        base.Start();
+    }
 
     public void RegisterEnemy()
     {
@@ -53,8 +57,8 @@ public class Enemy : Actor {
         base.TakeDamage(value, hitVector);
     }
 
-    /*public override bool CanWalk()
+    public override bool CanWalk()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName("hurt");
-    }*/
+        return !animator.GetCurrentAnimatorStateInfo(0).IsName("Death");
+    }
 }

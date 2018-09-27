@@ -17,7 +17,8 @@ public abstract class Actor : MonoBehaviour {
     protected virtual void Start () {
         currentLife = maxLife;
         isAlive = true;
-        //animator alive à rajouter
+        animator.SetBool("IsAlive", isAlive);
+
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -51,7 +52,7 @@ public abstract class Actor : MonoBehaviour {
     protected virtual void Die()
     {
         isAlive = false;
-        //animator alive à rajouter
+        animator.SetBool("IsAlive", isAlive);
         StartCoroutine(DeathFlicker());
     }
 
@@ -80,8 +81,15 @@ public abstract class Actor : MonoBehaviour {
         if(isAlive && currentLife <= 0)
         {
             Die();
+        } else
+        {
+            StartCoroutine(DeathFlicker());
         }
-        //else rajouter animator ishurt
+    }
+
+    public virtual bool CanWalk()
+    {
+        return true;
     }
 
     public bool CanBeHit()
@@ -89,9 +97,9 @@ public abstract class Actor : MonoBehaviour {
         return isAlive;
     }
 
-    public virtual bool CanWalk()
+    protected void ShowHitEffects(float value, Vector3 position)
     {
-        return true;
+
     }
 
 }

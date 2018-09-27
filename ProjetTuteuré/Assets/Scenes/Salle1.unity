@@ -98,7 +98,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.2
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -106,7 +106,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.06666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 394312603}
   - component: {fileID: 394312604}
+  - component: {fileID: 394312605}
   m_Layer: 10
   m_Name: Field Of View
   m_TagString: Untagged
@@ -156,7 +157,19 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1.5
+--- !u!114 &394312605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394312602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d7ded234eff544087f3806151c1ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIsNearby: 0
 --- !u!1 &513248010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,12 +1028,12 @@ GameObject:
   - component: {fileID: 1563548932}
   - component: {fileID: 1563548931}
   m_Layer: 10
-  m_Name: EnemyLog
+  m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1563548927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1037,14 +1050,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.53}
+    newSize: {x: 0.32, y: 0.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.39, y: 0.53}
   m_EdgeRadius: 0
 --- !u!50 &1563548928
 Rigidbody2D:
@@ -1101,12 +1114,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93bdbcfd6c9570c429c64d87406b09f3, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 2c099d891b2d89b459c57bc5c067e695, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1119,8 +1132,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1563548926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.618286, y: -1.3295274, z: -0.06640625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 14.91, y: -0.73, z: -0.06640625}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 394312603}
   m_Father: {fileID: 0}
@@ -1146,7 +1159,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!95 &1563548932
 Animator:
   serializedVersion: 3
@@ -1179,6 +1192,7 @@ MonoBehaviour:
   attackReachMin: 1
   attackReachMax: 2
   personalSpace: 0.75
+  detector: {fileID: 394312605}
   currentAction: 0
 --- !u!114 &1563548934
 MonoBehaviour:
@@ -2527,6 +2541,10 @@ Prefab:
     - target: {fileID: 1573018198573304, guid: 0abf4e687773cfe4b90ab2aa38ed230f, type: 2}
       propertyPath: m_Name
       value: Foreground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1698165589082680, guid: 0abf4e687773cfe4b90ab2aa38ed230f, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0abf4e687773cfe4b90ab2aa38ed230f, type: 2}

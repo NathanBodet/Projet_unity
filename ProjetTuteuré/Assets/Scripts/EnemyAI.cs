@@ -32,8 +32,8 @@ public class EnemyAI : MonoBehaviour {
     public float attackReachMax;
     public float personalSpace;
 
+    public PlayerDetector detector;
     List<DecisionWeight> weights;
-
     public EnemyAction currentAction = EnemyAction.None;
 
     private float decisionDuration;
@@ -160,8 +160,7 @@ public class EnemyAI : MonoBehaviour {
             decisionDuration -= Time.deltaTime;
         } else
         {
-            //detector hero is nearby
-            if (true)
+            if (!detector.playerIsNearby)
             {
                 DecideWithWeights(0, 20, 80, 0);
             } else
