@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 
@@ -94,5 +95,25 @@ public class Player : Actor {
         animator.SetFloat("DirectionX", currentDir.x);
         animator.SetFloat("DirectionY", currentDir.y);
         animator.SetBool("IsMoving", true);
+    }
+
+    public void saveDatas()
+    {
+        Debug.Log("On va sauver les datas dans "+Application.persistentDataPath);
+        Datas datas = new Datas();
+        datas.x = transform.position.x;
+        datas.y = transform.position.y;
+        DataManager.Save(datas, "Save1.sav");
+    }
+
+    public void loadDatas()
+    {
+        if (File.Exists(Application.persistentDataPath+"/Save1.sav"))
+        {
+            Debug.Log("On va charger les datas");
+            Datas datas = (Datas)DataManager.Load("Save1.sav");
+            Vector2 position = new Vector2(datas.x, datas.y);
+            transform.position = position;
+        }
     }
 }

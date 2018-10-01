@@ -59,6 +59,7 @@ using UnityEngine;
             Time.timeScale = 1;
         }
 
+
         public void Quit()
         {
             Application.Quit();
