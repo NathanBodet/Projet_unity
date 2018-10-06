@@ -91,7 +91,7 @@ public class Player : Actor {
 
     public void Walk()
     {
-        speed = 2f;
+        speed = 5f;
         animator.SetFloat("DirectionX", currentDir.x);
         animator.SetFloat("DirectionY", currentDir.y);
         animator.SetBool("IsMoving", true);
