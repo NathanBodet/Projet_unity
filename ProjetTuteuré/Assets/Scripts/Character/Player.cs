@@ -4,9 +4,7 @@ using System.IO;
 using UnityEngine;
 
 
-public class Player : Actor {
-
-    Vector2 currentDir;
+public class Player : Character {
 
     //Statistiques du joueur
     private int strength = 5;
@@ -23,32 +21,43 @@ public class Player : Actor {
     float switchCooldown = 0.0f;
     bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
-    protected override void Start () {
+    protected override void Start()
+    {
         base.Start();
-	}
+    }
 
-    void Update() {
+    protected override void Update() {
 
-        currentDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        currentDir.Normalize();
+        GetInput();
+        base.Update();
+    }
 
-        if(currentDir == Vector2.zero)
+    private void GetInput()
+    {
+        direction = Vector2.zero;
+        if (Input.GetKey(KeyCode.Z))
         {
-            Stop();
-        } else
-        {
-            Walk();
+            direction += Vector2.up;
         }
 
-        if (Input.GetKey("e") && Time.time > switchCooldown) { //switch le type d'arme : cooldown de 1s
-            switchCooldown = Time.time + 1f;
-            Debug.Log("switch");
-            typeArmeEquipee = !typeArmeEquipee;
+        if (Input.GetKey(KeyCode.Q))
+        {
+            direction += Vector2.left;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            direction += Vector2.down;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            direction += Vector2.right;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (Time.timeScale==1)
+            if (Time.timeScale == 1)
             {
                 Attack();
                 if (!typeArmeEquipee && Time.time > nextFire)
@@ -58,12 +67,29 @@ public class Player : Actor {
                 }
             }
         }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            //switch le type d'arme : cooldown de 1s
+            if (Time.time > switchCooldown)
+            {
+                switchCooldown = Time.time + 1f;
+                Debug.Log("switch");
+                typeArmeEquipee = !typeArmeEquipee;
+            }
+        }
+    
+    }
+
+    private void Attack()
+    {
+        animator.SetTrigger("Attacking");
     }
 
     public void Fire()
     {
         ballPos = transform.position;
-        ballPos += new Vector2(0.5f*animator.GetFloat("DirectionX"), 0.5f*animator.GetFloat("DirectionY"));
+        ballPos += new Vector2(0.5f * animator.GetFloat("DirectionX"), 0.5f * animator.GetFloat("DirectionY"));
 
         //récupération des coordonnées de la souris et création du vecteur du projectile tiré
         Vector3 ballDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
@@ -74,27 +100,6 @@ public class Player : Actor {
         //instanciation du projectile et addition du vecteur vitesse
         GameObject ballInstance = Instantiate(ball, ballPos, Quaternion.identity);
         ballInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(ballDir.x * 5, ballDir.y * 5);
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 moveVector = currentDir * speed;
-        //rigidBody.MovePosition(transform.position + moveVector * Time.deltaTime);
-        rigidBody.velocity = moveVector;
-    }
-
-    public void Stop()
-    {
-        speed = 0f;
-        animator.SetBool("IsMoving", false);
-    }
-
-    public void Walk()
-    {
-        speed = 5f;
-        animator.SetFloat("DirectionX", currentDir.x);
-        animator.SetFloat("DirectionY", currentDir.y);
-        animator.SetBool("IsMoving", true);
     }
 
     public void saveDatas()
