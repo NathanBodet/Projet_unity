@@ -21,9 +21,15 @@ public class Player : Character {
     float switchCooldown = 0.0f;
     bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
+    public LifeBar lifeBar;
+
+
+
     protected override void Start()
     {
         base.Start();
+        lifeBar = GameObject.FindGameObjectWithTag("HeroLifeBar").GetComponent<LifeBar>();
+        lifeBar.SetProgress(currentHealth / maxHealth);
     }
 
     protected override void Update() {
@@ -100,6 +106,13 @@ public class Player : Character {
         //instanciation du projectile et addition du vecteur vitesse
         GameObject ballInstance = Instantiate(ball, ballPos, Quaternion.identity);
         ballInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(ballDir.x * 5, ballDir.y * 5);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        lifeBar.EnableLifeBar(true);
+        lifeBar.SetProgress(currentHealth / maxHealth);
     }
 
     public void saveDatas()

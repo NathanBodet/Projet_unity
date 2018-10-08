@@ -13,6 +13,7 @@ public abstract class Character : MonoBehaviour {
 
     protected Animator animator;
     private Rigidbody2D rigidBody;
+    protected SpriteRenderer sprite;
 
     [SerializeField]
     protected Transform hitBox;
@@ -25,21 +26,36 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
-    public float health = 100f;
+    public float maxHealth = 100f;
+    public float currentHealth;
+
+    protected bool isAlive;
+
 
     // Use this for initialization
     protected virtual void Start () {
+        currentHealth = maxHealth;
+        isAlive = true;
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
+        if (!isAlive)
+        {
+            return;
+        }
         HandleMovement();
 	}
 
     private void FixedUpdate()
     {
+        if (!isAlive)
+        {
+            return;
+        }
         Move();
     }
 
@@ -64,9 +80,10 @@ public abstract class Character : MonoBehaviour {
 
     public virtual void TakeDamage(float damage)
     {
-        health -= damage;
-        if(health <= 0)
+        currentHealth -= damage;
+        if(currentHealth <= 0)
         {
+            isAlive = false;
             animator.SetBool("IsAlive", false);
         }
     }

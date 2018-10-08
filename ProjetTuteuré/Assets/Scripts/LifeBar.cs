@@ -1,0 +1,39 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public class LifeBar : MonoBehaviour {
+
+    public Image fillImage;
+    public Sprite[] fillSprites;
+
+    void Start()
+    {
+        SetProgress(1f);
+    }
+
+    private Sprite SpriteForProgress(float progress)
+    {
+        if(progress >= 0.5f)
+        {
+            return fillSprites[0];
+        }
+        if(progress >= 0.25f)
+        {
+            return fillSprites[1];
+        }
+        return fillSprites[2];
+    }
+
+    public void SetProgress(float progress)
+    {
+        fillImage.fillAmount = progress;
+    }
+
+    public void EnableLifeBar(bool enabled)
+    {
+        foreach(Transform tr in transform)
+        {
+            tr.gameObject.SetActive(enabled);
+        }
+    }
+}
