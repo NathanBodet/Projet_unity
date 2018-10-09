@@ -80,7 +80,6 @@ public class Player : Character {
             if (Time.time > switchCooldown)
             {
                 switchCooldown = Time.time + 1f;
-                Debug.Log("switch");
                 typeArmeEquipee = !typeArmeEquipee;
             }
         }

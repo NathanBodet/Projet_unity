@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 394312603}
   - component: {fileID: 394312604}
   - component: {fileID: 394312605}
+  - component: {fileID: 394312606}
   m_Layer: 10
   m_Name: Field Of View
   m_TagString: Untagged
@@ -279,10 +280,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 394312602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9d7ded234eff544087f3806151c1ce2, type: 3}
+  m_Script: {fileID: 11500000, guid: 626de2bd04e208a43a329b7ba941ee8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIsNearby: 0
+--- !u!50 &394312606
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 394312602}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &513248010
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +1000,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1563548929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1057,8 +1077,10 @@ MonoBehaviour:
   - {fileID: 602078403}
   - {fileID: 1217195591}
   speed: 2
+  checkTime: 0
   rigidBody: {fileID: 1563548928}
   animator: {fileID: 1563548932}
+  fov: {fileID: 394312602}
 --- !u!95 &1563548932
 Animator:
   serializedVersion: 3
@@ -1090,7 +1112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   hitBox: {fileID: 0}
-  health: 100
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &1580956443 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1356883381862772, guid: 1b9771e00e8cc324ea452e2cb7b14240,
@@ -1196,9 +1219,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   hitBox: {fileID: 0}
-  health: 100
+  maxHealth: 100
+  currentHealth: 0
   ball: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d, type: 2}
   fireRate: 0.5
+  lifeBar: {fileID: 0}
 --- !u!50 &1705855993
 Rigidbody2D:
   serializedVersion: 4

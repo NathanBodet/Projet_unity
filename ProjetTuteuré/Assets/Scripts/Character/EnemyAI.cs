@@ -5,11 +5,12 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 
     public Transform[] patrolPoints;
-    public float speed;
+    public float speed, checkTime;
     Transform currentPatrolPoint;
     int currentPatrolIndex;
     public Rigidbody2D rigidBody;
     public Animator animator;
+    public GameObject fov;
 
     void Start()
     {
@@ -35,6 +36,17 @@ public class EnemyAI : MonoBehaviour {
             }
             currentPatrolPoint = patrolPoints[currentPatrolIndex];
         }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("ça touche");
+    }
+
+    public void CollisionDetected(FieldOfViewScript childScript)
+    {
+        Debug.Log("child collided");
     }
 
     void FixedUpdate()
