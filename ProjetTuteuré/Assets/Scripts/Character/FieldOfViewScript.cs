@@ -14,10 +14,12 @@ public class FieldOfViewScript : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter2D (Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.parent.GetComponent<EnemyAI>().CollisionDetected(this);
-        Debug.Log("je touche");
+        if(collision.gameObject.tag == "Player")
+        {
+            transform.parent.GetComponent<EnemyAI>().JoueurDetecte(collision.gameObject);
+        }
     }
 
 }
