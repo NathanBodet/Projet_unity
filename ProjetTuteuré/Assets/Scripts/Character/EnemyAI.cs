@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour {
         rigidBody.GetComponent<Rigidbody2D>();
         animator.GetComponent<Animator>();
         estEnChasse = false;
+        speed = 6;
     }
 
     void Update()
@@ -50,6 +51,7 @@ public class EnemyAI : MonoBehaviour {
     public void JoueurDetecte(GameObject joueur) //Appel lorsque le fov touche le joueur
     {
         estEnChasse = true;
+        speed = 4;
         target = joueur;
 
     }
@@ -58,13 +60,30 @@ public class EnemyAI : MonoBehaviour {
     {
         if (estEnChasse)
         {
-            transform.Translate((-transform.position+target.transform.position) * speed * Time.deltaTime);
+
+            var layermask1 = 1 << 10;
+            layermask1 = ~layermask1;
+            RaycastHit2D vision = Physics2D.Raycast(transform.position, -transform.position + target.transform.position, 2f,layermask1);
+            Debug.Log(vision.collider);
+            if(vision.collider == null || vision.collider.gameObject.tag == "Player" )
+            {
+                estEnChasse = false;
+                speed = 6;
+            }
+            else
+            {
+                Vector2 dir = (-transform.position + target.transform.position);
+                dir.Normalize();
+                transform.Translate(dir * speed * Time.deltaTime);
+            }
+            
         } else
         {
             Vector3 patrolPointDir = currentPatrolPoint.position - transform.position;
             animator.SetFloat("DirectionX", patrolPointDir.x);
             animator.SetFloat("DirectionY", patrolPointDir.y);
             animator.SetBool("IsMoving", true);
+            patrolPointDir.Normalize();
             transform.Translate(patrolPointDir * speed * Time.deltaTime);
             //rigidBody.MovePosition(transform.position + (patrolPointDir * speed) * Time.deltaTime);
         }
