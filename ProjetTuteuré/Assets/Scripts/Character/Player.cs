@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Player : Character {
 
@@ -23,6 +23,17 @@ public class Player : Character {
 
     public LifeBar lifeBar;
 
+    void Awake()
+    {
+        Datas datas = (Datas)DataManager.Load("Save1.sav");
+        if (datas.i == 1)
+        {
+            loadDatas();
+            datas.i = 0;
+            DataManager.Save(datas, "Save1.sav");
+        }
+    }
+
 
 
     protected override void Start()
@@ -34,7 +45,10 @@ public class Player : Character {
 
     protected override void Update() {
 
-        GetInput();
+        if (Time.timeScale == 1)
+        {
+            GetInput();
+        }
         base.Update();
     }
 
@@ -63,14 +77,12 @@ public class Player : Character {
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (Time.timeScale == 1)
+          
+            Attack();
+            if (!typeArmeEquipee && Time.time > nextFire)
             {
-                Attack();
-                if (!typeArmeEquipee && Time.time > nextFire)
-                {
-                    nextFire = Time.time + fireRate - 0.01f * agility; //firerate -> cooldown de tir
-                    Fire();
-                }
+                nextFire = Time.time + fireRate - 0.01f * agility; //firerate -> cooldown de tir
+                Fire();
             }
         }
 
@@ -116,21 +128,34 @@ public class Player : Character {
 
     public void saveDatas()
     {
-        Debug.Log("On va sauver les datas dans "+Application.persistentDataPath);
+        Debug.Log("On va sauver les datas dans " + Application.persistentDataPath);
         Datas datas = new Datas();
+        datas.nameScene = SceneManager.GetActiveScene().name;
         datas.x = transform.position.x;
         datas.y = transform.position.y;
+        datas.strength = strength;
+        datas.agility = agility;
+        datas.endurance = endurance;
+        datas.switchCooldown = switchCooldown;
+        datas.typeArmeEquipee = typeArmeEquipee;
+        datas.currentHealth = currentHealth;
         DataManager.Save(datas, "Save1.sav");
     }
 
     public void loadDatas()
     {
-        if (File.Exists(Application.persistentDataPath+"/Save1.sav"))
+        if (File.Exists(Application.persistentDataPath + "/Save1.sav"))
         {
             Debug.Log("On va charger les datas");
             Datas datas = (Datas)DataManager.Load("Save1.sav");
             Vector2 position = new Vector2(datas.x, datas.y);
-            transform.position = position;
+            this.transform.position = position;
+            strength = datas.strength;
+            agility = datas.agility;
+            endurance = datas.endurance;
+            switchCooldown = datas.switchCooldown;
+            typeArmeEquipee = datas.typeArmeEquipee;
+            currentHealth = datas.currentHealth;
         }
     }
 }

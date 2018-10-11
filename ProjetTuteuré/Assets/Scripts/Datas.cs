@@ -8,5 +8,13 @@ public class Datas
 {
     public float x;
     public float y;
+    public int strength;
+    public int endurance;
+    public int agility;
+    public float switchCooldown;
+    public bool typeArmeEquipee;
+    public float currentHealth;
+    public string nameScene;
+    public int i = 0;
 
 }

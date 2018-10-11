@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-    public class MenusJeu : MonoBehaviour
+public class MenusJeu : MonoBehaviour
     {
 
         public bool showGUI = false;
@@ -48,8 +49,8 @@ using UnityEngine;
 
         void OnLevelWasLoaded()
         {
-            canvas = GameObject.Find("Canvas");
-            canvas2 = GameObject.Find("Canvas2");
+            //canvas = GameObject.Find("Canvas");
+            //canvas2 = GameObject.Find("Canvas2");
         }
 
         public void Continue()
@@ -62,6 +63,6 @@ using UnityEngine;
 
         public void Quit()
         {
-            Application.Quit();
+            SceneManager.LoadScene("MainMenu");
         }
 }
