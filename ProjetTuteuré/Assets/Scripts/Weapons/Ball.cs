@@ -10,8 +10,14 @@ public class Ball : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody2D>();
 	}
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.collider.tag == "Enemy") {
+            collision.collider.GetComponentInParent<Enemy>().TakeDamage(5);
+            rigidBody.velocity = Vector2.zero;
+        }
         Destroy(gameObject);
     }
+
+
 }

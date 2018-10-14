@@ -1,92 +1,207 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyAI : MonoBehaviour {
 
-    public Transform[] patrolPoints;
-    public float speed, checkTime;
-    Transform currentPatrolPoint;
-    int currentPatrolIndex;
-    public Rigidbody2D rigidBody;
-    public Animator animator;
-    public GameObject fov;
-    public bool estEnChasse;
-
-    public GameObject target; // cible (joueur)
-
-    void Start()
+    public enum EnemyAction
     {
-        currentPatrolIndex = 0;
-        currentPatrolPoint = patrolPoints[currentPatrolIndex];
-        rigidBody.GetComponent<Rigidbody2D>();
-        animator.GetComponent<Animator>();
-        estEnChasse = false;
-        speed = 6;
+        None,
+        Wait,
+        Attack,
+        Chase,
+        Roam
     }
 
-    void Update()
+    public class DecisionWeight
     {
-
-        //check si l'ennemi chasse le joueur
-        if (!estEnChasse)
+        public int weight;
+        public EnemyAction action;
+        public DecisionWeight(int weight, EnemyAction action)
         {
-            //check to see if reached patrol point
-            if (Vector3.Distance(transform.position, currentPatrolPoint.position) < .1f)
-            {
-                //check to see if is anymore patrol points (not go back to the beginning)
-                if (currentPatrolIndex + 1 < patrolPoints.Length)
-                {
-                    currentPatrolIndex++;
-                }
-                else
-                {
-                    currentPatrolIndex = 0;
-                }
-                currentPatrolPoint = patrolPoints[currentPatrolIndex];
-            }
+            this.weight = weight;
+            this.action = action;
         }
     }
 
-    public void JoueurDetecte(GameObject joueur) //Appel lorsque le fov touche le joueur
-    {
-        estEnChasse = true;
-        speed = 4;
-        target = joueur;
+    Enemy enemy;
+    GameObject player;
 
-    }
+    public float attackReachMin;
+    public float attackReachMax;
 
-    void FixedUpdate()
+    public PlayerDetector playerDetector;
+    List<DecisionWeight> weights;
+    public EnemyAction currentAction = EnemyAction.None;
+
+    private float decisionDuration;
+
+	void Start () {
+        weights = new List<DecisionWeight>();
+        enemy = GetComponent<Enemy>();
+        player = GameObject.FindGameObjectWithTag("Player");
+	}
+
+    private void Chase()
     {
-        if (estEnChasse)
+        /*if (enemy.estEnChasse)
         {
-
             var layermask1 = 1 << 10;
             layermask1 = ~layermask1;
-            RaycastHit2D vision = Physics2D.Raycast(transform.position, -transform.position + target.transform.position, 2f,layermask1);
+            RaycastHit2D vision = Physics2D.Raycast(transform.position, -transform.position + enemy.target.transform.position, 2f, layermask1);
             Debug.Log(vision.collider);
-            if(vision.collider == null || vision.collider.gameObject.tag == "Player" )
+            if (vision.collider == null || vision.collider.tag == "Player")
             {
-                estEnChasse = false;
-                speed = 6;
+                enemy.estEnChasse = false;
+                enemy.speed = 4f;
             }
             else
             {
-                Vector2 dir = (-transform.position + target.transform.position);
+                Vector2 dir = (-transform.position + enemy.target.transform.position);
                 dir.Normalize();
-                transform.Translate(dir * speed * Time.deltaTime);
+                enemy.rigidBody.velocity = dir * enemy.speed;
+                //transform.Translate(dir * enemy.speed * Time.deltaTime);
+                //enemy.MoveTo(enemy.target.transform.position);
             }
-            
-        } else
+        }*/
+        enemy.speed = 4f;
+        enemy.animator.SetBool("IsMoving", true);
+        Vector3 direction = player.transform.position - transform.position;
+
+        enemy.animator.SetFloat("DirectionX", direction.x);
+        enemy.animator.SetFloat("DirectionY", direction.y);
+
+        direction.Normalize();
+        enemy.rigidBody.velocity = direction * enemy.speed;
+
+        decisionDuration = Random.Range(0.2f, 0.4f);
+    }
+
+    private void Wait()
+    {
+        decisionDuration = Random.Range(0.2f, 0.5f);
+        enemy.StopMovement();
+    }
+
+    private void Attack()
+    {
+        enemy.Attack();
+        decisionDuration = Random.Range(1.0f, 1.5f);
+    }
+
+    private void Roam()
+    {
+        float randomDegree = Random.Range(0, 360);
+        Vector2 offset = new Vector2(Mathf.Sin(randomDegree), Mathf.Cos(randomDegree));
+        float distance = Random.Range(30, 70);
+        offset *= distance;
+        Vector3 directionVector = new Vector3(offset.x, offset.y, 0);
+        enemy.speed = 2f;
+        enemy.animator.SetFloat("DirectionX", directionVector.x);
+        enemy.animator.SetFloat("DirectionY", directionVector.y);
+        enemy.animator.SetBool("IsMoving", true);
+        directionVector.Normalize();
+    
+        enemy.rigidBody.velocity = directionVector * enemy.speed;
+
+        decisionDuration = Random.Range(0.3f, 0.6f);
+    }
+
+    private void DecideWithWeights(int attack, int wait, int chase, int move)
+    {
+        weights.Clear();
+
+        if(attack > 0)
         {
-            Vector3 patrolPointDir = currentPatrolPoint.position - transform.position;
-            animator.SetFloat("DirectionX", patrolPointDir.x);
-            animator.SetFloat("DirectionY", patrolPointDir.y);
-            animator.SetBool("IsMoving", true);
-            patrolPointDir.Normalize();
-            transform.Translate(patrolPointDir * speed * Time.deltaTime);
-            //rigidBody.MovePosition(transform.position + (patrolPointDir * speed) * Time.deltaTime);
+            weights.Add(new DecisionWeight(attack, EnemyAction.Attack));
+        }
+        if (chase > 0)
+        {
+            weights.Add(new DecisionWeight(chase, EnemyAction.Chase));
+        }
+        if (wait > 0)
+        {
+            weights.Add(new DecisionWeight(wait, EnemyAction.Wait));
+        }
+        if (move > 0)
+        {
+            weights.Add(new DecisionWeight(move, EnemyAction.Roam));
         }
 
+        int total = attack + chase + wait + move;
+        int intDecision = Random.Range(0, total - 1);
+
+        foreach(DecisionWeight weight in weights)
+        {
+            //substract the value of each possible EnemyAction weight in the weights list from the random index value until <= 0
+            intDecision -= weight.weight;
+            if(intDecision <= 0)
+            {
+                SetDecision(weight.action);
+                break;
+            }
+        }
     }
+
+    private void SetDecision(EnemyAction action)
+    {
+        currentAction = action;
+
+        switch (action)
+        {
+            case EnemyAction.Attack:
+                Attack();
+                break;
+            case EnemyAction.Chase:
+                Chase();
+                break;
+            case EnemyAction.Roam:
+                Roam();
+                break;
+            case EnemyAction.Wait:
+                Wait();
+                break;
+        }
+    }
+
+	void Update () {
+        //calculates the distance between the hero and enemy
+        //no need the actual distance, only the squared distance, because the square root operation is expensive and unnecessary
+        float sqrDistance = Vector3.SqrMagnitude(player.transform.position - transform.position);
+        //sets true when the distance between the hero and robot falls between attackReachMin and attackReachMax
+        bool canReach = attackReachMin * attackReachMin < sqrDistance && sqrDistance < attackReachMax * attackReachMax;
+        //is based on whether the two y positions are within 0.5 units of each other
+        bool samePlane = Mathf.Abs(player.transform.position.y - transform.position.y) < 0.5f;
+
+        if(canReach && currentAction == EnemyAction.Chase)
+        {
+            SetDecision(EnemyAction.Wait);
+        }
+
+        if(decisionDuration > 0.0f)
+        {
+            decisionDuration -= Time.deltaTime;
+        } else
+        {
+            if (!playerDetector.playerIsNearby)
+            {
+                DecideWithWeights(0, 40, 0, 60);
+            } else
+            {
+                if (samePlane)
+                {
+                    if (canReach)
+                    {
+                        DecideWithWeights(70, 30, 0, 0);
+                    } else
+                    {
+                        DecideWithWeights(0, 20, 80, 0);
+                    }
+                } else
+                {
+                    DecideWithWeights(0, 30, 70, 0);
+                }
+            }
+        }
+	}
 }

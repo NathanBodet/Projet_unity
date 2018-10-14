@@ -6,17 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public abstract class Character : MonoBehaviour {
 
-    [SerializeField]
-    private float speed;
+    public float speed;
 
     protected Vector2 direction;
 
-    protected Animator animator;
-    private Rigidbody2D rigidBody;
-    protected SpriteRenderer sprite;
-
-    [SerializeField]
-    protected Transform hitBox;
+    public Animator animator;
+    public Rigidbody2D rigidBody;
+    public SpriteRenderer sprite;
 
     public bool isMoving
     {
@@ -50,20 +46,6 @@ public abstract class Character : MonoBehaviour {
         HandleMovement();
 	}
 
-    private void FixedUpdate()
-    {
-        if (!isAlive)
-        {
-            return;
-        }
-        Move();
-    }
-
-    public void Move()
-    {
-        rigidBody.velocity = direction.normalized * speed;
-    }
-
     public void HandleMovement()
     {
         if (isMoving)
@@ -78,14 +60,24 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    public virtual void Attack()
+    {
+        animator.SetTrigger("Attacking");
+    }
+
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
-            isAlive = false;
-            animator.SetBool("IsAlive", false);
+            Die();
         }
+    }
+
+    protected virtual void Die()
+    {
+        isAlive = false;
+        animator.SetBool("IsAlive", false);
     }
 
 }

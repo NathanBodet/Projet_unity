@@ -23,14 +23,18 @@ public class Player : Character {
 
     public LifeBar lifeBar;
 
+
     void Awake()
     {
-        Datas datas = (Datas)DataManager.Load("Save1.sav");
-        if (datas.i == 1)
+        if(File.Exists(Application.persistentDataPath + "/Save1.sav"))
         {
-            loadDatas();
-            datas.i = 0;
-            DataManager.Save(datas, "Save1.sav");
+            Datas datas = (Datas)DataManager.Load("Save1.sav");
+            if (datas.i == 1)
+            {
+                loadDatas();
+                datas.i = 0;
+                DataManager.Save(datas, "Save1.sav");
+            }
         }
     }
 
@@ -39,17 +43,27 @@ public class Player : Character {
     protected override void Start()
     {
         base.Start();
-        lifeBar = GameObject.FindGameObjectWithTag("HeroLifeBar").GetComponent<LifeBar>();
-        lifeBar.SetProgress(currentHealth / maxHealth);
+        /*lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
+        lifeBar.SetProgress(currentHealth / maxHealth);*/
     }
 
     protected override void Update() {
 
-        if (Time.timeScale == 1)
+        /*if (Time.timeScale == 1)
         {
             GetInput();
-        }
+        }*/
+        GetInput();
         base.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isAlive)
+        {
+            return;
+        }
+        Move();
     }
 
     private void GetInput()
@@ -98,9 +112,9 @@ public class Player : Character {
     
     }
 
-    private void Attack()
+    public void Move()
     {
-        animator.SetTrigger("Attacking");
+        rigidBody.velocity = direction.normalized * speed;
     }
 
     public void Fire()
