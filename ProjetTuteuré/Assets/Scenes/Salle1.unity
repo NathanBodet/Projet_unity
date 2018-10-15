@@ -152,46 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 23669386889954910, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1742554143
-      objectReference: {fileID: 0}
-    - target: {fileID: 23669386889954910, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 23250050048739028, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1592119561
-      objectReference: {fileID: 0}
-    - target: {fileID: 23250050048739028, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23596510207455054, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1592119561
-      objectReference: {fileID: 0}
-    - target: {fileID: 23596510207455054, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23839675412017688, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: -1015307145
-      objectReference: {fileID: 0}
-    - target: {fileID: 23839675412017688, guid: cce7ea666df414d49abb2cb0012571c7,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cce7ea666df414d49abb2cb0012571c7, type: 2}
   m_IsPrefabAsset: 0
@@ -931,7 +891,7 @@ GameObject:
   - component: {fileID: 1563548932}
   m_Layer: 10
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1035,7 +995,7 @@ Transform:
   m_GameObject: {fileID: 1563548926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 47, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 394312603}
   m_Father: {fileID: 0}
@@ -1091,15 +1051,6 @@ MonoBehaviour:
   sprite: {fileID: 1563548929}
   maxHealth: 100
   currentHealth: 0
-  patrolPoints:
-  - {fileID: 1390278729}
-  - {fileID: 602078403}
-  - {fileID: 1217195591}
-  checkTime: 0
-  currentPatrolPoint: {fileID: 0}
-  fov: {fileID: 394312602}
-  estEnChasse: 0
-  target: {fileID: 0}
   ai: {fileID: 1563548931}
 --- !u!1 &1580956443 stripped
 GameObject:

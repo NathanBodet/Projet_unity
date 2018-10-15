@@ -71,7 +71,8 @@ public class EnemyAI : MonoBehaviour {
         enemy.animator.SetFloat("DirectionX", direction.x);
         enemy.animator.SetFloat("DirectionY", direction.y);
 
-        direction.Normalize();
+        direction.Normalize();        
+    
         enemy.rigidBody.velocity = direction * enemy.speed;
 
         decisionDuration = Random.Range(0.2f, 0.4f);
@@ -165,6 +166,11 @@ public class EnemyAI : MonoBehaviour {
     }
 
 	void Update () {
+        
+        //On récupère la direction dans laquelle est le player, pour plus tard
+        Vector3 direction = player.transform.position - transform.position;
+        direction.Normalize();
+
         //calculates the distance between the hero and enemy
         //no need the actual distance, only the squared distance, because the square root operation is expensive and unnecessary
         float sqrDistance = Vector3.SqrMagnitude(player.transform.position - transform.position);
@@ -182,8 +188,13 @@ public class EnemyAI : MonoBehaviour {
         {
             decisionDuration -= Time.deltaTime;
         } else
-        {
-            if (!playerDetector.playerIsNearby)
+        {   
+            //Si entre le player est loin OU si le player et pret mais qu'il y a un mur qui bloque, on passe en mode ROAM
+            //Comportement très temporaire, mais le test sera utilse plus tard dans le path finding !
+            if (!playerDetector.playerIsNearby || (playerDetector.playerIsNearby && Physics2D.Raycast(transform.position, direction, 
+                (float)System.Math.Sqrt(System.Math.Pow(player.transform.position.x-transform.position.x,2)
+                + System.Math.Pow(player.transform.position.y - transform.position.y, 2)
+               ), 1 << 0)))
             {
                 DecideWithWeights(0, 40, 0, 60);
             } else
@@ -195,11 +206,11 @@ public class EnemyAI : MonoBehaviour {
                         DecideWithWeights(70, 30, 0, 0);
                     } else
                     {
-                        DecideWithWeights(0, 20, 80, 0);
+                        DecideWithWeights(0, 0, 100, 0);
                     }
                 } else
                 {
-                    DecideWithWeights(0, 30, 70, 0);
+                    DecideWithWeights(0, 0, 100, 0);
                 }
             }
         }
