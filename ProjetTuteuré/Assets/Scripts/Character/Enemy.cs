@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Character {
     
     public static int TotalEnemies;
+    float deathTime = 0f;
 
     /*public Transform[] patrolPoints;
     public float checkTime;
@@ -35,7 +36,16 @@ public class Enemy : Character {
     {
         if (!isAlive)
         {
-            return;
+            if(deathTime == 0f)
+            {
+                deathTime = Time.time;
+            } else
+            {
+                if(Time.time > deathTime + 10f)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
         /*
         //check si l'ennemi chasse le joueur

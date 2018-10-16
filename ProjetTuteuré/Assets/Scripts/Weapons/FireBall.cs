@@ -7,8 +7,6 @@ public class FireBall : RangedWeapon {
     private Rigidbody2D rigidBody;
     float originCoordX, originCoordY;
 
-    private int damage;
-
     void Start () {
         this.damage = 5;
         this.range = 10f;
