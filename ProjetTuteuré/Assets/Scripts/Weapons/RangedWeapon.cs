@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RangedWeapon : Weapon {
 
+
     public int ammo;
-    public int range;
+    public float range;
 
     public float fireRate = 0.5f;
     private float nextFire = 0f;
@@ -17,17 +18,12 @@ public class RangedWeapon : Weapon {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
-    public void Fire()
-    {
-        //TODO
-
-    }
 }
