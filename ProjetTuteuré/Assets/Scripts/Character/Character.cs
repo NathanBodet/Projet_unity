@@ -78,7 +78,8 @@ public abstract class Character : MonoBehaviour {
     protected virtual void Die()
     {
         isAlive = false;
-        animator.SetBool("IsAlive", false);
+        animator.SetBool("isDead", true);
+        Debug.Log("ded");
     }
 
 }

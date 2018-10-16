@@ -22,15 +22,18 @@ public class TrapScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isDiscovered)
+        if(collision.gameObject.tag == "Player")
         {
-            isDiscovered = true;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        }
-        if (Time.time > lastDamageTime + damageCooldown)
-        {
-            collision.gameObject.GetComponent<Player>().TakeDamage(10);
-            lastDamageTime = Time.time;
+            if (!isDiscovered)
+            {
+                isDiscovered = true;
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            if (Time.time > lastDamageTime + damageCooldown)
+            {
+                collision.gameObject.GetComponent<Player>().TakeDamage(10);
+                lastDamageTime = Time.time;
+            }
         }
     }
 }

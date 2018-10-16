@@ -61,7 +61,7 @@ public class Player : Character {
     {
         if (!isAlive)
         {
-            return;
+            
         }
         Move();
     }

@@ -125,6 +125,7 @@ public class Enemy : Character {
     {
         base.Die();
         ai.enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         TotalEnemies--;
     }
 
