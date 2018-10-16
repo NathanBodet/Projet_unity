@@ -68,6 +68,7 @@ public abstract class Character : MonoBehaviour {
     public virtual void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log(damage);
         if(currentHealth <= 0)
         {
             Die();

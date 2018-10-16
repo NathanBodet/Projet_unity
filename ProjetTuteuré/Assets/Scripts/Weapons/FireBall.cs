@@ -8,7 +8,7 @@ public class FireBall : RangedWeapon {
     float originCoordX, originCoordY;
 
     void Start () {
-        this.damage = 5;
+        this.damage = 25;
         this.range = 10f;
         rigidBody = GetComponent<Rigidbody2D>();
         originCoordX = transform.position.x;
