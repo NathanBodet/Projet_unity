@@ -126,6 +126,7 @@ public class Enemy : Character {
         base.Die();
         ai.enabled = false;
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         TotalEnemies--;
     }
 

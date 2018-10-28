@@ -12,8 +12,6 @@ public class Player : Character {
     private int agility = 5;
 
     //attributs concernant les tirs
-    public GameObject ball;
-    Vector2 ballPos;
     public float fireRate = 0.5f;
     float nextFire = 0.0f;
 
@@ -21,7 +19,12 @@ public class Player : Character {
     float switchCooldown = 0.0f;
     bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
+    //attributs concernant l'interface
     public LifeBar lifeBar;
+
+    //attributs concernant l'inventaire
+    public GameObject armeDistanceEquipee;
+    public GameObject armeCorpsACorpsEquipee;
 
 
     void Awake()
@@ -43,6 +46,8 @@ public class Player : Character {
     protected override void Start()
     {
         base.Start();
+        armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
+        armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
         /*lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);*/
     }
@@ -96,7 +101,7 @@ public class Player : Character {
             if (!typeArmeEquipee && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate - 0.01f * agility; //firerate -> cooldown de tir
-                Fire();
+                armeDistanceEquipee.GetComponent<sortDeBouleDeFeu>().Fire();
             }
         }
 
@@ -119,18 +124,8 @@ public class Player : Character {
 
     public void Fire()
     {
-        ballPos = transform.position;
-        ballPos += new Vector2(0.5f * animator.GetFloat("DirectionX"), 0.5f * animator.GetFloat("DirectionY"));
-
-        //récupération des coordonnées de la souris et création du vecteur du projectile tiré
-        Vector3 ballDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
-        ballDir.x = ballDir.x - transform.position.x - 0.6f;
-        ballDir.y = ballDir.y - transform.position.y;
-        ballDir.Normalize();
-
-        //instanciation du projectile et addition du vecteur vitesse
-        GameObject ballInstance = Instantiate(ball, ballPos, Quaternion.identity);
-        ballInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(ballDir.x * 5, ballDir.y * 5);
+        
+        
     }
 
     public override void TakeDamage(float damage)

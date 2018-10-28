@@ -15,4 +15,9 @@ public class Weapon : MonoBehaviour {
 	protected virtual void Update () {
 		
 	}
+
+    public void equip(GameObject player)
+    {
+        this.player = player;
+    }
 }
