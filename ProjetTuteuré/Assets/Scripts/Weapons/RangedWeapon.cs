@@ -12,40 +12,28 @@ public class RangedWeapon : Weapon {
     public float fireRate = 0.5f;
     private float nextFire = 0f;
 
-    public GameObject player;
+    public GameObject projectilePrefab;
 
-    
 
-    // Use this for initialization
-    void Start () {
-        
-    }
 
-    public void Fire(GameObject projectilePrefab)
+    public void Fire()
     {
-        Vector2 ballPos = player.GetComponent<Transform>().position;
-        ballPos += new Vector2(0.5f * player.GetComponent<Animator>().GetFloat("DirectionX"), 0.5f * player.GetComponent<Animator>().GetFloat("DirectionY"));
+        Vector2 projectilePosition = player.GetComponent<Transform>().position;
+        projectilePosition += new Vector2(0.5f * player.GetComponent<Animator>().GetFloat("DirectionX"), 0.5f * player.GetComponent<Animator>().GetFloat("DirectionY"));
 
         //récupération des coordonnées de la souris et création du vecteur du projectile tiré
-        Vector3 ballDir = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
-        ballDir.x = ballDir.x - player.GetComponent<Transform>().position.x - 0.6f;
-        ballDir.y = ballDir.y - player.GetComponent<Transform>().position.y;
-        ballDir.Normalize();
+        Vector3 projectileDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
+        projectileDirection.x = projectileDirection.x - player.GetComponent<Transform>().position.x - 0.6f;
+        projectileDirection.y = projectileDirection.y - player.GetComponent<Transform>().position.y;
+        projectileDirection.Normalize();
 
         //instanciation du projectile et addition du vecteur vitesse
-        GameObject ballInstance = Instantiate(projectilePrefab, ballPos, Quaternion.identity);
-        ballInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(ballDir.x * projectileSpeed, ballDir.y * projectileSpeed);
+        GameObject projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
+        projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
+        projectileInstance.GetComponent<Projectile>().damage = this.damage;
+        projectileInstance.GetComponent<Projectile>().range = this.range;
+
 
     }
-
-    public void equip(GameObject player)
-    {
-        this.player = player;
-    }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
 }

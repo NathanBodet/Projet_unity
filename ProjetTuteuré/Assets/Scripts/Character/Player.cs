@@ -12,7 +12,6 @@ public class Player : Character {
     private int agility = 5;
 
     //attributs concernant les tirs
-    public float fireRate = 0.5f;
     float nextFire = 0.0f;
 
     // attributs concernant le combat
@@ -96,12 +95,18 @@ public class Player : Character {
 
         if (Input.GetMouseButtonDown(0))
         {
-          
-            Attack();
-            if (!typeArmeEquipee && Time.time > nextFire)
+
+            if (typeArmeEquipee)
             {
-                nextFire = Time.time + fireRate - 0.01f * agility; //firerate -> cooldown de tir
-                armeDistanceEquipee.GetComponent<sortDeBouleDeFeu>().Fire();
+                nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
+                armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().Hit();
+            } else
+            {
+                if(Time.time > nextFire)
+                {
+                    nextFire = Time.time + armeDistanceEquipee.GetComponent<RangedWeapon>().fireRate - 0.01f * agility; //firerate -> cooldown de tir
+                    armeDistanceEquipee.GetComponent<RangedWeapon>().Fire();
+                }
             }
         }
 
@@ -120,12 +125,6 @@ public class Player : Character {
     public void Move()
     {
         rigidBody.velocity = direction.normalized * speed;
-    }
-
-    public void Fire()
-    {
-        
-        
     }
 
     public override void TakeDamage(float damage)

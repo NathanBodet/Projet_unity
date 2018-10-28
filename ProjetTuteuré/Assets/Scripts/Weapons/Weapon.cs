@@ -6,8 +6,10 @@ public class Weapon : MonoBehaviour {
 
     public int damage;
 
-	// Use this for initialization
-	protected virtual void Start () {
+    public GameObject player;
+
+    // Use this for initialization
+    protected virtual void Start () {
 		
 	}
 	
