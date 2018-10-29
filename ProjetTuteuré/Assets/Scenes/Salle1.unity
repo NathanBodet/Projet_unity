@@ -271,6 +271,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114374935973070156, guid: 0c795c375252b6343936484b6ef46738,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1705855989}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c795c375252b6343936484b6ef46738, type: 2}
   m_IsPrefabAsset: 0
@@ -1877,6 +1882,7 @@ GameObject:
   - component: {fileID: 1705855993}
   - component: {fileID: 1705855990}
   - component: {fileID: 1705855996}
+  - component: {fileID: 1705855997}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2044,6 +2050,18 @@ MonoBehaviour:
   showGUI2: 0
   canvas: {fileID: 1544090069}
   canvas2: {fileID: 1580956443}
+--- !u!114 &1705855997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1705855989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97d76f914284444cb8d540bb51f830c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1001 &1771406305
 Prefab:
   m_ObjectHideFlags: 0
