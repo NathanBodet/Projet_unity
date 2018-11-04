@@ -31,6 +31,7 @@ public class InventaireScript : MonoBehaviour {
             if(listeItems[i] == null)
             {
                 listeItems[i] = item;
+                return;
             }
         }
     }
