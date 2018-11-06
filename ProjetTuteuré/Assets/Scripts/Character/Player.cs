@@ -72,6 +72,7 @@ public class Player : Character {
 
     private void GetInput()
     {
+        //inputs directionels
         direction = Vector2.zero;
         if (Input.GetKey(KeyCode.Z))
         {
@@ -93,6 +94,7 @@ public class Player : Character {
             direction += Vector2.right;
         }
 
+        //input de tir
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -110,6 +112,7 @@ public class Player : Character {
             }
         }
 
+        //input de switch d'arme
         if (Input.GetKey(KeyCode.E))
         {
             //switch le type d'arme : cooldown de 1s
@@ -119,6 +122,7 @@ public class Player : Character {
                 typeArmeEquipee = !typeArmeEquipee;
             }
         }
+
     
     }
 
