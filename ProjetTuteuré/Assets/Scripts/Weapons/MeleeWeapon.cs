@@ -9,7 +9,7 @@ public class MeleeWeapon : Weapon {
 
 	public void Hit()
     {
-
+        
     }
 
 }
