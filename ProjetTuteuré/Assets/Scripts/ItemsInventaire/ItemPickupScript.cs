@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ItemPickupScript : MonoBehaviour {
 
+    public GameObject inventaire;
+
 	// Use this for initialization
 	void Start () {
 		

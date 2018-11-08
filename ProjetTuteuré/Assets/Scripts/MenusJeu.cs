@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenusJeu : MonoBehaviour
     {
@@ -37,7 +38,7 @@ public class MenusJeu : MonoBehaviour
             else if (!showGUI && showGUI2)
             {
                 canvas2.SetActive(true);
-                Time.timeScale = 0;
+            Time.timeScale = 0;
             }
             else
             {
@@ -65,4 +66,15 @@ public class MenusJeu : MonoBehaviour
         {
             SceneManager.LoadScene("MainMenu");
         }
+
+    public void changeWeapon()
+    {
+        //Debug.Log(EventSystem.current.currentSelectedGameObject.name[9]);
+
+        if (GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])] != null)
+        {
+            GetComponent<Player>().armeDistanceEquipee = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
+        }
+    }
+
 }

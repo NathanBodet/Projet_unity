@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class InventaireScript : MonoBehaviour {
 
-    GameObject[] listeItems;
+    public GameObject[] listeItems;
     public GameObject player;
+    GameObject c;
 
 	// Use this for initialization
 	void Start () {
         listeItems = new GameObject[10];
+        c = player.GetComponent<MenusJeu>().canvas2;
 	}
 
     public bool isFull()
@@ -31,9 +35,11 @@ public class InventaireScript : MonoBehaviour {
             if(listeItems[i] == null)
             {
                 listeItems[i] = item;
+                updateMenuInventaire();
                 return;
             }
         }
+        
     }
 
     //pour retirer un objet spécifique
@@ -50,6 +56,7 @@ public class InventaireScript : MonoBehaviour {
 
             }
         }
+        updateMenuInventaire();
     }
 
     //pour retirer un objet à l'indice indice
@@ -59,6 +66,21 @@ public class InventaireScript : MonoBehaviour {
         {
             listeItems[indice] = null;
         }
+        updateMenuInventaire();
     }
 	
+    public void updateMenuInventaire()
+    {
+        
+        for (int i=0; i<10; i++)
+        {
+            GameObject button = c.GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<RectTransform>().GetChild(i).gameObject;
+
+            if (listeItems[i] != null)
+            {
+                button.GetComponent<Image>().sprite = listeItems[i].GetComponent<SpriteRenderer>().sprite;
+            }
+            
+        }
+    }
 }
