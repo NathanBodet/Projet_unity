@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenusJeu : MonoBehaviour
     {
 
-        public bool showGUI = false;
-        public bool showGUI2 = false;
-        public GameObject canvas, canvas2;
-      
-        // Use this for initialization
-        void Start()
-        {
+    public bool showGUI = false;
+    public bool showGUI2 = false;
+    public bool showGUI3 = false;
+    public GameObject canvas, canvas2, canvas3, canvas4, canvas5;
+    public Text text1, text2;
 
-        }
+    // Use this for initialization
+    void Start()
+        {
+        canvas3.SetActive(false);
+        canvas4.SetActive(false);
+        canvas5.SetActive(false);
+    }
 
         // Update is called once per frame
         void Update()
@@ -46,7 +51,7 @@ public class MenusJeu : MonoBehaviour
                 canvas2.SetActive(false);
                 Time.timeScale = 1;
             }
-        }
+    }
 
         void OnLevelWasLoaded()
         {
@@ -58,11 +63,51 @@ public class MenusJeu : MonoBehaviour
         {
             showGUI = false;
             canvas.SetActive(false);
+        canvas4.SetActive(false);
+            canvas5.SetActive(false);
             Time.timeScale = 1;
         }
 
+    public void save()
+    {
+        canvas.SetActive(false);
+        showGUI = false;
+        showGUI3 = true;
+        canvas3.SetActive(true);
+        DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+        if (datasnames != null)
+        {
+            text1.text = datasnames.name;
+        }
+    }
 
-        public void Quit()
+    public void load()
+    {
+        canvas.SetActive(false);
+        showGUI = false;
+        showGUI3 = true;
+        canvas5.SetActive(true);
+        DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+        if (datasnames != null)
+        {
+            text2.text = datasnames.name;
+        }
+    }
+
+    public void but1()
+    {
+        canvas3.SetActive(false);
+        canvas4.SetActive(true);
+    }
+
+
+    public void validate()
+    {
+        showGUI3 = false;
+        canvas4.SetActive(false);
+    }
+
+    public void Quit()
         {
             SceneManager.LoadScene("MainMenu");
         }

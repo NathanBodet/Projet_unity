@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : Character {
 
@@ -25,12 +26,15 @@ public class Player : Character {
     public GameObject armeDistanceEquipee;
     public GameObject armeCorpsACorpsEquipee;
 
+    public InputField iu;
+
 
     void Awake()
     {
-        if(File.Exists(Application.persistentDataPath + "/Save1.sav"))
+        DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+        if (datasnames != null)
         {
-            Datas datas = (Datas)DataManager.Load("Save1.sav");
+            Datas datas = (Datas)DataManager.Load(datasnames.name + ".sav");
             if (datas.i == 1)
             {
                 loadDatas();
@@ -138,28 +142,68 @@ public class Player : Character {
         lifeBar.SetProgress(currentHealth / maxHealth);
     }
 
-    public void saveDatas()
+    public void saveDatas(string guess)
     {
-        Debug.Log("On va sauver les datas dans " + Application.persistentDataPath);
-        Datas datas = new Datas();
-        datas.nameScene = SceneManager.GetActiveScene().name;
-        datas.x = transform.position.x;
-        datas.y = transform.position.y;
-        datas.strength = strength;
-        datas.agility = agility;
-        datas.endurance = endurance;
-        datas.switchCooldown = switchCooldown;
-        datas.typeArmeEquipee = typeArmeEquipee;
-        datas.currentHealth = currentHealth;
-        DataManager.Save(datas, "Save1.sav");
+        if (File.Exists(Application.persistentDataPath + "/names.sav"))
+        {
+            if (guess.Length != 0)
+            {
+                Debug.Log("On va sauver les datas dans " + Application.persistentDataPath);
+                DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+                Datas datas = new Datas();
+                datas.name = datasnames.name;
+                datas.nameScene = SceneManager.GetActiveScene().name;
+                datas.x = transform.position.x;
+                datas.y = transform.position.y;
+                datas.strength = strength;
+                datas.agility = agility;
+                datas.endurance = endurance;
+                datas.switchCooldown = switchCooldown;
+                datas.typeArmeEquipee = typeArmeEquipee;
+                datas.currentHealth = currentHealth;
+                if (datasnames.name != guess)
+                {
+                    File.Delete(Application.persistentDataPath + "/" + datasnames.name + ".sav");
+                }
+                datasnames.name = guess;
+                DataManager.Save(datasnames, "names.sav");
+                DataManager.Save(datas, datasnames.name + ".sav");
+            }
+        }
+        else
+        {
+            if (guess.Length != 0)
+            {
+                Debug.Log("On va sauver les datas dans " + Application.persistentDataPath);
+                DatasNames dtn = new DatasNames();
+                Datas datas = new Datas();
+                datas.nameScene = SceneManager.GetActiveScene().name;
+                datas.x = transform.position.x;
+                datas.y = transform.position.y;
+                datas.strength = strength;
+                datas.agility = agility;
+                datas.endurance = endurance;
+                datas.switchCooldown = switchCooldown;
+                datas.typeArmeEquipee = typeArmeEquipee;
+                datas.currentHealth = currentHealth;
+                dtn.name = guess;
+                DataManager.Save(dtn, "names.sav");
+                DataManager.Save(datas, guess + ".sav");
+                Debug.Log("On va sauver les datas dans " + Application.persistentDataPath);
+                Debug.Log(guess);
+            }
+        }
+
+
     }
 
     public void loadDatas()
     {
-        if (File.Exists(Application.persistentDataPath + "/Save1.sav"))
+        if (File.Exists(Application.persistentDataPath + "/names.sav"))
         {
             Debug.Log("On va charger les datas");
-            Datas datas = (Datas)DataManager.Load("Save1.sav");
+            DatasNames dtn = (DatasNames)DataManager.LoadNames("names.sav");
+            Datas datas = (Datas)DataManager.Load(dtn.name + ".sav");
             Vector2 position = new Vector2(datas.x, datas.y);
             this.transform.position = position;
             strength = datas.strength;

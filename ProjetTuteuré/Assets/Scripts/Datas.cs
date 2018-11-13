@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class Datas
 {
+    public string name;
     public float x;
     public float y;
     public int strength;
