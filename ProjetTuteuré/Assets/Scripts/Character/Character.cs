@@ -82,4 +82,9 @@ public abstract class Character : MonoBehaviour {
         Debug.Log("ded");
     }
 
+    public Vector2 getDirection()
+    {
+        return this.direction;
+    }
+
 }

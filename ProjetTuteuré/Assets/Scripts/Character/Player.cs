@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class Player : Character {
 
     //Statistiques du joueur
-    private int strength = 5;
-    private int endurance = 5;
-    private int agility = 5;
+    public int strength = 5;
+    public int endurance = 5;
+    public int agility = 5;
 
     //attributs concernant les tirs
     float nextFire = 0.0f;

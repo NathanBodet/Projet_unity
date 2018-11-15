@@ -103,7 +103,7 @@ MonoBehaviour:
   nom: "Faible \xE9p\xE9e"
   damage: 10
   player: {fileID: 0}
-  range: 1
+  range: 2
   hitRate: 1
 --- !u!114 &114750574021683480
 MonoBehaviour:
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a77cf5c2c4eca4fa48c283b1460950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventaire: {fileID: 0}
 --- !u!212 &212656227373438778
 SpriteRenderer:
   m_ObjectHideFlags: 1
