@@ -10,15 +10,14 @@ public class MeleeWeapon : Weapon {
 	public void Hit()
     {
         Debug.Log("Je tape");
-        Vector2 directionCoup = new Vector2(player.GetComponent<Player>().getDirection().x, player.GetComponent<Player>().getDirection().y);
-        Debug.Log(player.GetComponent<Player>().getDirection().x);
-        Debug.Log(player.GetComponent<Player>().getDirection().y);
+        Vector2 directionCoup = new Vector2(player.GetComponent<Animator>().GetFloat("DirectionX"), player.GetComponent<Animator>().GetFloat("DirectionY"));
+        
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionCoup,2f);
-        Debug.Log(hit.collider.gameObject.tag);
+        LayerMask mask = LayerMask.GetMask("Enemy");
+        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, directionCoup,range,mask);
         if (hit.collider != null && hit.collider.gameObject.tag == "Enemy")
         {
-            Debug.Log("Je touche");
+            Debug.Log("Je touche" + hit.collider.gameObject.name);
             hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage);
         }
     }

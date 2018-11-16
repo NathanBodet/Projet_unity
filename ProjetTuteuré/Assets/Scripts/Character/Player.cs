@@ -57,10 +57,6 @@ public class Player : Character {
 
     protected override void Update() {
 
-        /*if (Time.timeScale == 1)
-        {
-            GetInput();
-        }*/
         GetInput();
         base.Update();
     }
@@ -101,19 +97,20 @@ public class Player : Character {
         //input de tir
         if (Input.GetMouseButtonDown(0))
         {
-
-            if (typeArmeEquipee)
+            if(Time.time > nextFire)
             {
-                nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
-                armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().Hit();
-            } else
-            {
-                if(Time.time > nextFire)
+                if (typeArmeEquipee)
+                {
+                    nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
+                    armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().Hit();
+                } else
                 {
                     nextFire = Time.time + armeDistanceEquipee.GetComponent<RangedWeapon>().fireRate - 0.01f * agility; //firerate -> cooldown de tir
                     armeDistanceEquipee.GetComponent<RangedWeapon>().Fire();
                 }
+                    
             }
+            
         }
 
         //input de switch d'arme

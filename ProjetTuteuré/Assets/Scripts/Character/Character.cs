@@ -84,7 +84,7 @@ public abstract class Character : MonoBehaviour {
 
     public Vector2 getDirection()
     {
-        return this.direction;
+        return direction;
     }
 
 }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114750574021683480}
   m_Layer: 0
   m_Name: faibleEpee
-  m_TagString: Untagged
+  m_TagString: ArmeCAC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016660963751004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.12, y: -1.3463908, z: -0.234375}
+  m_LocalPosition: {x: 26.12, y: -1.3463908, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   damage: 10
   player: {fileID: 0}
   range: 2
-  hitRate: 1
+  hitRate: 0.3
 --- !u!114 &114750574021683480
 MonoBehaviour:
   m_ObjectHideFlags: 1
