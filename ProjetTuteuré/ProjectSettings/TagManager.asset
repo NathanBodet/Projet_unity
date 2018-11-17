@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - ArmeCAC
   - ArmeD
+  - PlayerLifeBar
+  - WorldCanvas
   layers:
   - Default
   - TransparentFX
@@ -45,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Canvas
+    uniqueID: 1352089197
+    locked: 0
   - name: Background
     uniqueID: 1592119561
     locked: 0
@@ -59,4 +64,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1742554143
+    locked: 0
+  - name: Salle
+    uniqueID: 1437357399
     locked: 0

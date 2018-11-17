@@ -8,7 +8,7 @@ public class LifeBar : MonoBehaviour {
 
     void Start()
     {
-        SetProgress(1f);
+        SetProgress(1.0f);
     }
 
     private Sprite SpriteForProgress(float progress)
@@ -27,6 +27,7 @@ public class LifeBar : MonoBehaviour {
     public void SetProgress(float progress)
     {
         fillImage.fillAmount = progress;
+        fillImage.sprite = SpriteForProgress(progress);
     }
 
     public void EnableLifeBar(bool enabled)

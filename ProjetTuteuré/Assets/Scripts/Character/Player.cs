@@ -45,14 +45,13 @@ public class Player : Character {
     }
 
 
-
     protected override void Start()
     {
         base.Start();
         armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
         armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
-        /*lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
-        lifeBar.SetProgress(currentHealth / maxHealth);*/
+        lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
+        lifeBar.SetProgress(currentHealth / maxHealth);
     }
 
     protected override void Update() {
@@ -72,7 +71,7 @@ public class Player : Character {
 
     private void GetInput()
     {
-        //inputs directionels
+        //inputs directionnels
         direction = Vector2.zero;
         if (Input.GetKey(KeyCode.Z))
         {
@@ -122,6 +121,12 @@ public class Player : Character {
                 switchCooldown = Time.time + 1f;
                 typeArmeEquipee = !typeArmeEquipee;
             }
+        }
+
+        //input d'attaque càc
+        if (Input.GetMouseButton(0))
+        {
+            Attack();
         }
 
     
