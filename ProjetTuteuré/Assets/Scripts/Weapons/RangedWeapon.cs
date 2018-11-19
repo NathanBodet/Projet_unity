@@ -8,6 +8,7 @@ public class RangedWeapon : Weapon {
     public int ammunition;
     public float range;
     public float projectileSpeed;
+    public int nbBalles;//nombres de projectiles tirés en même temps
 
     public float fireRate = 0.5f;
     private float nextFire = 0f;
@@ -19,6 +20,7 @@ public class RangedWeapon : Weapon {
     public void Fire()
     {
         Vector2 projectilePosition = player.GetComponent<Transform>().position;
+        float dispertion =Random.Range(0, 1);
 
         //récupération des coordonnées de la souris et création du vecteur du projectile tiré
         Vector3 projectileDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra

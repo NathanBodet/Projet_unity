@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133255771872872}
-  - component: {fileID: 114162554438811010}
   - component: {fileID: 212577776633031836}
   - component: {fileID: 61062932860850556}
   - component: {fileID: 50197155102633658}
   - component: {fileID: 114530059545346082}
+  - component: {fileID: 114544360014324048}
   m_Layer: 0
   m_Name: shotgun
   m_TagString: ArmeD
@@ -89,26 +89,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.0395317, y: 1.9390022}
   m_EdgeRadius: 0
---- !u!114 &114162554438811010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1276670577909234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73dda99ca5240de4ba9b1be75cd0c729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nom: "Fusil \xE0 pompe"
-  damage: 50
-  player: {fileID: 0}
-  ammunition: 0
-  range: 4
-  projectileSpeed: 15
-  fireRate: 2
-  projectilePrefab: {fileID: 1871213557999406, guid: a9c717de480fdd54f83c09863ca8f56b,
-    type: 2}
 --- !u!114 &114530059545346082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +101,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventaire: {fileID: 0}
+--- !u!114 &114544360014324048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1276670577909234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d607b4d6d99ce4749a8c74272d983fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: Shotgun
+  damage: 20
+  player: {fileID: 0}
+  ammunition: 10
+  range: 5
+  projectileSpeed: 20
+  nbBalles: 3
+  fireRate: 2
+  projectilePrefab: {fileID: 1871213557999406, guid: a9c717de480fdd54f83c09863ca8f56b,
+    type: 2}
 --- !u!212 &212577776633031836
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -154,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ae756975a64029844a57fda7e525f872, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
