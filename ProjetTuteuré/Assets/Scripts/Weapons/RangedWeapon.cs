@@ -39,4 +39,10 @@ public class RangedWeapon : Weapon {
 
     }
 
+    public void equip(GameObject player)
+    {
+        base.equip(player);
+        this.player.gameObject.GetComponent<Player>().armeDistanceScript = this;
+    }
+
 }

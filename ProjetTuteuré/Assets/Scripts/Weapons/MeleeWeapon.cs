@@ -9,7 +9,6 @@ public class MeleeWeapon : Weapon {
 
 	public void Hit()
     {
-        Debug.Log("Je tape");
         Vector2 directionCoup = new Vector2(player.GetComponent<Animator>().GetFloat("DirectionX"), player.GetComponent<Animator>().GetFloat("DirectionY"));
         
 
@@ -17,9 +16,14 @@ public class MeleeWeapon : Weapon {
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, directionCoup,range,mask);
         if (hit.collider != null && hit.collider.gameObject.tag == "Enemy")
         {
-            Debug.Log("Je touche" + hit.collider.gameObject.name);
             hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage);
         }
+    }
+
+    public void equip(GameObject player)
+    {
+        base.equip(player);
+        this.player.gameObject.GetComponent<Player>().armeCorpsACorpsScript = this;
     }
 
 }

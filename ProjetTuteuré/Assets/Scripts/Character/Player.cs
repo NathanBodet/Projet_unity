@@ -24,7 +24,10 @@ public class Player : Character {
 
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
+    public RangedWeapon armeDistanceScript;
     public GameObject armeCorpsACorpsEquipee;
+    public MeleeWeapon armeCorpsACorpsScript;
+
 
     public InputField iu;
 
@@ -101,11 +104,11 @@ public class Player : Character {
                 if (typeArmeEquipee)
                 {
                     nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
-                    armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().Hit();
+                    armeCorpsACorpsScript.Hit();
                 } else
                 {
                     nextFire = Time.time + armeDistanceEquipee.GetComponent<RangedWeapon>().fireRate - 0.01f * agility; //firerate -> cooldown de tir
-                    armeDistanceEquipee.GetComponent<RangedWeapon>().Fire();
+                    armeDistanceScript.Fire();
                 }
                     
             }
