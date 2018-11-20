@@ -19,30 +19,48 @@ public class RangedWeapon : Weapon {
 
     public void Fire()
     {
-        Vector2 projectilePosition = player.GetComponent<Transform>().position;
-        float dispertion =Random.Range(0, 1);
+        if(ammunition == 0)
+        {
+            Debug.Log("Plus de munitions !");
+        }
+        else
+        {
+            ammunition--;
+            Vector2 projectilePosition = player.GetComponent<Transform>().position;
+            float dispertion;
+            Vector3 originDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
+            GameObject projectileInstance;
+            Vector3 projectileDirection;
 
-        //récupération des coordonnées de la souris et création du vecteur du projectile tiré
-        Vector3 projectileDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
-        projectileDirection.x = projectileDirection.x - player.GetComponent<Transform>().position.x;
-        projectileDirection.y = projectileDirection.y - player.GetComponent<Transform>().position.y;
-        projectileDirection.z = 0;
-        projectileDirection.Normalize();
+            for (int i = 0; i < nbBalles; i++)
+            {
+                dispertion = Random.Range(0, 1);
+                //récupération des coordonnées de la souris et création du vecteur du projectile tiré
+                projectileDirection.x = originDirection.x - player.GetComponent<Transform>().position.x;
+                projectileDirection.y = originDirection.y - player.GetComponent<Transform>().position.y;
+                projectileDirection.z = 0;
+                projectileDirection.Normalize();
 
-        //instanciation du projectile et addition du vecteur vitesse
-        GameObject projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
-        projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
-        projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
-        projectileInstance.GetComponent<Projectile>().damage = this.damage;
-        projectileInstance.GetComponent<Projectile>().range = this.range;
+                //instanciation du projectile et addition du vecteur vitesse
+                projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
+                projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
+                projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
+                float rnd = Random.Range(0, 100);
+                if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
+                {
+                    projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength);
+                }
+                else//coup critique
+                {
+                    projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength) * 2;
+                }
+                projectileInstance.GetComponent<Projectile>().range = this.range;
+
+            }
+
+        }
 
 
-    }
-
-    public void equip(GameObject player)
-    {
-        base.equip(player);
-        this.player.gameObject.GetComponent<Player>().armeDistanceScript = this;
     }
 
 }
