@@ -19,10 +19,10 @@ public class MeleeWeapon : Weapon {
             float rnd = Random.Range(0,100);
             if(rnd > player.gameObject.GetComponent<Player>().agility) //coup normal
             {
-                hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage);
+                hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage,directionCoup);
             } else // coup critique
             {
-                hit.collider.GetComponent<Enemy>().TakeDamage((player.GetComponent<Player>().strength + this.damage )* 2);
+                hit.collider.GetComponent<Enemy>().TakeDamage((player.GetComponent<Player>().strength + this.damage )* 2,directionCoup);
             }
             
         }
