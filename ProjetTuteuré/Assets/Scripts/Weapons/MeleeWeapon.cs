@@ -16,7 +16,7 @@ public class MeleeWeapon : Weapon {
         RaycastHit2D hit = Physics2D.Raycast(player.transform.position, directionCoup,range,mask);
         if (hit.collider != null && hit.collider.gameObject.tag == "Enemy")
         {
-            hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage);
+            hit.collider.GetComponent<Enemy>().TakeDamage(player.GetComponent<Player>().strength + this.damage, directionCoup);
         }
     }
 

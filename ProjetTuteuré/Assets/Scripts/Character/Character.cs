@@ -72,21 +72,16 @@ public abstract class Character : MonoBehaviour {
         animator.SetTrigger("Attacking");
     }
 
-    public virtual void DidHitObject(Collider collider, Vector3 hitPoint, Vector3 hitVector)
+    public virtual void DidHitObject(Collider collider, Vector3 hitVector)
     {
         Character character = collider.GetComponent<Character>();
         if(character != null && collider.tag != gameObject.tag)
         {
             if(collider.attachedRigidbody != null)
             {
-                HitCharacter(character, hitPoint, hitVector);
+                TakeDamage(10, hitVector);
             }
         }
-    }
-
-    protected virtual void HitCharacter(Character character, Vector3 hitPoint, Vector3 hitVector)
-    {
-        character.EvaluateAttackData(10, hitVector, hitPoint);
     }
 
     protected virtual void Die()
@@ -99,8 +94,9 @@ public abstract class Character : MonoBehaviour {
     }
 
 
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, Vector3 hitVector)
     {
+        rigidBody.AddForce(50 * hitVector);
         currentHealth -= damage;
         ShowHitEffects(damage, gameObject.transform.position);
 
@@ -110,13 +106,6 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
-    public virtual void EvaluateAttackData(float damage, Vector3 hitVector, Vector3 hitPoint)
-    {
-        rigidBody.AddForce(10 * hitVector);
-        TakeDamage(damage);
-        ShowHitEffects(damage, hitPoint);
-    }
-
     public Vector2 getDirection()
     {
         return direction;
@@ -124,15 +113,16 @@ public abstract class Character : MonoBehaviour {
 
     protected void ShowHitEffects(float value, Vector3 position)
     {
-        GameObject obj = Instantiate(hitValuePrefab);
-        obj.GetComponent<Text>().text = value.ToString();
-        obj.GetComponent<DestroyTimer>().EnableTimer(1.0f);
-
         GameObject canvas = GameObject.FindGameObjectWithTag("WorldCanvas");
-        obj.transform.SetParent(canvas.transform);
+        GameObject obj = Instantiate(hitValuePrefab);
+
+        obj.transform.SetParent(canvas.transform, false);
+        obj.transform.position = canvas.transform.position + position;
         obj.transform.localRotation = Quaternion.identity;
         obj.transform.localScale = Vector3.one;
-        obj.transform.position = position;
+
+        obj.GetComponent<Text>().text = value.ToString();
+        obj.GetComponent<DestroyTimer>().EnableTimer(1.0f);
     }
 
 }
