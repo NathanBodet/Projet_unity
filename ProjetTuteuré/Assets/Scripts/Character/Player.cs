@@ -104,11 +104,11 @@ public class Player : Character {
                 if (typeArmeEquipee)
                 {
                     nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
-                    armeCorpsACorpsScript.Hit();
+                    armeCorpsACorpsEquipee.gameObject.GetComponent<MeleeWeapon>().Hit();
                 } else
                 {
                     nextFire = Time.time + armeDistanceEquipee.GetComponent<RangedWeapon>().fireRate - 0.01f * agility; //firerate -> cooldown de tir
-                    armeDistanceScript.Fire();
+                    armeDistanceEquipee.gameObject.GetComponent<RangedWeapon>().Fire();
                 }
                     
             }
