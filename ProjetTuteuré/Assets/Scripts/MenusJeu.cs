@@ -11,8 +11,8 @@ public class MenusJeu : MonoBehaviour
     public bool showGUI = false;
     public bool showGUI2 = false;
     public bool showGUI3 = false;
-    public GameObject canvas, canvas2, canvas3, canvas4, canvas5;
-    public Text text1, text2;
+    public GameObject canvas, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7;
+    public Text text1, text2, text3, text4, text5, text6;
 
     // Use this for initialization
     void Start()
@@ -20,6 +20,8 @@ public class MenusJeu : MonoBehaviour
         canvas3.SetActive(false);
         canvas4.SetActive(false);
         canvas5.SetActive(false);
+        canvas6.SetActive(false);
+        canvas7.SetActive(false);
     }
 
         // Update is called once per frame
@@ -65,7 +67,9 @@ public class MenusJeu : MonoBehaviour
             canvas.SetActive(false);
         canvas4.SetActive(false);
             canvas5.SetActive(false);
-            Time.timeScale = 1;
+        canvas6.SetActive(false);
+        canvas7.SetActive(false);
+        Time.timeScale = 1;
         }
 
     public void save()
@@ -77,7 +81,18 @@ public class MenusJeu : MonoBehaviour
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
         {
-            text1.text = datasnames.name;
+            if (datasnames.name != null)
+            {
+                text1.text = datasnames.name;
+            }
+            if (datasnames.name2 != null)
+            {
+                text2.text = datasnames.name2;
+            }
+            if (datasnames.name3 != null)
+            {
+                text3.text = datasnames.name3;
+            }
         }
     }
 
@@ -90,14 +105,37 @@ public class MenusJeu : MonoBehaviour
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
         {
-            text2.text = datasnames.name;
+            if (datasnames.name != null)
+            {
+                text4.text = datasnames.name;
+            }
+            if (datasnames.name2 != null)
+            {
+                text5.text = datasnames.name2;
+            }
+            if (datasnames.name3 != null)
+            {
+                text6.text = datasnames.name3;
+            }
         }
     }
 
-    public void but1()
+    public void butSaves()
     {
         canvas3.SetActive(false);
         canvas4.SetActive(true);
+    }
+
+    public void butSaves2()
+    {
+        canvas3.SetActive(false);
+        canvas6.SetActive(true);
+    }
+
+    public void butSaves3()
+    {
+        canvas3.SetActive(false);
+        canvas7.SetActive(true);
     }
 
 
@@ -105,6 +143,8 @@ public class MenusJeu : MonoBehaviour
     {
         showGUI3 = false;
         canvas4.SetActive(false);
+        canvas6.SetActive(false);
+        canvas7.SetActive(false);
     }
 
     public void Quit()

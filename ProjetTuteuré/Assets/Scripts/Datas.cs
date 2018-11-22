@@ -17,5 +17,4 @@ public class Datas
     public float currentHealth;
     public string nameScene;
     public int i = 0;
-
 }
