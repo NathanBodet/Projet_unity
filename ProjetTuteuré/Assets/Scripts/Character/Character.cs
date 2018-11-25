@@ -28,7 +28,7 @@ public abstract class Character : MonoBehaviour {
     public float maxHealth = 100f;
     public float currentHealth;
 
-    protected bool isAlive;
+    public bool isAlive;
 
 
     // Use this for initialization

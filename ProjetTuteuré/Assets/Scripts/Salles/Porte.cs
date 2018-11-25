@@ -2,36 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Porte : MonoBehaviour {
 
-    bool ouverte;
-    SalleManager salle;
+    public SalleManagerScript salle;
     public GameObject objectSalle;
-    public Sprite[][] listeSprites;
 
 	// Use this for initialization
 	void Start () {
-        salle = objectSalle.GetComponent<SalleManager>();
-        ouverte = true;
-        listeSprites = new Sprite[4][];
-        for(int i =0; i < 4; i++)
-        {
-            listeSprites[i] = new Sprite[2];
-        }
-		
-	}
+        salle = objectSalle.GetComponent<SalleManagerScript>();
+        GetComponent<SpriteRenderer>().enabled = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            salle.debut();
-        }
     }
 
-    public void close()
+    public void close()//lorsque le joueur est entré dans la pièce
     {
         GetComponent<BoxCollider2D>().isTrigger = false;
-        //GetComponent<SpriteRenderer>().sprite =
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void open()
+    {
+        Destroy(gameObject);
     }
 }
