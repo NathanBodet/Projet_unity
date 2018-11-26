@@ -60,9 +60,27 @@ public class Enemy : Character {
     {
         base.Die();
         ai.enabled = false;
-        //gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        GetComponent<BoxCollider2D>().enabled = false;
         TotalEnemies--;
+    }
+
+    public void Attack()
+    {
+        Vector2 directionCoup = new Vector2(GetComponent<Animator>().GetFloat("DirectionX"), GetComponent<Animator>().GetFloat("DirectionY"));
+        LayerMask mask = LayerMask.GetMask("Player");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionCoup, 1f, mask);
+        if (hit.collider != null && hit.collider.gameObject.tag == "Player")
+        {
+            float rnd = Random.Range(0, 100);
+            if (rnd > 20) //coup normal
+            {
+                hit.collider.GetComponent<Character>().TakeDamage(10, directionCoup,1);
+            }
+            else // coup critique
+            {
+                hit.collider.GetComponent<Character>().TakeDamage(20, directionCoup,1);
+            }
+        }
     }
 
 }

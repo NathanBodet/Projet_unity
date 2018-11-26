@@ -6,16 +6,6 @@ public class ItemPickupScript : MonoBehaviour {
 
     public GameObject inventaire;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -26,15 +16,6 @@ public class ItemPickupScript : MonoBehaviour {
                 Debug.Log("vous avez récupéré : " + this.gameObject.GetComponent<Item>().nom);
                 this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                if(this.gameObject.tag == "ArmeCAC")
-                {
-                    collision.gameObject.GetComponent<Player>().armeCorpsACorpsEquipee = this.gameObject;
-                    this.gameObject.GetComponent<Weapon>().equip(collision.gameObject);
-                } else if(this.gameObject.tag == "ArmeD")
-                {
-                    collision.gameObject.GetComponent<Player>().armeDistanceEquipee = this.gameObject;
-                    this.gameObject.GetComponent<Weapon>().equip(collision.gameObject);
-                }
                 
             }
         }

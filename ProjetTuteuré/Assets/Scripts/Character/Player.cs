@@ -24,9 +24,7 @@ public class Player : Character {
 
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
-    public RangedWeapon armeDistanceScript;
     public GameObject armeCorpsACorpsEquipee;
-    public MeleeWeapon armeCorpsACorpsScript;
 
 
     public InputField iu;
@@ -166,11 +164,11 @@ public class Player : Character {
             }
         }
 
-        //input d'attaque càc
+        /*input d'attaque càc
         if (Input.GetMouseButton(0))
         {
             Attack();
-        }
+        }**/
 
     
     }
@@ -180,9 +178,9 @@ public class Player : Character {
         rigidBody.velocity = direction.normalized * speed;
     }
 
-    public override void TakeDamage(float damage, Vector3 hitVector)
+    public override void TakeDamage(float damage, Vector3 hitVector,int force)
     {
-        base.TakeDamage(damage, hitVector);
+        base.TakeDamage(damage, hitVector,50);
         lifeBar.EnableLifeBar(true);
         lifeBar.SetProgress(currentHealth / maxHealth);
     }

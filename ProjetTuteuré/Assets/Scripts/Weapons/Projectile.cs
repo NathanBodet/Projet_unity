@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour {
     {
         if (collision.collider.tag == "Enemy")
         {
-            collision.collider.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero);
+            collision.collider.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero,50);
             rigidBody.velocity = Vector2.zero;
         }
         Destroy(gameObject);

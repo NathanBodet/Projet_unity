@@ -9,7 +9,7 @@ public class SalleManagerScript : MonoBehaviour {
     public bool finie;
     GameObject salleTiles;
     public Porte porteOuest,porteNord,porteEst,porteSud;
-    public Enemy ennemi1;
+    public Enemy ennemi1,ennemi2,ennemi3,ennemi4,ennemi5,ennemi6,ennemi7;
     List<Porte> listePortes;
 
 
@@ -26,6 +26,12 @@ public class SalleManagerScript : MonoBehaviour {
             listePortes.Add(porteEst);
             listePortes.Add(porteSud);
             listeEnnemis.Add(ennemi1);
+            listeEnnemis.Add(ennemi2);
+            listeEnnemis.Add(ennemi3);
+            listeEnnemis.Add(ennemi4);
+            listeEnnemis.Add(ennemi5);
+            listeEnnemis.Add(ennemi6);
+            listeEnnemis.Add(ennemi7);
         }
 
     }
@@ -54,10 +60,14 @@ public class SalleManagerScript : MonoBehaviour {
     {
         foreach(Enemy ennemi in listeEnnemis)
         {
-            if (ennemi.isAlive)
+            if(ennemi != null)
             {
-                return false;
+                if (ennemi.isAlive)
+                {
+                    return false;
+                }
             }
+           
         }
         return true;
     }

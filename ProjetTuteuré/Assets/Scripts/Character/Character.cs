@@ -79,7 +79,7 @@ public abstract class Character : MonoBehaviour {
         {
             if(collider.attachedRigidbody != null)
             {
-                TakeDamage(10, hitVector);
+                TakeDamage(10, hitVector,10);
             }
         }
     }
@@ -94,9 +94,9 @@ public abstract class Character : MonoBehaviour {
     }
 
 
-    public virtual void TakeDamage(float damage, Vector3 hitVector)
+    public virtual void TakeDamage(float damage, Vector3 hitVector, int force)
     {
-        rigidBody.AddForce(50 * hitVector);
+        rigidBody.AddForce(force * hitVector);
         currentHealth -= damage;
         ShowHitEffects(damage, gameObject.transform.position);
 

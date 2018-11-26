@@ -44,26 +44,6 @@ public class EnemyAI : MonoBehaviour {
 
     private void Chase()
     {
-        /*if (enemy.estEnChasse)
-        {
-            var layermask1 = 1 << 10;
-            layermask1 = ~layermask1;
-            RaycastHit2D vision = Physics2D.Raycast(transform.position, -transform.position + enemy.target.transform.position, 2f, layermask1);
-            Debug.Log(vision.collider);
-            if (vision.collider == null || vision.collider.tag == "Player")
-            {
-                enemy.estEnChasse = false;
-                enemy.speed = 4f;
-            }
-            else
-            {
-                Vector2 dir = (-transform.position + enemy.target.transform.position);
-                dir.Normalize();
-                enemy.rigidBody.velocity = dir * enemy.speed;
-                //transform.Translate(dir * enemy.speed * Time.deltaTime);
-                //enemy.MoveTo(enemy.target.transform.position);
-            }
-        }*/
         enemy.speed = 4f;
         enemy.animator.SetBool("IsMoving", true);
         Vector3 direction = player.transform.position - transform.position;
