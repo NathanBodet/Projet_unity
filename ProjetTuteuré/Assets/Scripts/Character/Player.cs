@@ -96,8 +96,10 @@ public class Player : Character {
     }
 
     protected override void Update() {
-
-        GetInput();
+        if (Time.timeScale == 1)
+        {
+            GetInput();
+        }
         base.Update();
     }
 

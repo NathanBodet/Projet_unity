@@ -27,27 +27,31 @@ public class MenusJeu : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && showGUI2 == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && showGUI2 == false && showGUI3==false)
             {
                 showGUI = !showGUI;
             }
 
-            if (Input.GetKeyDown(KeyCode.I) && showGUI == false)
+            if (Input.GetKeyDown(KeyCode.I) && showGUI == false && showGUI3==false)
             {
                 showGUI2 = !showGUI2;
             }
 
-            if (showGUI && !showGUI2)
+            if (showGUI && !showGUI2 && !showGUI3)
             {
                 canvas.SetActive(true);
                 Time.timeScale = 0;
             }
-            else if (!showGUI && showGUI2)
+            else if (!showGUI && showGUI2 && !showGUI3)
             {
                 canvas2.SetActive(true);
             Time.timeScale = 0;
             }
-            else
+        else if (!showGUI && !showGUI2 && showGUI3)
+        {
+            Time.timeScale = 0;
+        }
+        else
             {
                 canvas.SetActive(false);
                 canvas2.SetActive(false);
