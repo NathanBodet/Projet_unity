@@ -104,7 +104,7 @@ MonoBehaviour:
   damage: 10
   player: {fileID: 0}
   range: 2
-  hitRate: 0.3
+  hitRate: 0.5
 --- !u!114 &114750574021683480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5938a3ea8a22ee941ace94094e0f7526, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

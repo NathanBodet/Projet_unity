@@ -134,13 +134,14 @@ public class Player : Character {
             direction += Vector2.right;
         }
 
-        //input de tir
+        //input d'attaque
         if (Input.GetMouseButtonDown(0))
         {
             if(Time.time > nextFire)
             {
                 if (typeArmeEquipee)
                 {
+                    animator.SetTrigger("Attacking");
                     nextFire = Time.time + armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().hitRate - 0.01f * agility;
                     armeCorpsACorpsEquipee.gameObject.GetComponent<MeleeWeapon>().Hit();
                 } else
@@ -164,12 +165,6 @@ public class Player : Character {
             }
         }
 
-        /*input d'attaque càc
-        if (Input.GetMouseButton(0))
-        {
-            Attack();
-        }**/
-
     
     }
 
@@ -178,9 +173,9 @@ public class Player : Character {
         rigidBody.velocity = direction.normalized * speed;
     }
 
-    public override void TakeDamage(float damage, Vector3 hitVector,int force)
+    public override void TakeDamage(float damage, Vector3 hitVector,float force)
     {
-        base.TakeDamage(damage, hitVector,50);
+        base.TakeDamage(damage, hitVector,force);
         lifeBar.EnableLifeBar(true);
         lifeBar.SetProgress(currentHealth / maxHealth);
     }

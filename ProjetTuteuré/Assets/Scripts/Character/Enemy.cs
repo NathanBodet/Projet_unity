@@ -66,7 +66,9 @@ public class Enemy : Character {
 
     public void Attack()
     {
+        base.Attack();
         Vector2 directionCoup = new Vector2(GetComponent<Animator>().GetFloat("DirectionX"), GetComponent<Animator>().GetFloat("DirectionY"));
+        directionCoup.Normalize();
         LayerMask mask = LayerMask.GetMask("Player");
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionCoup, 1f, mask);
         if (hit.collider != null && hit.collider.gameObject.tag == "Player")
@@ -74,11 +76,11 @@ public class Enemy : Character {
             float rnd = Random.Range(0, 100);
             if (rnd > 20) //coup normal
             {
-                hit.collider.GetComponent<Character>().TakeDamage(10, directionCoup,1);
+                hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup,0.2f);
             }
             else // coup critique
             {
-                hit.collider.GetComponent<Character>().TakeDamage(20, directionCoup,1);
+                hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup,0.2f);
             }
         }
     }

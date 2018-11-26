@@ -94,7 +94,7 @@ public abstract class Character : MonoBehaviour {
     }
 
 
-    public virtual void TakeDamage(float damage, Vector3 hitVector, int force)
+    public virtual void TakeDamage(float damage, Vector3 hitVector, float force)
     {
         rigidBody.AddForce(force * hitVector);
         currentHealth -= damage;

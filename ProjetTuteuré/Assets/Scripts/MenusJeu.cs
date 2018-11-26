@@ -155,10 +155,18 @@ public class MenusJeu : MonoBehaviour
     public void changeWeapon()
     {
         //Debug.Log(EventSystem.current.currentSelectedGameObject.name[9]);
+        var objet = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
 
-        if (GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])] != null)
+        if (objet != null)
         {
-            GetComponent<Player>().armeDistanceEquipee = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
+            if (objet.tag == "ArmeD")
+            {
+                GetComponent<Player>().armeDistanceEquipee = objet;
+            } else if (objet.tag == "ArmeCAC")
+            {
+                GetComponent<Player>().armeCorpsACorpsEquipee = objet;
+            }
+
         }
     }
 
