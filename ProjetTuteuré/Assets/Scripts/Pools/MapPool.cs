@@ -35,26 +35,31 @@ public class MapPool : Pool {
 
     public GameObject tire(int[] req)
     {
+        char[] reqstr = new char[4];
+        for(int i = 0; i < 4; i++)
+        {
+            reqstr[i] = req[i].ToString()[0];
+        }
         GameObject test;
         bool trouve = false;
         test = base.tire();
 
+        
         /*while (!trouve)
         {
             test = base.tire();
             trouve = true;
             for (int i = 0; i<4; i++)
             {
-                if(req[i] != 2)
+                if(reqstr[i] == '2')//si la room concernée n'existe pas encore (on s'en fiche du coup)
                 {
-                    if ((int)(Int32.Parse(test.name)/ Math.Pow(10, 3-i)% 10) != req[i])
+                    if (test.name[i] != req[i])// compare si sa sortie/mur coincide avec la room d'a côté
                     {
                         trouve = false;
                     }
                 }
             }
 
-            
         }*/
         return test;
     }

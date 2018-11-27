@@ -33,10 +33,7 @@ public class GameManagerScript : MonoBehaviour {
             {
                 roomsFinies[i][j] = false;
                 //Détermination des consitions de génréation req
-                req[0] = 1;
-                req[1] = 1;
-                req[2] = 1;
-                req[3] = 1;
+
                 if (i == 0 ) {
                     req[3] = 0;
                 } else
@@ -65,7 +62,8 @@ public class GameManagerScript : MonoBehaviour {
                 {
                     req[0] = 2;
                 }
-                
+
+
                 rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool
                 creeRoom(i, j, rooms[i][j]);
             }
