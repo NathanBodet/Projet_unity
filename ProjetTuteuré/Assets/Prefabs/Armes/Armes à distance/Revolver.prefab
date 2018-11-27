@@ -37,8 +37,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625000258791412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.595497, y: 0.49810722, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.349907, y: 4.2380915, z: 0.43544763}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   ammunition: 5
   range: 15
   projectileSpeed: 10
+  nbBalles: 1
   fireRate: 1
   projectilePrefab: {fileID: 1577481119012058, guid: 7c3845c06ca423d40a0fec3966f4936d,
     type: 2}
@@ -154,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c16f97e6d609072499cd4e36da38ed3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

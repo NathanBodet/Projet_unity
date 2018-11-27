@@ -166,9 +166,12 @@ public class MenusJeu : MonoBehaviour
             if (objet.tag == "ArmeD")
             {
                 GetComponent<Player>().armeDistanceEquipee = objet;
+                objet.GetComponent<RangedWeapon>().equip(gameObject);
+                
             } else if (objet.tag == "ArmeCAC")
             {
                 GetComponent<Player>().armeCorpsACorpsEquipee = objet;
+                objet.GetComponent<MeleeWeapon>().equip(gameObject);
             }
 
         }

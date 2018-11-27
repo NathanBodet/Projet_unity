@@ -36,7 +36,6 @@ public class Player : Character {
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
         {
-            Debug.Log(datasnames.n);
             if (datasnames.n == 1)
             {
                 Datas datas = (Datas)DataManager.Load("Slot1.sav");
