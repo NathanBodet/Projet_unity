@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,32 @@ public class MapPool : Pool {
                 }
             }
         }
-        show();
+    }
+
+    public GameObject tire(int[] req)
+    {
+        GameObject test;
+        bool trouve = false;
+        test = base.tire();
+
+        /*while (!trouve)
+        {
+            test = base.tire();
+            trouve = true;
+            for (int i = 0; i<4; i++)
+            {
+                if(req[i] != 2)
+                {
+                    if ((int)(Int32.Parse(test.name)/ Math.Pow(10, 3-i)% 10) != req[i])
+                    {
+                        trouve = false;
+                    }
+                }
+            }
+
+            
+        }*/
+        return test;
     }
 
 }
