@@ -11,6 +11,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //Instanciations
         rooms = new GameObject[5][];
         roomsFinies = new bool[5][];
         for(int i = 0; i<5; i++)
@@ -24,7 +25,7 @@ public class GameManagerScript : MonoBehaviour {
     }
 
 
-    public void initieNiveau()
+    public void initieNiveau()// Initie la map, génère les rooms
     {
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
@@ -34,13 +35,15 @@ public class GameManagerScript : MonoBehaviour {
                 roomsFinies[i][j] = false;
                 //Détermination des consitions de génréation req
 
-                if (i == 0 ) {
+                if (i == 0 ) {//si on est sur un bord
                     req[3] = 0;
                 } else
                 {
-                    req[3] = (int)(Int32.Parse(rooms[i - 1][j].name) / Math.Pow(10, 0) % 10);
+                    //renvoie l'élément 3 du nom de la room précédente en j : cette valeur donne la contrainte du mur Ouest
+                    req[3] = (int)(Int32.Parse(rooms[i - 1][j].name)/10) % 10;
+
                 }
-                if (i == 4)
+                if (i == 4)//si on est sur un bord
                 {
                     req[2] = 0; 
                 } else
@@ -48,19 +51,25 @@ public class GameManagerScript : MonoBehaviour {
                     req[2] = 2;
                 }
 
-                if (j == 0)
+                if (j == 0)//si on est sur un bord
                 {
                     req[1] = 0;
                 } else
                 {
-                    req[1] = (int)(Int32.Parse(rooms[i][j-1].name) / Math.Pow(10, 2) % 10);
+                    //renvoie l'élément 1 du nom de la room précédente en j : cette valeur donne la contrainte du mur Sud
+                    req[1] = ((int)(Int32.Parse(rooms[i][j-1].name)) / 1000) % 10;
+
                 }
-                if (j == 4)
+                if (j == 4)//si on est sur un bord
                 {
                     req[0] = 0;
                 } else
                 {
                     req[0] = 2;
+                }
+                if(i == 4 && j == 4)//si on est en haut à droite : une sortie est artificiellement demandée au cas ou la seule room possible soit 0000
+                {
+                    req[2] = 1;
                 }
 
 
