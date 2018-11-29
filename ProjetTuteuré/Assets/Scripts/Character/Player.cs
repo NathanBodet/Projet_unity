@@ -17,7 +17,7 @@ public class Player : Character {
 
     // attributs concernant le combat
     float switchCooldown = 0.0f;
-    bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
+    public bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
     //attributs concernant l'interface
     public LifeBar lifeBar;
@@ -161,6 +161,19 @@ public class Player : Character {
             //switch le type d'arme : cooldown de 1s
             if (Time.time > switchCooldown)
             {
+                GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
+
+                //On met en "évidence" le type d'arme équipée
+                if (typeArmeEquipee)
+                {
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+                }
+                else
+                {
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                }
                 switchCooldown = Time.time + 1f;
                 typeArmeEquipee = !typeArmeEquipee;
             }

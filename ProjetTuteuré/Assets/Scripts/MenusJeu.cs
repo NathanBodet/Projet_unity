@@ -11,7 +11,7 @@ public class MenusJeu : MonoBehaviour
     public bool showGUI = false;
     public bool showGUI2 = false;
     public bool showGUI3 = false;
-    public GameObject canvas, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7;
+    public GameObject canvas1, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7, uiarmes, lifebar;
     public Text text1, text2, text3, text4, text5, text6;
 
     // Use this for initialization
@@ -39,21 +39,30 @@ public class MenusJeu : MonoBehaviour
 
             if (showGUI && !showGUI2 && !showGUI3)
             {
-                canvas.SetActive(true);
+                canvas1.SetActive(true);
+                uiarmes.SetActive(false);
+                lifebar.SetActive(false);
                 Time.timeScale = 0;
             }
             else if (!showGUI && showGUI2 && !showGUI3)
             {
+                uiarmes.SetActive(false);
                 canvas2.SetActive(true);
-            Time.timeScale = 0;
+                Time.timeScale = 0;
             }
-        else if (!showGUI && !showGUI2 && showGUI3)
-        {
-            Time.timeScale = 0;
-        }
-        else
+            else if (!showGUI && !showGUI2 && showGUI3)
             {
-                canvas.SetActive(false);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                uiarmes.SetActive(true);
+                //On remet à jour les images après les changements dans l'inventaire, c'est un peu du cheat mais c'est normal
+                GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
+                UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeCorpsACorpsEquipee.GetComponent<SpriteRenderer>().sprite;
+                UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<SpriteRenderer>().sprite;
+                lifebar.SetActive(true);
+                canvas1.SetActive(false);
                 canvas2.SetActive(false);
                 Time.timeScale = 1;
             }
@@ -62,23 +71,23 @@ public class MenusJeu : MonoBehaviour
         void OnLevelWasLoaded()
         {
             //canvas = GameObject.Find("Canvas");
-            //canvas2 = GameObject.Find("Canvas2");
+            //canvas2 = GameObject.Find("canvas2");
         }
 
         public void Continue()
         {
             showGUI = false;
-            canvas.SetActive(false);
-        canvas4.SetActive(false);
+            canvas1.SetActive(false);
+            canvas4.SetActive(false);
             canvas5.SetActive(false);
-        canvas6.SetActive(false);
-        canvas7.SetActive(false);
-        Time.timeScale = 1;
+            canvas6.SetActive(false);
+            canvas7.SetActive(false);
+            Time.timeScale = 1;
         }
 
     public void save()
     {
-        canvas.SetActive(false);
+        canvas1.SetActive(false);
         showGUI = false;
         showGUI3 = true;
         canvas3.SetActive(true);
@@ -102,7 +111,7 @@ public class MenusJeu : MonoBehaviour
 
     public void load()
     {
-        canvas.SetActive(false);
+        canvas1.SetActive(false);
         showGUI = false;
         showGUI3 = true;
         canvas5.SetActive(true);
@@ -156,25 +165,5 @@ public class MenusJeu : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
 
-    public void changeWeapon()
-    {
-        //Debug.Log(EventSystem.current.currentSelectedGameObject.name[9]);
-        var objet = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
-
-        if (objet != null)
-        {
-            if (objet.tag == "ArmeD")
-            {
-                GetComponent<Player>().armeDistanceEquipee = objet;
-                objet.GetComponent<RangedWeapon>().equip(gameObject);
-                
-            } else if (objet.tag == "ArmeCAC")
-            {
-                GetComponent<Player>().armeCorpsACorpsEquipee = objet;
-                objet.GetComponent<MeleeWeapon>().equip(gameObject);
-            }
-
-        }
-    }
-
+    
 }
