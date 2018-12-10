@@ -46,6 +46,7 @@ public class RangedWeapon : Weapon {
                 projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
                 projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
                 float rnd = Random.Range(0, 100);
+
                 if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
                 {
                     projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength);
