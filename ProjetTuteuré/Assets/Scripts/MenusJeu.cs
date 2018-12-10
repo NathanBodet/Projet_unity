@@ -77,6 +77,7 @@ public class MenusJeu : MonoBehaviour
         public void Continue()
         {
             showGUI = false;
+            showGUI3 = false;
             canvas1.SetActive(false);
             canvas4.SetActive(false);
             canvas5.SetActive(false);
