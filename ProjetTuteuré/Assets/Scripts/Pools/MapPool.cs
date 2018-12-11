@@ -36,6 +36,15 @@ public class MapPool : Pool {
     public GameObject tire(int[] req)//tire une salle dans al pool, en suivant les contraintes contenues dans req
         //req : tableau de 4 entiers valant 0, 1 ou 2 : 1 = sortie demandée, 0 = mur demandé, 2 = n'importe
     {
+        int[] reqTrois = new int[4];
+        for(int i = 0; i < 4; i++)
+        {
+            reqTrois[i] = 3;
+        }
+        if (req.Equals(reqTrois))
+        {
+            return null;
+        }
         bool trouve = false;
         bool diffzero;
         int[] currComb = getRandComb();

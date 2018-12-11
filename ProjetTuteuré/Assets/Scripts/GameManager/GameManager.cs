@@ -8,10 +8,19 @@ public class GameManager : MonoBehaviour {
     GameObject[][] rooms;
     public MapPool pool;
     bool[][] roomsFinies;
+    int[][] mapInit;
+    List<int[]> listeFinale;
 
     // Use this for initialization
     void Start() {
         //Instanciations
+        mapInit = new int[5][];
+        for (int i = 0; i < 5; i++)
+        {
+            mapInit[i] = new int[5];
+
+        }
+        listeFinale = new List<int[]>();
         rooms = new GameObject[5][];
         roomsFinies = new bool[5][];
         for (int i = 0; i < 5; i++)
@@ -35,10 +44,14 @@ public class GameManager : MonoBehaviour {
             {
                 roomsFinies[i][j] = false;
 
-                req = determineContraintes(i, j);//Détermination des consitions de génréation req
+                req = determineContraintes(i, j);//Détermination des conditions de génération req
 
-                rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool
-                creeRoom(i, j, rooms[i][j]);
+                rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
+                if (rooms[i][j] != null)
+                {
+                    creeRoom(i, j, rooms[i][j]);
+                }
+                
             }
         }
 
@@ -55,6 +68,15 @@ public class GameManager : MonoBehaviour {
     public int[] determineContraintes(int i, int j)
     {
         int[] req = new int[4];
+        
+       /* if(mapInit[i][j] == 0)
+        {
+            for(int k =0; k<4; k++)
+            {
+                req[k] = 3;
+            }
+            return req;
+        }*/
 
         if (i == 0)
         {//si on est sur un bord
@@ -87,12 +109,10 @@ public class GameManager : MonoBehaviour {
 
     public void genereMap()
     {
-        int[][] mapInit = new int[5][];
-        for(int i =0; i<5; i++)
-        {
-            mapInit[i] = new int[5];
-            
-        }
+        int x, y = 0;
+
+
+        
 
         for(int i = 0; i < 5; i++)
         {
@@ -102,9 +122,96 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        List<int[]> listMaze;
-        listMaze = new List<int[]>();
-        
+        List<int[]> listMaze = new List<int[]>();
+        int[] tni = new int[2];
+        tni[0] = 0;
+        tni[1] = 0;
+        listMaze.Add(tni);
+        //while (!listMaze.Contains(tni)){
+            mapInit[0][0] = 1;
+            
+        listMaze = getMaze(0,0);
+            foreach (int[] i in listMaze)
+        {
+            Debug.Log("i :"+i[0]);
+            Debug.Log("j :"+i[1]);
+        }
+        //}
 
+      
+    }
+
+    public List<int[]> getMaze(int i,int j)
+    {
+        List<int[]> liste = new List<int[]>();
+        List<int[]> listeRetour;
+        int[] tab = new int[2];
+        tab[0] = i-1;
+        tab[1] = j;
+        
+        if (i > 0 && mapInit[i - 1][j] == 1 && !contient(listeFinale,tab))
+        {
+            liste.Add(tab);
+            listeFinale.Add(tab);
+
+           listeRetour = getMaze(i - 1, j);
+            foreach (int[] tabb in listeRetour)
+            {
+               liste.Add(tabb);
+            }
+        }
+        tab[0] = i + 1;
+        if (i <4 && mapInit[i + 1][j] == 1 && !contient(listeFinale, tab))
+        {
+            liste.Add(tab);
+            listeFinale.Add(tab);
+
+            listeRetour = getMaze(i + 1, j);
+            foreach (int[] tabb in listeRetour)
+            {
+                liste.Add(tabb);
+
+            }
+        }
+        tab[0] = i;
+
+        tab[1] = j - 1;
+        if (j > 0 && mapInit[i][j-1] == 1 && !contient(listeFinale, tab))
+        {
+            liste.Add(tab);
+            listeFinale.Add(tab);
+            listeRetour = getMaze(i , j-1);
+            foreach (int[] tabb in listeRetour)
+            {
+               liste.Add(tabb);
+
+            }
+        }
+
+        tab[1] = j + 1;
+        if (j < 4 && mapInit[i][j+1] == 1 && !contient(listeFinale, tab))
+        {
+            liste.Add(tab);
+            listeFinale.Add(tab);
+            listeRetour = getMaze(i, j+1);
+            foreach (int[] tabb in listeRetour)
+            {
+               liste.Add(tabb);
+
+            }
+        }
+        return liste;
+    }
+
+    public bool contient(List<int[]> list, int[] tab)
+    {
+        foreach(int[] i in list)
+        {
+            if(i[0] == tab[0] && i[1] == tab[1])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
