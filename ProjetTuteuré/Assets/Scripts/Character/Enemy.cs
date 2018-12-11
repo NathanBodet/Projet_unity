@@ -14,6 +14,8 @@ public class Enemy : Character {
     {
         base.Start();
         speed = 4f;
+        //lifeBar = GameObject.FindGameObjectWithTag("EnemyLifeBar").GetComponent<LifeBar>();
+        lifeBar.SetProgress(currentHealth / maxHealth);
     }
 
     public void RegisterEnemy()
@@ -23,6 +25,9 @@ public class Enemy : Character {
 
     protected override void Update()
     {
+        Vector3 pos = new Vector3(gameObject.transform.position.x - 0.2f, gameObject.transform.position.y + 1.2f, gameObject.transform.position.z);
+        lifeBar.transform.position = Camera.main.WorldToScreenPoint(pos);
+
         if (!isAlive)
         {
             if(deathTime == 0f)
@@ -45,8 +50,6 @@ public class Enemy : Character {
         {
             return;
         }
-
-       
     }
 
     public void StopMovement()
@@ -61,10 +64,11 @@ public class Enemy : Character {
         base.Die();
         ai.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
+        lifeBar.EnableLifeBar(false);
         TotalEnemies--;
     }
 
-    public void Attack()
+    public override void Attack()
     {
         base.Attack();
         Vector2 directionCoup = new Vector2(GetComponent<Animator>().GetFloat("DirectionX"), GetComponent<Animator>().GetFloat("DirectionY"));
@@ -83,6 +87,12 @@ public class Enemy : Character {
                 hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup,0.2f);
             }
         }
+    }
+
+    public override void TakeDamage(float damage, Vector3 hitVector, float force)
+    {
+        lifeBar.EnableLifeBar(true);
+        base.TakeDamage(damage, hitVector, force);
     }
 
 }

@@ -19,9 +19,6 @@ public class Player : Character {
     float switchCooldown = 0.0f;
     public bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
 
-    //attributs concernant l'interface
-    public LifeBar lifeBar;
-
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
     public GameObject armeCorpsACorpsEquipee;

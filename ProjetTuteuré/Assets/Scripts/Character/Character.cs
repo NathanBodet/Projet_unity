@@ -30,6 +30,8 @@ public abstract class Character : MonoBehaviour {
 
     public bool isAlive;
 
+    public LifeBar lifeBar;
+
 
     // Use this for initialization
     protected virtual void Start () {
@@ -104,6 +106,13 @@ public abstract class Character : MonoBehaviour {
         {
             Die();
         }
+
+        lifeBar.SetProgress(currentHealth / maxHealth);
+        Color color = sprite.color;
+        if (currentHealth < 0)
+        {
+            color.a = 0.75f;
+        }
     }
 
     public Vector2 getDirection()
@@ -113,16 +122,18 @@ public abstract class Character : MonoBehaviour {
 
     protected void ShowHitEffects(float value, Vector3 position)
     {
-        GameObject canvas = GameObject.FindGameObjectWithTag("WorldCanvas");
+
         GameObject obj = Instantiate(hitValuePrefab);
-
-        obj.transform.SetParent(canvas.transform, false);
-        obj.transform.position = canvas.transform.position + position;
-        obj.transform.localRotation = Quaternion.identity;
-        obj.transform.localScale = Vector3.one;
-
         obj.GetComponent<Text>().text = value.ToString();
         obj.GetComponent<DestroyTimer>().EnableTimer(1.0f);
+
+        GameObject canvas = GameObject.FindGameObjectWithTag("WorldCanvas");
+        obj.transform.SetParent(canvas.transform, false);
+        obj.transform.localRotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+       // obj.transform.position = position;
+        obj.transform.position = Camera.main.WorldToScreenPoint(position);
+
     }
 
 }
