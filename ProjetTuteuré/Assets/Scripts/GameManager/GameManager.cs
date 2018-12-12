@@ -79,24 +79,26 @@ public class GameManager : MonoBehaviour {
         {//si on est sur un bord
             req[3] = 0; }
         else
-        { //renvoie l'élément 3 du nom de la room précédente en j : cette valeur donne la contrainte du mur Ouest
+        { //cherche si la room située à l'ouest existe
             req[3] = mapInit[i-1][j]; }
 
         if (i == 4)//si on est sur un bord
         { req[2] = 0; }
         else
-        { req[2] = mapInit[i + 1][j]; }
+        {//cherche si la room située à l'est existe
+            req[2] = mapInit[i + 1][j]; }
 
         if (j == 0)//si on est sur un bord
         { req[1] = 0; }
         else
-        { //renvoie l'élément 1 du nom de la room précédente en j : cette valeur donne la contrainte du mur Sud
+        { //cherche si la room située au sud existe
             req[1] = mapInit[i][j-1]; }
 
         if (j == 4)//si on est sur un bord
         { req[0] = 0; }
         else
-        { req[0] = mapInit[i][j+1]; }
+        {//cherche si la room située au nord existe
+            req[0] = mapInit[i][j+1]; }
 
         if (i == 4 && j == 4)//si on est en haut à droite : une sortie est artificiellement demandée au cas ou la seule room possible soit 0000
         { req[2] = 1; }
@@ -108,11 +110,7 @@ public class GameManager : MonoBehaviour {
     {
         List<int[]> listMaze = new List<int[]>();
         int[] sortie = { 4, 4 };
-       
-        listMaze = new List<int[]>();
         int[] tni = new int[2];
-        
-        
 
         while (!contient(listMaze,sortie))
         {
