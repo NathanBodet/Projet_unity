@@ -168,9 +168,15 @@ public class EnemyAI : MonoBehaviour {
         {
             decisionDuration -= Time.deltaTime;
         } else
-        {   
+        {
             //Si entre le player est loin OU si le player et pret mais qu'il y a un mur qui bloque, on passe en mode ROAM
             //Comportement très temporaire, mais le test sera utilse plus tard dans le path finding !
+            /*
+             Debug.Log((playerDetector.playerIsNearby && Physics2D.Raycast(transform.position, direction,
+              (float)System.Math.Sqrt(System.Math.Pow(player.transform.position.x - transform.position.x, 2)
+              + System.Math.Pow(player.transform.position.y - transform.position.y, 2)
+             ), 1 << 0)));
+               */
             if (!playerDetector.playerIsNearby || (playerDetector.playerIsNearby && Physics2D.Raycast(transform.position, direction, 
                 (float)System.Math.Sqrt(System.Math.Pow(player.transform.position.x-transform.position.x,2)
                 + System.Math.Pow(player.transform.position.y - transform.position.y, 2)

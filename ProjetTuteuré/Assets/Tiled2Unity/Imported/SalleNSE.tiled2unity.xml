@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 06/12/2018 18:50:47-->
+<!--Last exported: 12/12/2018 13:18:31-->
 <Tiled2Unity version="1.0.13.2">
   <AssignMaterial mesh="SalleNSE_mesh_0001" material="Dungeon_A4" />
   <AssignMaterial mesh="SalleNSE_mesh_0002" material="Dungeon_A2" />
@@ -22,7 +22,7 @@
     </GameObject>
     <GameObject name="Collision" x="0" y="0" z="0">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="Collision" x="0" y="0" mesh="SalleNSE_mesh_0004" sortingLayerName="" sortingOrder="3" opacity="1" />
+      <GameObject name="Collision" x="0" y="0" mesh="SalleNSE_mesh_0004" sortingLayerName="" sortingOrder="3" opacity="0" />
       <GameObject name="Collision">
         <PolygonCollider2D>
           <Path>1727,-1008 1727,-864 1704,-864 1704,-1008</Path>

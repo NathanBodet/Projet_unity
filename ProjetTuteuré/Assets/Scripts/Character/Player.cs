@@ -163,13 +163,13 @@ public class Player : Character {
                 //On met en "évidence" le type d'arme équipée
                 if (typeArmeEquipee)
                 {
-                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = false;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = true;
                 }
                 else
                 {
-                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = true;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+                    UIEquip.GetComponent<RectTransform>().GetChild(1).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().enabled = false;
                 }
                 switchCooldown = Time.time + 1f;
                 typeArmeEquipee = !typeArmeEquipee;
