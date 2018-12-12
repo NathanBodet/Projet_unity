@@ -46,9 +46,10 @@ public class GameManager : MonoBehaviour {
 
                 req = determineContraintes(i, j);//Détermination des conditions de génération req
 
-                rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
-                if (rooms[i][j] != null)
+                
+                if (req != null)
                 {
+                    rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
                     creeRoom(i, j, rooms[i][j]);
                 }
                 
@@ -69,37 +70,33 @@ public class GameManager : MonoBehaviour {
     {
         int[] req = new int[4];
         
-       /* if(mapInit[i][j] == 0)
+        if(mapInit[i][j] == 0)
         {
-            for(int k =0; k<4; k++)
-            {
-                req[k] = 3;
-            }
-            return req;
-        }*/
+            return null;
+        }
 
         if (i == 0)
         {//si on est sur un bord
             req[3] = 0; }
         else
         { //renvoie l'élément 3 du nom de la room précédente en j : cette valeur donne la contrainte du mur Ouest
-            req[3] = (int)(Int32.Parse(rooms[i - 1][j].name) / 10) % 10; }
+            req[3] = mapInit[i-1][j]; }
 
         if (i == 4)//si on est sur un bord
         { req[2] = 0; }
         else
-        { req[2] = 2; }
+        { req[2] = mapInit[i + 1][j]; }
 
         if (j == 0)//si on est sur un bord
         { req[1] = 0; }
         else
         { //renvoie l'élément 1 du nom de la room précédente en j : cette valeur donne la contrainte du mur Sud
-            req[1] = ((int)(Int32.Parse(rooms[i][j - 1].name)) / 1000) % 10; }
+            req[1] = mapInit[i][j-1]; }
 
         if (j == 4)//si on est sur un bord
         { req[0] = 0; }
         else
-        { req[0] = 2; }
+        { req[0] = mapInit[i][j+1]; }
 
         if (i == 4 && j == 4)//si on est en haut à droite : une sortie est artificiellement demandée au cas ou la seule room possible soit 0000
         { req[2] = 1; }
@@ -109,34 +106,27 @@ public class GameManager : MonoBehaviour {
 
     public void genereMap()
     {
-        int x, y = 0;
-
-
+        List<int[]> listMaze = new List<int[]>();
+        int[] sortie = { 4, 4 };
+       
+        listMaze = new List<int[]>();
+        int[] tni = new int[2];
+        
         
 
-        for(int i = 0; i < 5; i++)
+        while (!contient(listMaze,sortie))
         {
-            for(int j =0; j < 5; j++)
-            {
-                mapInit[i][j] = (int)(UnityEngine.Random.Range(0, 2));
-            }
+            listMaze = new List<int[]>();
+            tni[0] = 0;
+            tni[1] = 0;
+            listMaze.Add(tni);
+            regenereMapInit();
+            listMaze = getMaze(0, 0);
         }
-
-        List<int[]> listMaze = new List<int[]>();
-        int[] tni = new int[2];
-        tni[0] = 0;
-        tni[1] = 0;
-        listMaze.Add(tni);
-        //while (!listMaze.Contains(tni)){
-            mapInit[0][0] = 1;
-            
-        listMaze = getMaze(0,0);
-            foreach (int[] i in listMaze)
+        foreach (int[] i in listMaze)
         {
-            Debug.Log("i :"+i[0]);
-            Debug.Log("j :"+i[1]);
+           Debug.Log("i :"+i[0]+", j :" + i[1]);
         }
-        //}
 
       
     }
@@ -151,10 +141,11 @@ public class GameManager : MonoBehaviour {
         
         if (i > 0 && mapInit[i - 1][j] == 1 && !contient(listeFinale,tab))
         {
-            liste.Add(tab);
-            listeFinale.Add(tab);
+            int[] tabAjout = { tab[0], tab[1] };
+            liste.Add(tabAjout);
+            this.listeFinale.Add(tabAjout);
 
-           listeRetour = getMaze(i - 1, j);
+            listeRetour = getMaze(i - 1, j);
             foreach (int[] tabb in listeRetour)
             {
                liste.Add(tabb);
@@ -163,8 +154,9 @@ public class GameManager : MonoBehaviour {
         tab[0] = i + 1;
         if (i <4 && mapInit[i + 1][j] == 1 && !contient(listeFinale, tab))
         {
-            liste.Add(tab);
-            listeFinale.Add(tab);
+            int[] tabAjout = { tab[0], tab[1] };
+            liste.Add(tabAjout);
+            this.listeFinale.Add(tabAjout);
 
             listeRetour = getMaze(i + 1, j);
             foreach (int[] tabb in listeRetour)
@@ -178,8 +170,9 @@ public class GameManager : MonoBehaviour {
         tab[1] = j - 1;
         if (j > 0 && mapInit[i][j-1] == 1 && !contient(listeFinale, tab))
         {
-            liste.Add(tab);
-            listeFinale.Add(tab);
+            int[] tabAjout = { tab[0], tab[1] };
+            liste.Add(tabAjout);
+            this.listeFinale.Add(tabAjout);
             listeRetour = getMaze(i , j-1);
             foreach (int[] tabb in listeRetour)
             {
@@ -191,8 +184,9 @@ public class GameManager : MonoBehaviour {
         tab[1] = j + 1;
         if (j < 4 && mapInit[i][j+1] == 1 && !contient(listeFinale, tab))
         {
-            liste.Add(tab);
-            listeFinale.Add(tab);
+            int[] tabAjout = { tab[0], tab[1] };
+            liste.Add(tabAjout);
+            this.listeFinale.Add(tabAjout);
             listeRetour = getMaze(i, j+1);
             foreach (int[] tabb in listeRetour)
             {
@@ -213,5 +207,31 @@ public class GameManager : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public int genereZeroOuUn()
+    {
+        float rand = UnityEngine.Random.Range(0,100);
+        if(rand > 74)
+        {
+            return 0;
+        } else
+        {
+            return 1;
+        }
+    }
+
+    public void regenereMapInit()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                mapInit[i][j] = genereZeroOuUn();
+                
+            }
+        }
+        mapInit[0][0] = 1;
+        mapInit[4][4] = 1;
     }
 }
