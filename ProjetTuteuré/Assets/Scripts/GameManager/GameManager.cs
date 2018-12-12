@@ -115,12 +115,14 @@ public class GameManager : MonoBehaviour {
         while (!contient(listMaze,sortie))
         {
             listMaze = new List<int[]>();
+            listeFinale = new List<int[]>();
             tni[0] = 0;
             tni[1] = 0;
             listMaze.Add(tni);
             regenereMapInit();
             listMaze = getMaze(0, 0);
         }
+        purgeMapInit();
         foreach (int[] i in listMaze)
         {
            Debug.Log("i :"+i[0]+", j :" + i[1]);
@@ -210,7 +212,7 @@ public class GameManager : MonoBehaviour {
     public int genereZeroOuUn()
     {
         float rand = UnityEngine.Random.Range(0,100);
-        if(rand > 74)
+        if(rand > 40)
         {
             return 0;
         } else
@@ -231,5 +233,24 @@ public class GameManager : MonoBehaviour {
         }
         mapInit[0][0] = 1;
         mapInit[4][4] = 1;
+    }
+
+    public void purgeMapInit()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                if(mapInit[i][j] == 1)
+                {
+                    int[] test = { i, j };
+                    if (!contient(listeFinale, test))
+                    {
+                        mapInit[i][j] = 0;
+                    }
+                }
+                
+            }
+        }
     }
 }
