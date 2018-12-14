@@ -123,11 +123,6 @@ public class GameManager : MonoBehaviour {
             listMaze = getMaze(0, 0);
         }
         purgeMapInit();
-        foreach (int[] i in listMaze)
-        {
-           Debug.Log("i :"+i[0]+", j :" + i[1]);
-        }
-
       
     }
 
