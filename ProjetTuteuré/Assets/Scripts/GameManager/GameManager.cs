@@ -61,9 +61,8 @@ public class GameManager : MonoBehaviour {
     public void creeRoom(int i, int j, GameObject room)//instaciation d'une room aux coordonnées i,j
     {
         Vector3 pos = new Vector3(i * 38, j * 26, 0);
-        GameObject objinst = Instantiate(room, pos, Quaternion.identity);
+        GameObject objinst = Instantiate(room, typeof GameObject, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
-
     }
 
     public int[] determineContraintes(int i, int j)

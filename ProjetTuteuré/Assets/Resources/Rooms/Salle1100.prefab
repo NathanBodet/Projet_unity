@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6080588431515905501}
   - component: {fileID: 5586536548657214876}
   m_Layer: 0
-  m_Name: SalleManagerRightSize 1
+  m_Name: Salle1100
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finie: 0
   porteOuest: {fileID: 0}
-  porteNord: {fileID: 0}
+  porteNord: {fileID: 3657170682189617658}
   porteEst: {fileID: 0}
-  porteSud: {fileID: 0}
+  porteSud: {fileID: 8926195541097965288}
   ennemi1: {fileID: 0}
   ennemi2: {fileID: 0}
   ennemi3: {fileID: 0}
@@ -64,10 +64,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6080588431515905501}
     m_Modifications:
-    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
-      propertyPath: m_Name
-      value: Porte (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.556
@@ -120,6 +116,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
+      propertyPath: m_Name
+      value: Porte (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
         type: 3}
       propertyPath: objectSalle
@@ -133,6 +133,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3699902672573770246}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3657170682189617658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3699902672573770246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97482460cbd23294781ffdeaabd179ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8824916953110172948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,10 +152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6080588431515905501}
     m_Modifications:
-    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
-      propertyPath: m_Name
-      value: Porte (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.57
@@ -196,6 +204,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
+      propertyPath: m_Name
+      value: Porte (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
         type: 3}
       propertyPath: objectSalle
@@ -209,3 +221,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8824916953110172948}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8926195541097965288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8824916953110172948}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97482460cbd23294781ffdeaabd179ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

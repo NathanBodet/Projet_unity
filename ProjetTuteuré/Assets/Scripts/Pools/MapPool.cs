@@ -16,17 +16,11 @@ public class MapPool : Pool {
                 {
                     for (int l = 0; l < 2; l++)
                     {
-                        if(i == 0 && j == 0 && k == 0 && l == 0)//room 0000 : n'existe pas
+                        if(!(i == 0 && j == 0 && k == 0 && l == 0))//room 0000 : n'existe pas
                         {
-                            Debug.Log("Rooms/" + i.ToString() + j.ToString() + k.ToString() + l.ToString());
+                            listePool.Add(Resources.Load("Rooms/" + i.ToString() + j.ToString() + k.ToString() + l.ToString(), typeof(GameObject)) as GameObject);
                         }
-                        else
-                        {
-                            listePool.Add(Resources.Load("Rooms/" + i.ToString() + j.ToString() + k.ToString() + l.ToString()) as GameObject);
-
-                        }
-
-
+                        
                     }
                 }
             }

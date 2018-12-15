@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1088795645889468581}
   - component: {fileID: 1655607557170004196}
   m_Layer: 0
-  m_Name: SalleManagerRightSize 1
+  m_Name: Salle1011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finie: 0
-  porteOuest: {fileID: 0}
-  porteNord: {fileID: 0}
+  porteOuest: {fileID: 5604237071668045690}
+  porteNord: {fileID: 7619627067998710914}
   porteEst: {fileID: 8137049790384062121}
   porteSud: {fileID: 0}
   ennemi1: {fileID: 0}
@@ -539,10 +539,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1088795645889468581}
     m_Modifications:
-    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
-      propertyPath: m_Name
-      value: Porte (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.556
@@ -595,6 +591,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
+      propertyPath: m_Name
+      value: Porte (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
         type: 3}
       propertyPath: objectSalle
@@ -608,3 +608,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7504697691518410622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7619627067998710914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7504697691518410622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97482460cbd23294781ffdeaabd179ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

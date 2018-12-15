@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &374050259456463937
+--- !u!1 &8439552411777979660
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1511307717147598626}
-  - component: {fileID: 944900289843578723}
+  - component: {fileID: 7266147683603668591}
+  - component: {fileID: 9021626222359119406}
   m_Layer: 0
-  m_Name: SalleManagerRightSize 1
+  m_Name: Salle1000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1511307717147598626
+--- !u!4 &7266147683603668591
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374050259456463937}
+  m_GameObject: {fileID: 8439552411777979660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 904.6, y: -1130, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children:
-  - {fileID: 4247843124976811789}
+  - {fileID: 287171034241188178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &944900289843578723
+--- !u!114 &9021626222359119406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374050259456463937}
+  m_GameObject: {fileID: 8439552411777979660}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c4365e65176ba43a572f897a451e84, type: 3}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finie: 0
   porteOuest: {fileID: 0}
-  porteNord: {fileID: 0}
+  porteNord: {fileID: 177045009986562632}
   porteEst: {fileID: 0}
   porteSud: {fileID: 0}
   ennemi1: {fileID: 0}
@@ -56,24 +56,20 @@ MonoBehaviour:
   ennemi5: {fileID: 0}
   ennemi6: {fileID: 0}
   ennemi7: {fileID: 0}
---- !u!1001 &4243463545608284139
+--- !u!1001 &282791938055510452
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1511307717147598626}
+    m_TransformParent: {fileID: 7266147683603668591}
     m_Modifications:
-    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
-      propertyPath: m_Name
-      value: Porte (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.57
+      value: 37.556
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.67
+      value: 6.166
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -89,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_RootOrder
@@ -109,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalScale.x
@@ -119,16 +115,32 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
+      propertyPath: m_Name
+      value: Porte (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
         type: 3}
       propertyPath: objectSalle
       value: 
-      objectReference: {fileID: 374050259456463937}
+      objectReference: {fileID: 8439552411777979660}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
---- !u!4 &4247843124976811789 stripped
+--- !u!4 &287171034241188178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8,
     type: 3}
-  m_PrefabInstance: {fileID: 4243463545608284139}
+  m_PrefabInstance: {fileID: 282791938055510452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &177045009986562632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 282791938055510452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97482460cbd23294781ffdeaabd179ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

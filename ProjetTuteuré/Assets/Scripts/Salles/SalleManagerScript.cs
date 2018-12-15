@@ -50,7 +50,8 @@ public class SalleManagerScript : MonoBehaviour {
 
     public void debut()
     {
-        foreach(Porte por in listePortes)
+        Debug.Log("Entré");
+        foreach (Porte por in listePortes)
         {
             if (por != null) { por.close(); } 
         }

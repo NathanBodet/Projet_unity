@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &340566607453881274
+--- !u!1 &3963903141647151839
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,96 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5734676780226178223}
-  - component: {fileID: 682166118693987635}
-  - component: {fileID: 4458507186857911078}
-  - component: {fileID: 1825695477776642613}
-  - component: {fileID: 6261888532425643412}
+  - component: {fileID: 2795404967983643068}
+  - component: {fileID: 4552731939553878525}
   m_Layer: 0
-  m_Name: Porte2
+  m_Name: Salle0001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5734676780226178223
+--- !u!4 &2795404967983643068
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340566607453881274}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 51.147827, y: -2.62, z: 0}
+  m_GameObject: {fileID: 3963903141647151839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 904.6, y: -1130, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_Children:
+  - {fileID: 7598349996980862548}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4552731939553878525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963903141647151839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c4365e65176ba43a572f897a451e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finie: 0
+  porteOuest: {fileID: 7210637053864986211}
+  porteNord: {fileID: 0}
+  porteEst: {fileID: 0}
+  porteSud: {fileID: 0}
+  ennemi1: {fileID: 0}
+  ennemi2: {fileID: 0}
+  ennemi3: {fileID: 0}
+  ennemi4: {fileID: 0}
+  ennemi5: {fileID: 0}
+  ennemi6: {fileID: 0}
+  ennemi7: {fileID: 0}
+--- !u!1 &5099945098038584872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7598349996980862548}
+  - component: {fileID: 1608163205334027952}
+  - component: {fileID: 3004688025497573684}
+  - component: {fileID: 881513801309814278}
+  - component: {fileID: 7210637053864986211}
+  m_Layer: 0
+  m_Name: Porte
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7598349996980862548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099945098038584872}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 23.95, y: -2.68, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
-  - {fileID: 7080515188080757481}
-  m_Father: {fileID: 2960558213154173848}
+  - {fileID: 5521890231451973663}
+  m_Father: {fileID: 2795404967983643068}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!212 &682166118693987635
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!212 &1608163205334027952
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340566607453881274}
+  m_GameObject: {fileID: 5099945098038584872}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,13 +139,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4458507186857911078
+--- !u!61 &3004688025497573684
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340566607453881274}
+  m_GameObject: {fileID: 5099945098038584872}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -109,14 +165,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3224346, y: 0.3208289}
   m_EdgeRadius: 0
---- !u!50 &1825695477776642613
+--- !u!50 &881513801309814278
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340566607453881274}
+  m_GameObject: {fileID: 5099945098038584872}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -130,21 +186,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6261888532425643412
+--- !u!114 &7210637053864986211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340566607453881274}
+  m_GameObject: {fileID: 5099945098038584872}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97482460cbd23294781ffdeaabd179ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   salle: {fileID: 0}
-  objectSalle: {fileID: 4098239258744289531}
---- !u!1 &4098239258744289531
+  objectSalle: {fileID: 3963903141647151839}
+--- !u!1 &5855442706684307360
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,66 +208,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2960558213154173848}
-  - component: {fileID: 3527391152443665369}
-  m_Layer: 0
-  m_Name: SalleManagerRightSize 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2960558213154173848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4098239258744289531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 904.6, y: -1130, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
-  m_Children:
-  - {fileID: 5734676780226178223}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3527391152443665369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4098239258744289531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c4365e65176ba43a572f897a451e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finie: 0
-  porteOuest: {fileID: 0}
-  porteNord: {fileID: 0}
-  porteEst: {fileID: 0}
-  porteSud: {fileID: 0}
-  ennemi1: {fileID: 0}
-  ennemi2: {fileID: 0}
-  ennemi3: {fileID: 0}
-  ennemi4: {fileID: 0}
-  ennemi5: {fileID: 0}
-  ennemi6: {fileID: 0}
-  ennemi7: {fileID: 0}
---- !u!1 &8590627456663363756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7080515188080757481}
-  - component: {fileID: 3632045268538551105}
-  - component: {fileID: 9004928924461661404}
-  - component: {fileID: 2728460567699241851}
+  - component: {fileID: 5521890231451973663}
+  - component: {fileID: 7402931419712778281}
+  - component: {fileID: 5012235140556750013}
+  - component: {fileID: 737822894040689035}
   m_Layer: 10
   m_Name: enterDetector
   m_TagString: Enemy
@@ -219,28 +219,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7080515188080757481
+--- !u!4 &5521890231451973663
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590627456663363756}
+  m_GameObject: {fileID: 5855442706684307360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5734676780226178223}
+  m_Father: {fileID: 7598349996980862548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &3632045268538551105
+--- !u!50 &7402931419712778281
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590627456663363756}
+  m_GameObject: {fileID: 5855442706684307360}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -254,20 +254,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &9004928924461661404
+--- !u!61 &5012235140556750013
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590627456663363756}
+  m_GameObject: {fileID: 5855442706684307360}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016805302, y: -0.28196526}
+  m_Offset: {x: 0.03629324, y: -0.28196526}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -278,18 +278,18 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26590016, y: 0.05717659}
+  m_Size: {x: 0.37209725, y: 0.05717656}
   m_EdgeRadius: 0
---- !u!114 &2728460567699241851
+--- !u!114 &737822894040689035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590627456663363756}
+  m_GameObject: {fileID: 5855442706684307360}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cfb31c5dae35964da52bc17480b1eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porte: {fileID: 6261888532425643412}
+  porte: {fileID: 7210637053864986211}
