@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     GameObject[][] rooms;
-    public MapPool pool;
+    public MapPool poolMap;
+    public ItemPool poolItem;
     bool[][] roomsFinies;
     public int[][] mapInit;
     List<int[]> listeFinale;
@@ -58,13 +59,13 @@ public class GameManager : MonoBehaviour {
 
                 if (req != null)
                 {
-                    rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
+                    rooms[i][j] = poolMap.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
                     creeRoom(i, j, rooms[i][j]);
                 }
                 
             }
         }
-        creeRoom(5,4, pool.tire("0001"));
+        creeRoom(5,4, poolMap.tire("0001"));
 
     }
 
@@ -84,6 +85,20 @@ public class GameManager : MonoBehaviour {
             for (int k = 0; k < nbEnnemis; k++)
             {
                 Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+            }
+
+            int chanceSpawnObjet = UnityEngine.Random.Range(0, 100);
+
+            if(chanceSpawnObjet <= 15)
+            {
+                try
+                {
+                    Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
+                }
+                catch (ArgumentException e)
+                {
+
+                }
             }
         }
     }

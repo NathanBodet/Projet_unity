@@ -13,7 +13,7 @@ public class Pool : MonoBehaviour {
 
     public GameObject tire()
     {
-        int rnd = (int)(Random.Range(0, 15));
+        int rnd = (int)(Random.Range(0, listePool.Count));
         int i = 0;
         foreach(GameObject element in this.listePool)
         {
@@ -32,6 +32,13 @@ public class Pool : MonoBehaviour {
         {
             element.ToString();
         }
+    }
+
+    public GameObject TireAndRemove()
+    {
+        GameObject objet = tire();
+        listePool.Remove(objet);
+        return objet;
     }
 
 }
