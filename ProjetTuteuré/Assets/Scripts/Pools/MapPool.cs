@@ -57,7 +57,6 @@ public class MapPool : Pool {
                         trouve = false;
                     }
                 }
-                
             }   
 
         }

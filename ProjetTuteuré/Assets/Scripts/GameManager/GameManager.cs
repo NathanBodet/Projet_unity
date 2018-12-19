@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour {
 
                 req = determineContraintes(i, j);//Détermination des conditions de génération req
 
-                
                 if (req != null)
                 {
                     rooms[i][j] = pool.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour {
     public void creeRoom(int i, int j, GameObject room)//instaciation d'une room aux coordonnées i,j
     {
         Vector3 pos = new Vector3(i * 38, j * 26, 0);
-        GameObject objinst = Instantiate(room, typeof GameObject, pos, Quaternion.identity) as GameObject;
+        GameObject objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
     }
 
