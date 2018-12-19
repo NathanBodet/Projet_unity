@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     bool[][] roomsFinies;
     int[][] mapInit;
     List<int[]> listeFinale;
+    public GameObject ennemiPrefab;
+    public int maxEnnemis;
 
     // Use this for initialization
     void Start() {
@@ -28,7 +30,14 @@ public class GameManager : MonoBehaviour {
             rooms[i] = new GameObject[5];
             roomsFinies[i] = new bool[5];
         }
+        genereMap();
+        initieNiveau();
 
+    }
+
+    public void rechargerNiveau(int[][] map)
+    {
+        this.mapInit = map;
         initieNiveau();
 
     }
@@ -36,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
     public void initieNiveau()// Initie la map, génère les rooms
     {
-        genereMap();
+        
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
         {
@@ -59,10 +68,22 @@ public class GameManager : MonoBehaviour {
 
     public void creeRoom(int i, int j, GameObject room)//instaciation d'une room aux coordonnées i,j
     {
+        GameObject objinst, newEnnemi;
+        //génération de la salle
         Vector3 pos = new Vector3(i * 38, j * 26, 0);
-        GameObject objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
+        Vector3 posCentre = new Vector3(i * 38 + 20, j * 26 + 20, 0);
+        objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
+        //Spawn des ennemis
+        int nbEnnemis = UnityEngine.Random.Range(0, maxEnnemis);
+        for(int k = 0; k<nbEnnemis; k++)
+        {
+            newEnnemi = Instantiate(ennemiPrefab, posCentre, Quaternion.identity) as GameObject;
+        }
+
     }
+
+
 
     public int[] determineContraintes(int i, int j)
     {
