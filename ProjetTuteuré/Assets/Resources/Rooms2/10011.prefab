@@ -1569,6 +1569,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5860943721491939210}
     m_Modifications:
+    - target: {fileID: 4663057109927459044, guid: 80a049fa570f61f4a81e603a0d503921,
+        type: 3}
+      propertyPath: m_Name
+      value: Salle1001
+      objectReference: {fileID: 0}
     - target: {fileID: 5872512883056571271, guid: 80a049fa570f61f4a81e603a0d503921,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1624,11 +1629,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4663057109927459044, guid: 80a049fa570f61f4a81e603a0d503921,
+    - target: {fileID: 5231653107084307398, guid: 80a049fa570f61f4a81e603a0d503921,
         type: 3}
-      propertyPath: m_Name
-      value: Salle1001
-      objectReference: {fileID: 0}
+      propertyPath: ennemiPrefab
+      value: 
+      objectReference: {fileID: 1878536627128534, guid: e5fea17a243c96e4183095cb8a9f5d27,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80a049fa570f61f4a81e603a0d503921, type: 3}
 --- !u!4 &4942853121340530173 stripped

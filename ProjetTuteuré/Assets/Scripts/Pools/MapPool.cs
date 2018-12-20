@@ -30,7 +30,7 @@ public class MapPool : Pool {
         listePool.Add(Resources.Load("Rooms2/Salle_Fin", typeof(GameObject)) as GameObject);
     }
 
-    public GameObject tire(int[] req)//tire une salle dans al pool, en suivant les contraintes contenues dans req
+    public GameObject tire(int[] req, int spec)//tire une salle dans al pool, en suivant les contraintes contenues dans req
         //req : tableau de 4 entiers valant 0, 1 ou 2 : 1 = sortie demandée, 0 = mur demandé, 2 = n'importe
     {
         int[] reqTrois = new int[4];
@@ -59,18 +59,8 @@ public class MapPool : Pool {
             }   
 
         }
-        float rndf = UnityEngine.Random.Range(0, 100);
-        int rnd;
-        if (rndf > 50)
-        {
-            rnd = 1;
-        }
-        else
-        {
-            rnd = 0;
-        }
         //retourne la bonne salle trouvée
-        return tire(currComb[0].ToString() + currComb[1].ToString() + currComb[2].ToString() + currComb[3].ToString()+rnd.ToString());
+        return tire(currComb[0].ToString() + currComb[1].ToString() + currComb[2].ToString() + currComb[3].ToString()+spec.ToString());
     }
 
     public GameObject tire(String nom) // va chercher la salle 'nom' dans la pool de salles

@@ -20,4 +20,5 @@ public class Datas
     public int j = 0;
     public int[][] map;
     public bool[][] roomsFinies;
+    public int[][] roomsSpec;
 }

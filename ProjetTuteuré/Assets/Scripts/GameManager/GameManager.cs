@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour {
     public MapPool poolMap;
     public ItemPool poolItem;
     bool[][] roomsFinies;
-    public int[][] mapInit;
+    public int[][] mapInit, roomsSpeciales;//0 si salle normale, 1 si salle speciale
     List<int[]> listeFinale;
-    public GameObject ennemiPrefab;
+    public GameObject ennemiPrefab,roomFin;
     public int maxEnnemis;
     public GameObject[][] roomsInst;
 
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start() {
         //Instanciations
+        roomsSpeciales = new int[5][];
         maxEnnemis = 3;
         mapInit = new int[5][];
         for (int i = 0; i < 5; i++)
@@ -38,13 +39,20 @@ public class GameManager : MonoBehaviour {
         {
             rooms[i] = new GameObject[5];
             roomsFinies[i] = new bool[5];
+            roomsSpeciales[i] = new int[5];
+            for(int j =0; j<5; j++)
+            {
+                roomsFinies[i][j] = false;
+            }
         }
         for (int i = 0; i < 6; i++)
         {
             roomsInst[i] = new GameObject[6];
         }
+
         genereMap();
         initieNiveau();
+
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
         {
@@ -96,7 +104,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void rechargerNiveau(int[][] map, bool[][] roomsFinies)
+    public void rechargerNiveau(int[][] map, bool[][] roomsFinies,int[][] roomsSpec)
     {
         for (int i = 0; i < 5; i++)
         {
@@ -107,6 +115,7 @@ public class GameManager : MonoBehaviour {
         }
         this.mapInit = map;
         this.roomsFinies = roomsFinies;
+        this.roomsSpeciales = roomsSpec;
         initieNiveau();
     }
 
@@ -119,23 +128,22 @@ public class GameManager : MonoBehaviour {
         {
             for (int j = 0; j < 5; j++)
             {
-                roomsFinies[i][j] = false;
 
                 req = determineContraintes(i, j);//Détermination des conditions de génération req
 
                 if (req != null)
                 {
-                    rooms[i][j] = poolMap.tire(req);//tire une room au hasard dans le pool, suivant les conditions req
+                    rooms[i][j] = poolMap.tire(req,roomsSpeciales[i][j]);//tire une room au hasard dans le pool, suivant les conditions req
                     creeRoom(i, j, rooms[i][j]);
                 }
                 
             }
         }
-        creeRoom(5,4, poolMap.tire("Salle_Fin"));
+        roomFin = creeRoom(5,4, poolMap.tire("Salle_Fin"));
 
     }
 
-    public void creeRoom(int i, int j, GameObject room)//instanciation d'une room aux coordonnées i,j
+    public GameObject creeRoom(int i, int j, GameObject room)//instanciation d'une room aux coordonnées i,j
     {
         GameObject objinst;
         //génération de la salle
@@ -143,18 +151,16 @@ public class GameManager : MonoBehaviour {
         Vector3 posCentre = new Vector3(i * 38.3f +82, j * 28.8f -58, 0);
         objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
+        objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;
         roomsInst[i][j] = objinst;
+        objinst.GetComponentInChildren<SalleManager>().posCentre = posCentre;
+        objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;
+        objinst.GetComponentInChildren<SalleManager>().room = objinst;
+
         //Spawn des ennemis
         if (!(i == 0 && j == 0))
         {
-            int nbEnnemis = UnityEngine.Random.Range(0, maxEnnemis);
-            for (int k = 0; k < nbEnnemis; k++)
-            {
-                GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
-                enemyInstancie.GetComponent<Enemy>().manager = objinst.GetComponentInChildren<SalleManager>();
-                objinst.GetComponentInChildren<SalleManager>().AddEnemy();
-            }
-
+            
             int chanceSpawnObjet = UnityEngine.Random.Range(0, 100);
 
             if(chanceSpawnObjet <= 15)
@@ -162,13 +168,14 @@ public class GameManager : MonoBehaviour {
                 try
                 {
                     Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
-                }
-                catch (ArgumentException e)
+                } catch(ArgumentException e)
                 {
 
                 }
+                
             }
         }
+        return objinst;
     }
 
 
@@ -311,10 +318,10 @@ public class GameManager : MonoBehaviour {
         return false;
     }
 
-    public int genereZeroOuUn()
+    public int genereZeroOuUn(int chance)
     {
         float rand = UnityEngine.Random.Range(0,100);
-        if(rand > 40)
+        if(rand > chance)
         {
             return 0;
         } else
@@ -329,8 +336,8 @@ public class GameManager : MonoBehaviour {
         {
             for (int j = 0; j < 5; j++)
             {
-                mapInit[i][j] = genereZeroOuUn();
-                
+                mapInit[i][j] = genereZeroOuUn(40);
+                roomsSpeciales[i][j] = genereZeroOuUn(30);
             }
         }
         mapInit[0][0] = 1;
@@ -391,6 +398,7 @@ public class GameManager : MonoBehaviour {
         Datas datas = (Datas)DataManager.Load(filename);
         datas.map = mapInit;
         datas.roomsFinies = roomsFinies;
+        datas.roomsSpec = roomsSpeciales;
         DataManager.Save(datas, filename);
     }
 
@@ -401,7 +409,48 @@ public class GameManager : MonoBehaviour {
         {
             mapInit = datas.map;
             roomsFinies = datas.roomsFinies;
-            rechargerNiveau(mapInit, roomsFinies);
+            roomsSpeciales = datas.roomsSpec;
+            rechargerNiveau(mapInit, roomsFinies,roomsSpeciales);
         }
+    }
+
+    public void finirRoom(GameObject room)
+    {
+        if (room.Equals(roomFin))
+        {
+            return;
+        }
+        for(int i = 0; i<5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (rooms[i][j] != null && roomsInst[i][j].Equals(room))
+                {
+                    Debug.Log("fini !");
+                    roomsFinies[i][j] = true;
+                }
+            }
+        }
+    }
+
+    public bool isDebut(GameObject room)
+    {
+        if (room.Equals(roomsInst[0][0]))
+        {
+            return true;
+        } else
+        {
+            for(int i = 0; i<5; i++)
+            {
+                for(int j = 0; j<5; j++)
+                {
+                    if(rooms[i][j] != null && room.Equals(roomsInst[i][j]) && !roomsFinies[i][j])
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
