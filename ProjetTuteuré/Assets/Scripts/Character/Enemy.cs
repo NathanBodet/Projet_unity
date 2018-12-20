@@ -53,7 +53,7 @@ public class Enemy : Character {
         animator.SetBool("IsMoving", false);
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         ai.enabled = false;

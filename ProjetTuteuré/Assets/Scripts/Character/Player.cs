@@ -26,6 +26,8 @@ public class Player : Character {
 
     public InputField iu;
 
+    public GameObject gameOverText;
+    private bool gameOver = false;
 
 
     void Awake()
@@ -96,6 +98,11 @@ public class Player : Character {
         {
             GetInput();
         }
+
+        if (gameOver)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         base.Update();
     }
 
@@ -103,7 +110,7 @@ public class Player : Character {
     {
         if (!isAlive)
         {
-            
+            return;
         }
         Move();
     }
@@ -189,6 +196,24 @@ public class Player : Character {
         base.TakeDamage(damage, hitVector,force);
         lifeBar.EnableLifeBar(true);
         lifeBar.SetProgress(currentHealth / maxHealth);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        StartCoroutine("ShowGameOver");
+    }
+
+    private IEnumerator ShowGameOver()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            gameOverText.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            gameOverText.SetActive(false);
+            yield return new WaitForSeconds(0.3f);
+        }
+        gameOver = true;
     }
 
 
