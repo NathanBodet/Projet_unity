@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class Porte : MonoBehaviour {
 
-    public SalleManagerScript salle;
+    public SalleManager salle;
     public GameObject objectSalle;
 
 	// Use this for initialization
 	void Start () {
-        salle = objectSalle.GetComponent<SalleManagerScript>();
+        salle = objectSalle.GetComponent<SalleManager>();
         GetComponent<SpriteRenderer>().enabled = false;
 
     }
@@ -23,6 +23,7 @@ public class Porte : MonoBehaviour {
 
     public void open()
     {
+        Debug.Log("Opened");
         Destroy(gameObject);
     }
 }

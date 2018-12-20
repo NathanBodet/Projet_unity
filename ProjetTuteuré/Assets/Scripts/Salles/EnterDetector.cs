@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enterDetectorScript : MonoBehaviour {
+public class EnterDetector : MonoBehaviour {
 
     public Porte porte;
 

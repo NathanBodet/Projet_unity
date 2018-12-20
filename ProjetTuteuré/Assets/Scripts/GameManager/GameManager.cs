@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void creeRoom(int i, int j, GameObject room)//instaciation d'une room aux coordonnées i,j
+    public void creeRoom(int i, int j, GameObject room)//instanciation d'une room aux coordonnées i,j
     {
         GameObject objinst;
         //génération de la salle
@@ -77,14 +77,16 @@ public class GameManager : MonoBehaviour {
         Vector3 posCentre = new Vector3(i * 38 +82, j * 26 -58, 0);
         objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
-        //Spawn des ennemis
 
+        //Spawn des ennemis
         if(!(i == 0 && j == 0))
         {
             int nbEnnemis = UnityEngine.Random.Range(0, maxEnnemis);
             for (int k = 0; k < nbEnnemis; k++)
             {
-                Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                enemyInstancie.GetComponent<Enemy>().manager = objinst.GetComponentInChildren<SalleManager>();
+                objinst.GetComponentInChildren<SalleManager>().AddEnemy();
             }
 
             int chanceSpawnObjet = UnityEngine.Random.Range(0, 100);

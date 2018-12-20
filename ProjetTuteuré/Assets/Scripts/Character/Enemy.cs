@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character {
-    
-    public static int TotalEnemies;
     float deathTime = 0f;
 
-
     public EnemyAI ai;
+
+    public SalleManager manager;
 
     protected override void Start()
     {
@@ -16,11 +15,6 @@ public class Enemy : Character {
         speed = 4f;
         //lifeBar = GameObject.FindGameObjectWithTag("EnemyLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);
-    }
-
-    public void RegisterEnemy()
-    {
-        TotalEnemies++;
     }
 
     protected override void Update()
@@ -65,7 +59,7 @@ public class Enemy : Character {
         ai.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         lifeBar.EnableLifeBar(false);
-        TotalEnemies--;
+        manager.RemoveEnemy();
     }
 
     public override void Attack()
