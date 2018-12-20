@@ -17,4 +17,7 @@ public class Datas
     public float currentHealth;
     public string nameScene;
     public int i = 0;
+    public int j = 0;
+    public int[][] map;
+    public bool[][] roomsFinies;
 }

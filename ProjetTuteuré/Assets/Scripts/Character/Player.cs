@@ -40,7 +40,7 @@ public class Player : Character {
                 {
                     if (datas.i == 1)
                     {
-                        loadDatas();
+                        loadDatas("Slot1.sav", 1);
                         datas.i = 0;
                         DataManager.Save(datas, "Slot1.sav");
                         datasnames.n = 0;
@@ -55,7 +55,7 @@ public class Player : Character {
                 {
                     if (datas.i == 1)
                     {
-                        loadDatas2();
+                        loadDatas("Slot2.sav", 2);
                         datas.i = 0;
                         DataManager.Save(datas, "Slot2.sav");
                         datasnames.n = 0;
@@ -70,7 +70,7 @@ public class Player : Character {
                 {
                     if (datas.i == 1)
                     {
-                        loadDatas3();
+                        loadDatas("Slot3.sav", 3);
                         datas.i = 0;
                         DataManager.Save(datas, "Slot3.sav");
                         datasnames.n = 0;
@@ -192,138 +192,86 @@ public class Player : Character {
     }
 
 
-    public void saveDatas(string guess)
+    public void saveDatasf1(string guess)
+    {
+        saveDatas(guess, "Slot1.sav", 1);
+    }
+
+    public void saveDatasf2(string guess)
+    {
+        saveDatas(guess, "Slot2.sav", 2);
+    }
+
+    public void saveDatasf3(string guess)
+    {
+        saveDatas(guess, "Slot3.sav", 3);
+    }
+
+    public void loadDatasf1()
+    {
+        loadDatas("Slot1.sav", 1);
+    }
+
+    public void loadDatasf2()
+    {
+        loadDatas("Slot2.sav", 2);
+    }
+
+    public void loadDatasf3()
+    {
+        loadDatas("Slot3.sav", 3);
+    }
+
+
+    public void saveDatas(string guess, string filename, int numeroPartie)
     {
         if (guess.Length != 0)
         {
             DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
             Datas datas = new Datas();
-            datas.name = datasnames.name;
-            datas.nameScene = SceneManager.GetActiveScene().name;
-            datas.x = transform.position.x;
-            datas.y = transform.position.y;
-            datas.strength = strength;
-            datas.agility = agility;
-            datas.endurance = endurance;
-            datas.switchCooldown = switchCooldown;
-            datas.typeArmeEquipee = typeArmeEquipee;
-            datas.currentHealth = currentHealth;
-            datasnames.name = guess;
-            DataManager.Save(datas, "Slot1.sav");
-            DataManager.Save(datasnames, "names.sav");
-        }
-    }
-
-    public void saveDatas2(string guess) {
-        if (guess.Length != 0)
-        {
-            DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
-            Datas datas = new Datas();
-            datas.name = datasnames.name2;
-            datas.nameScene = SceneManager.GetActiveScene().name;
-            datas.x = transform.position.x;
-            datas.y = transform.position.y;
-            datas.strength = strength;
-            datas.agility = agility;
-            datas.endurance = endurance;
-            datas.switchCooldown = switchCooldown;
-            datas.typeArmeEquipee = typeArmeEquipee;
-            datas.currentHealth = currentHealth;
-            datasnames.name2 = guess;
-            DataManager.Save(datas, "Slot2.sav");
-            DataManager.Save(datasnames, "names.sav");
-        }
-    }
-
-    public void saveDatas3(string guess)
-    {
-        if (guess.Length != 0)
-        {
-            DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
-            Datas datas = new Datas();
-            datas.name = datasnames.name3;
-            datas.nameScene = SceneManager.GetActiveScene().name;
-            datas.x = transform.position.x;
-            datas.y = transform.position.y;
-            datas.strength = strength;
-            datas.agility = agility;
-            datas.endurance = endurance;
-            datas.switchCooldown = switchCooldown;
-            datas.typeArmeEquipee = typeArmeEquipee;
-            datas.currentHealth = currentHealth;
-            datasnames.name3 = guess;
-            DataManager.Save(datas, "Slot3.sav");
-            DataManager.Save(datasnames, "names.sav");
-        }
-    }
-
-    public void loadDatas()
-    {
-        if (File.Exists(Application.persistentDataPath + "/names.sav"))
-        {
-            Debug.Log("On va charger les datas");
-            DatasNames dtn = (DatasNames)DataManager.LoadNames("names.sav");
-                Datas datas = (Datas)DataManager.Load("Slot1.sav");
-                if (datas != null)
-                {
-                    Vector2 position = new Vector2(datas.x, datas.y);
-                    this.transform.position = position;
-                    strength = datas.strength;
-                    agility = datas.agility;
-                    endurance = datas.endurance;
-                    switchCooldown = datas.switchCooldown;
-                    typeArmeEquipee = datas.typeArmeEquipee;
-                    currentHealth = datas.currentHealth;
-                    DataManager.Save(dtn, "names.sav");
-                }
-            }
-           
-    }
-
-    public void loadDatas2()
-    {
-        if (File.Exists(Application.persistentDataPath + "/names.sav"))
-        {
-            Debug.Log("On va charger les datas");
-            DatasNames dtn = (DatasNames)DataManager.LoadNames("names.sav");
-            Datas datas = (Datas)DataManager.Load("Slot2.sav");
-            if (datas != null)
+            if (numeroPartie == 1)
             {
-                Vector2 position = new Vector2(datas.x, datas.y);
-                this.transform.position = position;
-                strength = datas.strength;
-                agility = datas.agility;
-                endurance = datas.endurance;
-                switchCooldown = datas.switchCooldown;
-                typeArmeEquipee = datas.typeArmeEquipee;
-                currentHealth = datas.currentHealth;
-                DataManager.Save(dtn, "names.sav");
+                datasnames.name = guess;
+                datas.name = datasnames.name;
             }
-        }
-
-    }
-
-    public void loadDatas3()
-    {
-        if (File.Exists(Application.persistentDataPath + "/names.sav"))
-        {
-            Debug.Log("On va charger les datas");
-            DatasNames dtn = (DatasNames)DataManager.LoadNames("names.sav");
-            Datas datas = (Datas)DataManager.Load("Slot3.sav");
-            if (datas != null)
+            else if (numeroPartie == 2)
             {
-                Vector2 position = new Vector2(datas.x, datas.y);
-                this.transform.position = position;
-                strength = datas.strength;
-                agility = datas.agility;
-                endurance = datas.endurance;
-                switchCooldown = datas.switchCooldown;
-                typeArmeEquipee = datas.typeArmeEquipee;
-                currentHealth = datas.currentHealth;
-                DataManager.Save(dtn, "names.sav");
+                datasnames.name2 = guess;
+                datas.name = datasnames.name2;
             }
+            else
+            {
+                datasnames.name3 = guess;
+                datas.name = datasnames.name3;
+            }
+            datas.nameScene = SceneManager.GetActiveScene().name;
+            datas.x = transform.position.x;
+            datas.y = transform.position.y;
+            datas.strength = strength;
+            datas.agility = agility;
+            datas.endurance = endurance;
+            datas.switchCooldown = switchCooldown;
+            datas.typeArmeEquipee = typeArmeEquipee;
+            datas.currentHealth = currentHealth;
+            DataManager.Save(datas, filename);
+            DataManager.Save(datasnames, "names.sav");
         }
-
     }
 
+
+    public void loadDatas(string filename, int numeroPartie)
+    {
+        Datas datas = (Datas)DataManager.Load(filename);
+        if (datas != null)
+        {
+            Vector2 position = new Vector2(datas.x, datas.y);
+            this.transform.position = position;
+            strength = datas.strength;
+            agility = datas.agility;
+            endurance = datas.endurance;
+            switchCooldown = datas.switchCooldown;
+            typeArmeEquipee = datas.typeArmeEquipee;
+            currentHealth = datas.currentHealth;
+        }
+    }
 }

@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour {
     List<int[]> listeFinale;
     public GameObject ennemiPrefab;
     public int maxEnnemis;
+    public GameObject[][] roomsInst;
+
+    void Awake()
+    {
+        
+    }
 
     // Use this for initialization
     void Start() {
@@ -26,22 +32,82 @@ public class GameManager : MonoBehaviour {
         }
         listeFinale = new List<int[]>();
         rooms = new GameObject[5][];
+        roomsInst = new GameObject[6][];
         roomsFinies = new bool[5][];
         for (int i = 0; i < 5; i++)
         {
             rooms[i] = new GameObject[5];
             roomsFinies[i] = new bool[5];
         }
+        for (int i = 0; i < 6; i++)
+        {
+            roomsInst[i] = new GameObject[6];
+        }
         genereMap();
         initieNiveau();
-
+        DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+        if (datasnames != null)
+        {
+            if (datasnames.m == 1)
+            {
+                Datas datas = (Datas)DataManager.Load("Slot1.sav");
+                if (datas != null)
+                {
+                    if (datas.j == 1)
+                    {
+                        loadDatasf1();
+                        datas.j = 0;
+                        DataManager.Save(datas, "Slot1.sav");
+                        datasnames.m = 0;
+                        DataManager.Save(datasnames, "names.sav");
+                    }
+                }
+            }
+            if (datasnames.m == 2)
+            {
+                Datas datas = (Datas)DataManager.Load("Slot2.sav");
+                if (datas != null)
+                {
+                    if (datas.j == 1)
+                    {
+                        loadDatasf2();
+                        datas.j = 0;
+                        DataManager.Save(datas, "Slot2.sav");
+                        datasnames.m = 0;
+                        DataManager.Save(datasnames, "names.sav");
+                    }
+                }
+            }
+            if (datasnames.m == 3)
+            {
+                Datas datas = (Datas)DataManager.Load("Slot3.sav");
+                if (datas != null)
+                {
+                    if (datas.j == 1)
+                    {
+                        loadDatasf3();
+                        datas.j = 0;
+                        DataManager.Save(datas, "Slot3.sav");
+                        datasnames.m = 0;
+                        DataManager.Save(datasnames, "names.sav");
+                    }
+                }
+            }
+        }
     }
 
-    public void rechargerNiveau(int[][] map)
+    public void rechargerNiveau(int[][] map, bool[][] roomsFinies)
     {
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Destroy(roomsInst[i][j]);
+            }
+        }
         this.mapInit = map;
+        this.roomsFinies = roomsFinies;
         initieNiveau();
-
     }
 
 
@@ -77,9 +143,9 @@ public class GameManager : MonoBehaviour {
         Vector3 posCentre = new Vector3(i * 38.3f +82, j * 28.8f -58, 0);
         objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
-
+        roomsInst[i][j] = objinst;
         //Spawn des ennemis
-        if(!(i == 0 && j == 0))
+        if (!(i == 0 && j == 0))
         {
             int nbEnnemis = UnityEngine.Random.Range(0, maxEnnemis);
             for (int k = 0; k < nbEnnemis; k++)
@@ -287,6 +353,55 @@ public class GameManager : MonoBehaviour {
                 }
                 
             }
+        }
+    }
+
+    public void saveDatasf1()
+    {
+        saveDatas("Slot1.sav");
+    }
+
+    public void saveDatasf2()
+    {
+        saveDatas("Slot2.sav");
+    }
+
+    public void saveDatasf3()
+    {
+        saveDatas("Slot3.sav");
+    }
+
+    public void loadDatasf1()
+    {
+        loadDatas("Slot1.sav");
+    }
+
+    public void loadDatasf2()
+    {
+        loadDatas("Slot2.sav");
+    }
+
+    public void loadDatasf3()
+    {
+        loadDatas("Slot3.sav");
+    }
+
+    public void saveDatas(string filename)
+    {
+        Datas datas = (Datas)DataManager.Load(filename);
+        datas.map = mapInit;
+        datas.roomsFinies = roomsFinies;
+        DataManager.Save(datas, filename);
+    }
+
+    public void loadDatas(string filename)
+    {
+        Datas datas = (Datas)DataManager.Load(filename);
+        if (datas != null)
+        {
+            mapInit = datas.map;
+            roomsFinies = datas.roomsFinies;
+            rechargerNiveau(mapInit, roomsFinies);
         }
     }
 }

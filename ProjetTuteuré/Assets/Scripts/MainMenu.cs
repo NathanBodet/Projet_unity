@@ -53,6 +53,8 @@ public class MainMenu : MonoBehaviour
             {
                 datas.i = 1;
                 dtn.n = 1;
+                datas.j = 1;
+                dtn.m = 1;
                 datas.name = name;
                 DataManager.Save(dtn, "names.sav");
                 DataManager.Save(datas, "Slot1.sav");
@@ -73,6 +75,8 @@ public class MainMenu : MonoBehaviour
             {
                 datas.i = 1;
                 dtn.n = 2;
+                datas.j = 1;
+                dtn.m = 2;
                 datas.name = name;
                 DataManager.Save(dtn, "names.sav");
                 DataManager.Save(datas, "Slot2.sav");
@@ -93,6 +97,8 @@ public class MainMenu : MonoBehaviour
             {
                 datas.i = 1;
                 dtn.n = 3;
+                datas.j = 1;
+                dtn.m = 3;
                 datas.name = name;
                 DataManager.Save(dtn, "names.sav");
                 DataManager.Save(datas, "Slot3.sav");

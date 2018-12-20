@@ -12,5 +12,7 @@ public class DatasNames
     public int n = 0;
     public int n2;
     public int n3;
+    public int m = 0;
+    public int j = 0;
 }
 
