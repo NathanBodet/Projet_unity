@@ -18,13 +18,16 @@ public class MapPool : Pool {
                     {
                         if(!(i == 0 && j == 0 && k == 0 && l == 0))//room 0000 : n'existe pas
                         {
-                            listePool.Add(Resources.Load("Rooms/" + i.ToString() + j.ToString() + k.ToString() + l.ToString(), typeof(GameObject)) as GameObject);
+                            
+                            listePool.Add(Resources.Load("Rooms2/" + i.ToString() + j.ToString() + k.ToString() + l.ToString() + "0", typeof(GameObject)) as GameObject);
+                            listePool.Add(Resources.Load("Rooms2/" + i.ToString() + j.ToString() + k.ToString() + l.ToString() + "1", typeof(GameObject)) as GameObject);
                         }
                         
                     }
                 }
             }
         }
+        listePool.Add(Resources.Load("Rooms2/Salle_Fin", typeof(GameObject)) as GameObject);
     }
 
     public GameObject tire(int[] req)//tire une salle dans al pool, en suivant les contraintes contenues dans req
@@ -34,10 +37,6 @@ public class MapPool : Pool {
         for(int i = 0; i < 4; i++)
         {
             reqTrois[i] = 3;
-        }
-        if (req.Equals(reqTrois))
-        {
-            return null;
         }
         bool trouve = false;
         bool diffzero;
@@ -60,8 +59,18 @@ public class MapPool : Pool {
             }   
 
         }
+        float rndf = UnityEngine.Random.Range(0, 100);
+        int rnd;
+        if (rndf > 50)
+        {
+            rnd = 1;
+        }
+        else
+        {
+            rnd = 0;
+        }
         //retourne la bonne salle trouvée
-        return tire(currComb[0].ToString() + currComb[1].ToString() + currComb[2].ToString() + currComb[3].ToString());
+        return tire(currComb[0].ToString() + currComb[1].ToString() + currComb[2].ToString() + currComb[3].ToString()+rnd.ToString());
     }
 
     public GameObject tire(String nom) // va chercher la salle 'nom' dans la pool de salles

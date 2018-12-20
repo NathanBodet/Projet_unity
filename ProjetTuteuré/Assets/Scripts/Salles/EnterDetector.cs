@@ -10,7 +10,6 @@ public class EnterDetector : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Entré");
             porte.salle.debut();
             Destroy(gameObject);
         }

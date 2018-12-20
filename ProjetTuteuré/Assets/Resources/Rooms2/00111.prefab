@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 1681851664038279477}
   - component: {fileID: 4791293390941125291}
   m_Layer: 0
-  m_Name: SalleEW-Pilliers
+  m_Name: 00111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,6 +1175,7 @@ Transform:
   - {fileID: 8409104814497122918}
   - {fileID: 9214900147248992998}
   - {fileID: 1745880689643438142}
+  - {fileID: 6144861080831782396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1293,3 +1294,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1874989c5e2da094ea00112c6a895694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &119084784261295800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1681851664038279477}
+    m_Modifications:
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 904.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1130
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983275337220458535, guid: 716db05b78d681b459cbca939a162d2e,
+        type: 3}
+      propertyPath: m_Name
+      value: Salle0011
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 716db05b78d681b459cbca939a162d2e, type: 3}
+--- !u!4 &6144861080831782396 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6116447268478747460, guid: 716db05b78d681b459cbca939a162d2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 119084784261295800}
+  m_PrefabAsset: {fileID: 0}

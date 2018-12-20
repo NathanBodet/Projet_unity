@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
                 
             }
         }
-        creeRoom(5,4, poolMap.tire("0001"));
+        creeRoom(5,4, poolMap.tire("Salle_Fin"));
 
     }
 
@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour {
     {
         GameObject objinst;
         //génération de la salle
-        Vector3 pos = new Vector3(i * 38, j * 26, 0);
-        Vector3 posCentre = new Vector3(i * 38 +82, j * 26 -58, 0);
+        Vector3 pos = new Vector3(i * 38.3f, j * 28.8f, 0);
+        Vector3 posCentre = new Vector3(i * 38.3f +82, j * 28.8f -58, 0);
         objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
 

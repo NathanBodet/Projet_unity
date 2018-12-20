@@ -23,7 +23,6 @@ public class Porte : MonoBehaviour {
 
     public void open()
     {
-        Debug.Log("Opened");
         Destroy(gameObject);
     }
 }

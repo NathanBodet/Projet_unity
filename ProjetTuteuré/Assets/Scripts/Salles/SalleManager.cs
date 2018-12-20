@@ -37,7 +37,6 @@ public class SalleManager : MonoBehaviour {
         
         if (checkEnnemis())
         {
-            Debug.Log("nb " + nbEnnemisInSalle);
             foreach (Porte por in listePortes)
             {
                 if(por != null) { por.open(); }
