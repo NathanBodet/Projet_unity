@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void Chase()
     {
-        enemy.speed = 4f;
+        enemy.speed = 6f;
         enemy.animator.SetBool("IsMoving", true);
         Vector3 direction = player.transform.position - transform.position;
 
@@ -154,10 +154,8 @@ public class EnemyAI : MonoBehaviour {
         //calculates the distance between the hero and enemy
         //no need the actual distance, only the squared distance, because the square root operation is expensive and unnecessary
         float sqrDistance = Vector3.SqrMagnitude(player.transform.position - transform.position);
-        //sets true when the distance between the hero and robot falls between attackReachMin and attackReachMax
+        //sets true when the distance between the hero and enemy falls between attackReachMin and attackReachMax
         bool canReach = attackReachMin * attackReachMin < sqrDistance && sqrDistance < attackReachMax * attackReachMax;
-        //is based on whether the two y positions are within 0.5 units of each other
-        bool samePlane = Mathf.Abs(player.transform.position.y - transform.position.y) < 0.5f;
 
         if(canReach && currentAction == EnemyAction.Chase)
         {
@@ -185,15 +183,9 @@ public class EnemyAI : MonoBehaviour {
                 DecideWithWeights(0, 40, 0, 60);
             } else
             {
-                if (samePlane)
+                if (canReach)
                 {
-                    if (canReach)
-                    {
-                        DecideWithWeights(70, 30, 0, 0);
-                    } else
-                    {
-                        DecideWithWeights(0, 0, 100, 0);
-                    }
+                    DecideWithWeights(70, 30, 0, 0);
                 } else
                 {
                     DecideWithWeights(0, 0, 100, 0);

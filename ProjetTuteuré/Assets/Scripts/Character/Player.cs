@@ -191,9 +191,9 @@ public class Player : Character {
         rigidBody.velocity = direction.normalized * speed;
     }
 
-    public override void TakeDamage(float damage, Vector3 hitVector,float force)
+    public override void TakeDamage(float damage, Vector3 hitVector,float force, bool crit)
     {
-        base.TakeDamage(damage, hitVector,force);
+        base.TakeDamage(damage, hitVector,force, crit);
         lifeBar.EnableLifeBar(true);
         lifeBar.SetProgress(currentHealth / maxHealth);
     }

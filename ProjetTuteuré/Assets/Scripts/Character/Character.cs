@@ -81,7 +81,7 @@ public abstract class Character : MonoBehaviour {
         {
             if(collider.attachedRigidbody != null)
             {
-                TakeDamage(10, hitVector,10);
+                TakeDamage(10, hitVector,10, false);
             }
         }
     }
@@ -96,11 +96,11 @@ public abstract class Character : MonoBehaviour {
     }
 
 
-    public virtual void TakeDamage(float damage, Vector3 hitVector, float force)
+    public virtual void TakeDamage(float damage, Vector3 hitVector, float force, bool crit)
     {
         rigidBody.AddForce(force * hitVector);
         currentHealth -= damage;
-        ShowHitEffects(damage, gameObject.transform.position);
+        ShowHitEffects(damage, gameObject.transform.position, crit);
 
         if (isAlive && currentHealth <= 0)
         {
@@ -120,11 +120,16 @@ public abstract class Character : MonoBehaviour {
         return direction;
     }
 
-    protected void ShowHitEffects(float value, Vector3 position)
+    protected void ShowHitEffects(float value, Vector3 position, bool crit)
     {
+        Vector3 rndPos = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0, 0);
 
         GameObject obj = Instantiate(hitValuePrefab);
         obj.GetComponent<Text>().text = value.ToString();
+        if (crit)
+        {
+            obj.GetComponent<Text>().color = Color.red;
+        }
         obj.GetComponent<DestroyTimer>().EnableTimer(1.0f);
 
         GameObject canvas = GameObject.FindGameObjectWithTag("WorldCanvas");
@@ -132,7 +137,7 @@ public abstract class Character : MonoBehaviour {
         obj.transform.localRotation = Quaternion.identity;
         obj.transform.localScale = Vector3.one;
        // obj.transform.position = position;
-        obj.transform.position = Camera.main.WorldToScreenPoint(position);
+        obj.transform.position = Camera.main.WorldToScreenPoint(position + rndPos);
 
     }
 

@@ -31,7 +31,7 @@ public class TrapScript : MonoBehaviour {
             }
             if (Time.time > lastDamageTime + damageCooldown)
             {
-                collision.gameObject.GetComponent<Player>().TakeDamage(10, Vector3.zero,1);
+                collision.gameObject.GetComponent<Player>().TakeDamage(10, Vector3.zero,1, false);
                 lastDamageTime = Time.time;
             }
         }

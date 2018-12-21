@@ -74,19 +74,19 @@ public class Enemy : Character {
             float rnd = Random.Range(0, 100);
             if (rnd > 20) //coup normal
             {
-                hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup,0.2f);
+                hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup,0.2f, false);
             }
             else // coup critique
             {
-                hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup,0.2f);
+                hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup,0.2f, true);
             }
         }
     }
 
-    public override void TakeDamage(float damage, Vector3 hitVector, float force)
+    public override void TakeDamage(float damage, Vector3 hitVector, float force, bool crit)
     {
         lifeBar.EnableLifeBar(true);
-        base.TakeDamage(damage, hitVector, force);
+        base.TakeDamage(damage, hitVector, force, crit);
     }
 
 }
