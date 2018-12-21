@@ -8,6 +8,10 @@ public class ExitLevel : MonoBehaviour
     public GameObject winIndicator;
     private bool aFini = false;
 
+    //Win
+    public AudioSource audioSource;
+    public AudioClip winClip;
+
     private void Update()
     {
         if (aFini)
@@ -20,6 +24,8 @@ public class ExitLevel : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Stop();
+            audioSource.PlayOneShot(winClip);
             StartCoroutine("ShowWin");
           
         }

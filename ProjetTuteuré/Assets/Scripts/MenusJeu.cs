@@ -32,7 +32,7 @@ public class MenusJeu : MonoBehaviour
                 showGUI = !showGUI;
             }
 
-            if (Input.GetKeyDown(KeyCode.I) && showGUI == false && showGUI3==false)
+            if (Input.GetKeyDown(KeyCode.A) && showGUI == false && showGUI3==false)
             {
                 showGUI2 = !showGUI2;
             }

@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour {
     public float range;
     private Rigidbody2D rigidBody;
     float originCoordX, originCoordY;
+    public bool isCrit;
 
 
     void Start () {
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour {
     {
         if (collision.collider.tag == "Enemy")
         {
-            collision.collider.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero,50, false);
+            collision.collider.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero,50, isCrit);
             rigidBody.velocity = Vector2.zero;
         }
         Destroy(gameObject);

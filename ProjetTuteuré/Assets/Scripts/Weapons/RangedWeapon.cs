@@ -50,10 +50,12 @@ public class RangedWeapon : Weapon {
                 if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
                 {
                     projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength);
+                    projectileInstance.GetComponent<Projectile>().isCrit = false;
                 }
                 else//coup critique
                 {
                     projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength) * 2;
+                    projectileInstance.GetComponent<Projectile>().isCrit = true;
                 }
                 projectileInstance.GetComponent<Projectile>().range = this.range;
 

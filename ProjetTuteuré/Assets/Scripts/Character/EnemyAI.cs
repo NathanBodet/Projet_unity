@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour {
     private void Attack()
     {
         enemy.Attack();
-        decisionDuration = Random.Range(1.0f, 1.5f);
+        decisionDuration = Random.Range(0f, 0.5f);
     }
 
     private void Roam()

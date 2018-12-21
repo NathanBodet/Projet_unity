@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour {
         Vector3 posCentre = new Vector3(i * 38.3f +82, j * 28.8f -58, 0);
         objinst = Instantiate(room, pos, Quaternion.identity) as GameObject;
         objinst.transform.localScale = new Vector3(0.05f, 0.05f, 1);
-        objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;
+        //objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;
         roomsInst[i][j] = objinst;
         objinst.GetComponentInChildren<SalleManager>().posCentre = posCentre;
         objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;

@@ -23,11 +23,13 @@ public class Player : Character {
     public GameObject armeDistanceEquipee;
     public GameObject armeCorpsACorpsEquipee;
 
-
     public InputField iu;
 
+    //Game over
     public GameObject gameOverText;
     private bool gameOver = false;
+    public AudioSource audioSource;
+    public AudioClip gameOverClip;
 
 
     void Awake()
@@ -142,7 +144,7 @@ public class Player : Character {
         //input d'attaque
         if (Input.GetMouseButtonDown(0))
         {
-            if(Time.time > nextFire)
+            if(Time.time > nextFire && isAlive)
             {
                 if (typeArmeEquipee)
                 {
@@ -201,6 +203,10 @@ public class Player : Character {
     public override void Die()
     {
         base.Die();
+        //arrête la musique
+        GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Stop();
+        //joue celle du gameover
+        audioSource.PlayOneShot(gameOverClip);
         StartCoroutine("ShowGameOver");
     }
 
