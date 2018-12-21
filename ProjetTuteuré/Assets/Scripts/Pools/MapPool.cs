@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MapPool : Pool {
 
-
     public GameObject tire(int[] req, int spec)//tire une salle dans al pool, en suivant les contraintes contenues dans req
         //req : tableau de 4 entiers valant 0, 1 ou 2 : 1 = sortie demandée, 0 = mur demandé, 2 = n'importe
     {
