@@ -35,9 +35,18 @@ public class MainMenu : MonoBehaviour
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
         {
-            text1.text = datasnames.name;
-            text2.text = datasnames.name2;
-            text3.text = datasnames.name3;
+            if (datasnames.name != null)
+            {
+                text1.text = datasnames.name;
+            }
+            if (datasnames.name2 != null)
+            {
+                text2.text = datasnames.name2;
+            }
+            if (datasnames.name3 != null)
+            {
+                text3.text = datasnames.name3;
+            }
         }
     }
 

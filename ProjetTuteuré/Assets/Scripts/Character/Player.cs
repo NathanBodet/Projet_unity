@@ -253,6 +253,10 @@ public class Player : Character {
         if (guess.Length != 0)
         {
             DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
+            if(datasnames == null)
+            {
+                datasnames = new DatasNames();
+            }
             Datas datas = new Datas();
             if (numeroPartie == 1)
             {
