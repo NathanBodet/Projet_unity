@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pool : MonoBehaviour {
 
-    protected List<GameObject> listePool;
+    public List<GameObject> listePool;
 
     // Use this for initialization
     void Start () {

@@ -5,30 +5,6 @@ using UnityEngine;
 
 public class MapPool : Pool {
 
-	void Start () {
-        listePool = new List<GameObject>();
-
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                for (int k = 0; k < 2; k++)
-                {
-                    for (int l = 0; l < 2; l++)
-                    {
-                        if(!(i == 0 && j == 0 && k == 0 && l == 0))//room 0000 : n'existe pas
-                        {
-                            
-                            listePool.Add(Resources.Load("Rooms2/" + i.ToString() + j.ToString() + k.ToString() + l.ToString() + "0", typeof(GameObject)) as GameObject);
-                            listePool.Add(Resources.Load("Rooms2/" + i.ToString() + j.ToString() + k.ToString() + l.ToString() + "1", typeof(GameObject)) as GameObject);
-                        }
-                        
-                    }
-                }
-            }
-        }
-        listePool.Add(Resources.Load("Rooms2/Salle_Fin", typeof(GameObject)) as GameObject);
-    }
 
     public GameObject tire(int[] req, int spec)//tire une salle dans al pool, en suivant les contraintes contenues dans req
         //req : tableau de 4 entiers valant 0, 1 ou 2 : 1 = sortie demandée, 0 = mur demandé, 2 = n'importe

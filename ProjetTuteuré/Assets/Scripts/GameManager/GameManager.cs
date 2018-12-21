@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
     GameObject[][] rooms;
     public MapPool poolMap;
-    public ItemPool poolItem;
+    public Pool poolItem;
     bool[][] roomsFinies;
     public int[][] mapInit, roomsSpeciales;//0 si salle normale, 1 si salle speciale
     List<int[]> listeFinale;
