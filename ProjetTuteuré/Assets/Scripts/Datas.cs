@@ -21,4 +21,5 @@ public class Datas
     public int[][] map;
     public bool[][] roomsFinies;
     public int[][] roomsSpec;
+    public float timerStart;
 }

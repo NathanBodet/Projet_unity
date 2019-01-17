@@ -45,8 +45,13 @@ public class SalleManager : MonoBehaviour {
         }
 	}
 
-    public void debut()
+    public void debut(GameObject pl)
     {
+        if(GetComponentInChildren<ExitLevel>()!= null)
+        {
+            Debug.Log("trouvé");
+            GetComponentInChildren<ExitLevel>().player = pl;
+        }
         if (!gameManager.GetComponent<GameManager>().isDebut(room))
         {
             int nbEnnemis = UnityEngine.Random.Range(0, 3);

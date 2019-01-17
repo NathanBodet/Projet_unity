@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     GameObject[][] rooms;
+    public GameObject player;
     public MapPool poolMap;
     public Pool poolItem;
     bool[][] roomsFinies;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        
         //Instanciations
         roomsSpeciales = new int[5][];
         maxEnnemis = 3;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour {
         {
             roomsInst[i] = new GameObject[6];
         }
-
+        player.GetComponent<Player>().timerStart = (float)((int)(Time.time * 1000)) / 1000;
         genereMap();
         initieNiveau();
 
@@ -122,7 +124,7 @@ public class GameManager : MonoBehaviour {
 
     public void initieNiveau()// Initie la map, génère les rooms
     {
-        
+
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
         {

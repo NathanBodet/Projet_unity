@@ -31,6 +31,8 @@ public class Player : Character {
     public AudioSource audioSource;
     public AudioClip gameOverClip;
 
+    public float timerStart;
+
 
     void Awake()
     {
@@ -288,6 +290,7 @@ public class Player : Character {
             datas.switchCooldown = switchCooldown;
             datas.typeArmeEquipee = typeArmeEquipee;
             datas.currentHealth = currentHealth;
+            datas.timerStart = timerStart;
             DataManager.Save(datas, filename);
             DataManager.Save(datasnames, "names.sav");
         }
@@ -307,6 +310,7 @@ public class Player : Character {
             switchCooldown = datas.switchCooldown;
             typeArmeEquipee = datas.typeArmeEquipee;
             currentHealth = datas.currentHealth;
+            timerStart = datas.timerStart;
         }
     }
 }

@@ -10,7 +10,7 @@ public class EnterDetector : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            porte.salle.debut();
+            porte.salle.debut(collision.gameObject);
             Destroy(gameObject);
         }
     }
