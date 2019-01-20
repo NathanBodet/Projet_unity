@@ -7,27 +7,33 @@ public class ExitLevel : MonoBehaviour
 {
     public GameObject winIndicator;
     private bool aFini = false;
+    public GameObject player;
+    bool fini = false;
 
     //Win
-    public AudioSource audioSource;
     public AudioClip winClip;
 
     private void Update()
     {
         if (aFini)
         {
-            SceneManager.LoadScene("MainMenu");
+            GameObject.Find("GameManager").GetComponent<GameManager>().initieNiveau(true);
+            player.transform.position = new Vector3(85.5f,-59f,0.0f);
+            GameObject.Find("Main Camera").transform.position = new Vector3(85.5f, -59, -7);
+            aFini = false;
+            fini = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player" && !fini)
         {
             GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Stop();
-            audioSource.PlayOneShot(winClip);
             StartCoroutine("ShowWin");
-          
+            StartCoroutine("PlayFinalAudio");
+            fini = true;
+
         }
     }
 
@@ -40,6 +46,12 @@ public class ExitLevel : MonoBehaviour
             winIndicator.SetActive(false);
             yield return new WaitForSeconds(0.3f);
         }
+        
+    }
+    private IEnumerator PlayFinalAudio()
+    {
+        GameObject.Find("GameAudioManager").GetComponent<AudioSource>().PlayOneShot(winClip);
+        yield return new WaitWhile(() => GameObject.Find("GameAudioManager").GetComponent<AudioSource>().isPlaying);
         aFini = true;
     }
 }

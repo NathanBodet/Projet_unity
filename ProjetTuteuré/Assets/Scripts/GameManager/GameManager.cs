@@ -15,11 +15,8 @@ public class GameManager : MonoBehaviour {
     public GameObject ennemiPrefab,roomFin;
     public int maxEnnemis;
     public GameObject[][] roomsInst;
+    public AudioClip newLevelClip;
 
-    void Awake()
-    {
-        
-    }
 
     // Use this for initialization
     void Start() {
@@ -53,7 +50,7 @@ public class GameManager : MonoBehaviour {
         }
         player.GetComponent<Player>().timerStart = (float)((int)(Time.time * 1000)) / 1000;
         genereMap();
-        initieNiveau();
+        initieNiveau(false);
 
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
@@ -118,13 +115,23 @@ public class GameManager : MonoBehaviour {
         this.mapInit = map;
         this.roomsFinies = roomsFinies;
         this.roomsSpeciales = roomsSpec;
-        initieNiveau();
+        initieNiveau(false);
+        
     }
 
 
-    public void initieNiveau()// Initie la map, génère les rooms
+    public void initieNiveau(bool detruireRooms)// Initie la map, génère les rooms
     {
-
+        if (detruireRooms)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Destroy(roomsInst[i][j]);
+                }
+            }
+        }
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
         {
@@ -142,7 +149,17 @@ public class GameManager : MonoBehaviour {
             }
         }
         roomFin = creeRoom(5,4, poolMap.tire("Salle_Fin"));
+        StartCoroutine(sonsDebut());
+        
 
+    }
+
+    IEnumerator sonsDebut()//lance les musiques/sons de début de niveau
+    {
+        GameObject.Find("GameAudioManager").GetComponent<AudioSource>().PlayOneShot(newLevelClip);
+        yield return new WaitWhile(() => GameObject.Find("GameAudioManager").GetComponent<AudioSource>().isPlaying);
+        GameObject.Find("GameAudioManager").GetComponent<AudioSource>().volume = 0.2f;
+        GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Play();
     }
 
     public GameObject creeRoom(int i, int j, GameObject room)//instanciation d'une room aux coordonnées i,j

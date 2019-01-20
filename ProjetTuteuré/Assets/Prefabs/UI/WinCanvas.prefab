@@ -182,7 +182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Congralutations! You won!
+  m_Text: Level finished !
 --- !u!114 &3500103313945578289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,11 +206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3500103312137814941}
     m_Modifications:
-    - target: {fileID: 7479938378983275579, guid: 71badeec8b0648242a0332032ddad23b,
-        type: 3}
-      propertyPath: m_Name
-      value: WinText
-      objectReference: {fileID: 0}
     - target: {fileID: 7479938378983275556, guid: 71badeec8b0648242a0332032ddad23b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -315,6 +310,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479938378983275579, guid: 71badeec8b0648242a0332032ddad23b,
+        type: 3}
+      propertyPath: m_Name
+      value: WinText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479938378983275558, guid: 71badeec8b0648242a0332032ddad23b,
+        type: 3}
+      propertyPath: m_Text
+      value: Level finished !
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71badeec8b0648242a0332032ddad23b, type: 3}
