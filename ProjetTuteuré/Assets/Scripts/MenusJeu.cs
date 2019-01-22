@@ -58,6 +58,10 @@ public class MenusJeu : MonoBehaviour
                 GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
                 UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeCorpsACorpsEquipee.GetComponent<SpriteRenderer>().sprite;
                 UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().sprite = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<SpriteRenderer>().sprite;
+                UIEquip.GetComponent<RectTransform>().GetChild(2).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Text>().text =
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition + "/" +
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
+
                 lifebar.SetActive(true);
                 canvas1.SetActive(false);
                 canvas2.SetActive(false);

@@ -86,6 +86,8 @@ public class InventaireScript : MonoBehaviour {
             }
         }
 
+
+
         //On cherche l'image de l'objet cac dans l'inventaire et on affiche le sprite correspondant
         GameObject imageCac = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(4).gameObject;
         imageCac.GetComponent<Image>().sprite = player.GetComponent<Player>().armeCorpsACorpsEquipee.GetComponent<SpriteRenderer>().sprite;
@@ -106,11 +108,6 @@ public class InventaireScript : MonoBehaviour {
         GameObject texteAgi = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(3).gameObject;
         texteAgi.GetComponent<Text>().text = "Agilité : " + Convert.ToInt32(player.GetComponent<Player>().agility);
 
-        //On change l'ui des objets équipés
-        GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
-        UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Image>().sprite= player.GetComponent<Player>().armeCorpsACorpsEquipee.GetComponent<SpriteRenderer>().sprite;
-        UIEquip.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(1).gameObject.GetComponent<Image>().sprite = player.GetComponent<Player>().armeDistanceEquipee.GetComponent<SpriteRenderer>().sprite;
-
     }
 
 
@@ -120,7 +117,7 @@ public class InventaireScript : MonoBehaviour {
         //Debug.Log(EventSystem.current.currentSelectedGameObject.name[9]);
         var objet = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
 
-        if (objet != null)
+        if (objet != null && objet != GetComponent<Player>().armeCorpsACorpsEquipee && objet != GetComponent<Player>().armeDistanceEquipee)
         {   
             //Si on clique sur une arme à distance de tag ArmeD, on l'équipe
             if (objet.tag == "ArmeD")
@@ -136,7 +133,9 @@ public class InventaireScript : MonoBehaviour {
                 objet.GetComponent<MeleeWeapon>().equip(gameObject);
             }
 
+            updateMenuInventaire();
+
         }
-        updateMenuInventaire();
+        
     }
 }

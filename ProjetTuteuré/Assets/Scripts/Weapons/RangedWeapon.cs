@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System;
 
 public class RangedWeapon : Weapon {
 
 
     public int ammunition;
+    public int totalammunition;
     public float range;
     public float projectileSpeed;
     public int nbBalles;//nombres de projectiles tirés en même temps
@@ -15,7 +20,10 @@ public class RangedWeapon : Weapon {
 
     public GameObject projectilePrefab;
 
-
+    void Start()
+    {
+        this.ammunition = this.totalammunition;
+    }
 
     public void Fire()
     {
@@ -34,7 +42,7 @@ public class RangedWeapon : Weapon {
 
             for (int i = 0; i < nbBalles; i++)
             {
-                dispertion = Random.Range(0, 1);
+                dispertion = UnityEngine.Random.Range(0, 1);
                 //récupération des coordonnées de la souris et création du vecteur du projectile tiré
                 projectileDirection.x = originDirection.x - player.GetComponent<Transform>().position.x;
                 projectileDirection.y = originDirection.y - player.GetComponent<Transform>().position.y;
@@ -45,7 +53,7 @@ public class RangedWeapon : Weapon {
                 projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
                 projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
                 projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
-                float rnd = Random.Range(0, 100);
+                float rnd = UnityEngine.Random.Range(0, 100);
 
                 if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
                 {
@@ -58,6 +66,12 @@ public class RangedWeapon : Weapon {
                     projectileInstance.GetComponent<Projectile>().isCrit = true;
                 }
                 projectileInstance.GetComponent<Projectile>().range = this.range;
+
+                //update de nb de munition
+                GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
+                UIEquip.GetComponent<RectTransform>().GetChild(2).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Text>().text =
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition + "/" +
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
 
             }
 

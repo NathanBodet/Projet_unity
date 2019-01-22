@@ -92,6 +92,7 @@ public class Player : Character {
     {
         base.Start();
         armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
+        armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition = armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
         armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
         lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);

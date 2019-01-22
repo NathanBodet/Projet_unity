@@ -159,8 +159,9 @@ MonoBehaviour:
   damage: 10
   player: {fileID: 0}
   ammunition: 50
+  totalammunition: 50
   range: 15
-  projectileSpeed: 10
+  projectileSpeed: 20
   nbBalles: 1
   fireRate: 1
   projectilePrefab: {fileID: 1577481119012058, guid: 7c3845c06ca423d40a0fec3966f4936d,
