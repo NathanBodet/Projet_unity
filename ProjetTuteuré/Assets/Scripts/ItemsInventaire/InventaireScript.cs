@@ -118,8 +118,9 @@ public class InventaireScript : MonoBehaviour {
         var objet = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
 
         if (objet != null && objet != GetComponent<Player>().armeCorpsACorpsEquipee && objet != GetComponent<Player>().armeDistanceEquipee)
-        {   
+        {
             //Si on clique sur une arme à distance de tag ArmeD, on l'équipe
+            
             if (objet.tag == "ArmeD")
             {
                 GetComponent<Player>().armeDistanceEquipee = objet;
@@ -131,6 +132,15 @@ public class InventaireScript : MonoBehaviour {
             {
                 GetComponent<Player>().armeCorpsACorpsEquipee = objet;
                 objet.GetComponent<MeleeWeapon>().equip(gameObject);
+            }
+            //pareil pour les consommables
+            else if(objet.tag == "Consommable")
+            {
+                objet.GetComponent<ItemConsommable>().use();
+                if(objet.GetComponent<ItemConsommable>().consommationsRestantes == 0)
+                {
+                    retirerItem(objet);
+                }
             }
 
             updateMenuInventaire();

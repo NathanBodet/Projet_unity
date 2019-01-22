@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 50794410766379170}
   - component: {fileID: 212521970793063176}
   - component: {fileID: 61762677049326156}
-  - component: {fileID: 114946471273669732}
   m_Layer: 0
-  m_Name: sortDeFeu
+  m_Name: 05
   m_TagString: ArmeD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nom: Sort de feu
+  inventaire: {fileID: 0}
   damage: 25
   player: {fileID: 0}
   ammunition: 50
@@ -153,16 +153,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.630911, y: 2.9998999}
   m_EdgeRadius: 0
---- !u!114 &114946471273669732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891920190206432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a77cf5c2c4eca4fa48c283b1460950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventaire: {fileID: 0}

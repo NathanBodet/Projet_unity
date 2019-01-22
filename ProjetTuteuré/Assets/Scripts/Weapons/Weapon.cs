@@ -6,8 +6,6 @@ public class Weapon : Item {
 
     public int damage;
 
-    public GameObject player;
-
     public void equip(GameObject player)
     {
         this.player = player;
