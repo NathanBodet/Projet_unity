@@ -83,6 +83,9 @@ public class InventaireScript : MonoBehaviour {
             if (listeItems[i] != null)
             {
                 button.GetComponent<Image>().sprite = listeItems[i].GetComponent<SpriteRenderer>().sprite;
+            } else
+            {
+                button.GetComponent<Image>().sprite = null;
             }
         }
 
