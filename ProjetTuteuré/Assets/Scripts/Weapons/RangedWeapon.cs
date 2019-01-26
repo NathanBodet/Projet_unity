@@ -57,21 +57,38 @@ public class RangedWeapon : Weapon {
 
                 if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
                 {
-                    projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength);
+                    projectileInstance.GetComponent<Projectile>().damage = 
+                        (player.GetComponent<Player>().strength * this.strratio + //ajout des degats en fonction du ratio de degats force du joueur
+                        player.GetComponent<Player>().agility * this.agiratio + //ajout des degats en fonction du ratio de degats agilite du joueur
+                        player.GetComponent<Player>().endurance * this.endratio +  //ajout des degats en fonction du ratio de degats endurance du joueur
+                        this.damage
+                        );
                     projectileInstance.GetComponent<Projectile>().isCrit = false;
                 }
                 else//coup critique
                 {
-                    projectileInstance.GetComponent<Projectile>().damage = (this.damage + player.gameObject.GetComponent<Player>().strength) * 2;
+                    projectileInstance.GetComponent<Projectile>().damage = 
+                        (player.GetComponent<Player>().strength * this.strratio + //ajout des degats en fonction du ratio de degats force du joueur
+                        player.GetComponent<Player>().agility * this.agiratio + //ajout des degats en fonction du ratio de degats agilite du joueur
+                        player.GetComponent<Player>().endurance * this.endratio + //ajout des degats en fonction du ratio de degats endurance du joueur
+                        this.damage
+                        ) * 2;
                     projectileInstance.GetComponent<Projectile>().isCrit = true;
                 }
                 projectileInstance.GetComponent<Projectile>().range = this.range;
 
                 //update de nb de munition
-                GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
-                UIEquip.GetComponent<RectTransform>().GetChild(2).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Text>().text =
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition + "/" +
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
+                try
+                {
+                    GameObject UIEquip = GameObject.FindGameObjectWithTag("ArmeUI");
+                    UIEquip.GetComponent<RectTransform>().GetChild(2).GetComponent<RectTransform>().GetChild(0).gameObject.GetComponent<Text>().text =
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition + "/" +
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
+                } catch (NullReferenceException e)
+                {
+                    Debug.Log(e.Message);
+                }
+                
 
             }
 

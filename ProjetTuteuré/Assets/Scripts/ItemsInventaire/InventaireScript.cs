@@ -99,6 +99,12 @@ public class InventaireScript : MonoBehaviour {
         GameObject imageDist = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(5).gameObject;
         imageDist.GetComponent<Image>().sprite = player.GetComponent<Player>().armeDistanceEquipee.GetComponent<SpriteRenderer>().sprite;
 
+
+
+
+        //On update les stats dus au changement d'armure
+        updateStats();
+
         //On change la force
         GameObject texteForce = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(1).gameObject;
         texteForce.GetComponent<Text>().text = "Force : "+Convert.ToInt32(player.GetComponent<Player>().strength);
@@ -113,6 +119,26 @@ public class InventaireScript : MonoBehaviour {
 
     }
 
+    public void updateStats()
+    {
+        //On update la force du joueur en fonction de ses armures equipees
+        GetComponent<Player>().strength = GetComponent<Player>().basestrength + 
+        GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().strength +
+        GetComponent<Player>().armureTorseEquipee.GetComponent<BodyArmor>().strength +
+        GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().strength;
+
+        //idem pour l'agilite
+        GetComponent<Player>().agility = GetComponent<Player>().baseagility +
+        GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().agility +
+        GetComponent<Player>().armureTorseEquipee.GetComponent<BodyArmor>().agility +
+        GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().agility;
+
+        //idem pour l'endurance
+        GetComponent<Player>().endurance = GetComponent<Player>().baseendurance +
+        GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().endurance +
+        GetComponent<Player>().armureTorseEquipee.GetComponent<BodyArmor>().endurance +
+        GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().endurance;
+    }
 
     public void clickButton()
     {
@@ -145,6 +171,25 @@ public class InventaireScript : MonoBehaviour {
                     retirerItem(objet);
                 }
             }
+            //Pareil pour les armures de tete
+            else if (objet.tag == "ArmureTete")
+            {
+                GetComponent<Player>().armureTeteEquipee = objet;
+                objet.GetComponent<HeadArmor>().equip(gameObject);
+            }
+            //Pareil pour les armures de torse
+            else if (objet.tag == "ArmureTorse")
+            {
+                GetComponent<Player>().armureTorseEquipee = objet;
+                objet.GetComponent<BodyArmor>().equip(gameObject);
+            }
+            //Pareil pour les armures de jambes
+            else if (objet.tag == "ArmureJambes")
+            {
+                GetComponent<Player>().armureJambesEquipee = objet;
+                objet.GetComponent<LegArmor>().equip(gameObject);
+            }
+
 
             updateMenuInventaire();
 

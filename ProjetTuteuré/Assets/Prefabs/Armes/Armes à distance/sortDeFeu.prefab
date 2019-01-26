@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 50794410766379170}
   - component: {fileID: 212521970793063176}
   - component: {fileID: 61762677049326156}
-  - component: {fileID: 114946471273669732}
   m_Layer: 0
   m_Name: sortDeFeu
   m_TagString: ArmeD
@@ -29,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891920190206432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.69096756, y: 7.841726, z: 0.3253548}
+  m_LocalPosition: {x: -0.69096756, y: 7.841726, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,8 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nom: Sort de feu
-  damage: 25
+  inventaire: {fileID: 0}
   player: {fileID: 0}
+  damage: 25
+  strratio: 0
+  agiratio: 0
+  endratio: 0
   ammunition: 50
   totalammunition: 50
   range: 10
@@ -153,16 +156,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.630911, y: 2.9998999}
   m_EdgeRadius: 0
---- !u!114 &114946471273669732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891920190206432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a77cf5c2c4eca4fa48c283b1460950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventaire: {fileID: 0}

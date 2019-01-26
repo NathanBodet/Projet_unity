@@ -865,6 +865,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: {x: 0, y: 0}
+--- !u!1 &4746911519800212165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6110337438938834111}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4510547862428926513}
+  m_Layer: 0
+  m_Name: Salle1010 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4510547862428926513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6110337438938834111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746911519800212165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2241274165093064834}
+  m_Father: {fileID: 4337019209799564797}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5191699243282998690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6110337438938834111}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2241274165093064834}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2241274165093064834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 5464798725444060221, guid: ee0cde2652bdb41408d383f032e2ba0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6110337438938834111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191699243282998690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4510547862428926513}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5278801483386157814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4337019209799564797}
   - component: {fileID: 3384476972529750943}
+  - component: {fileID: 542569800269616943}
   m_Layer: 0
   m_Name: 10100
   m_TagString: Untagged
@@ -1033,7 +1096,7 @@ Transform:
   - {fileID: 3404392783253396646}
   - {fileID: 7361702156879014588}
   - {fileID: 2116222857692262437}
-  - {fileID: 2241274165093064834}
+  - {fileID: 4510547862428926513}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1062,6 +1125,29 @@ MonoBehaviour:
   MapWidthInPixels: 2400
   MapHeightInPixels: 2400
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+--- !u!114 &542569800269616943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736441022857540658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c4365e65176ba43a572f897a451e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomEntre: 0
+  salleTiles: {fileID: 0}
+  gameManager: {fileID: 0}
+  room: {fileID: 0}
+  porteOuest: {fileID: 0}
+  porteNord: {fileID: 0}
+  porteEst: {fileID: 0}
+  porteSud: {fileID: 0}
+  ennemiPrefab: {fileID: 0}
+  posCentre: {x: 0, y: 0, z: 0}
+  nbEnnemisInSalle: 0
 --- !u!1001 &6110337438938834111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1069,11 +1155,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4337019209799564797}
     m_Modifications:
-    - target: {fileID: 6493917548096114526, guid: ee0cde2652bdb41408d383f032e2ba0e,
-        type: 3}
-      propertyPath: m_Name
-      value: Salle1010
-      objectReference: {fileID: 0}
     - target: {fileID: 5464798725444060221, guid: ee0cde2652bdb41408d383f032e2ba0e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1129,6 +1210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6493917548096114526, guid: ee0cde2652bdb41408d383f032e2ba0e,
+        type: 3}
+      propertyPath: m_Name
+      value: Salle1010
+      objectReference: {fileID: 0}
     - target: {fileID: 5923103148690381948, guid: ee0cde2652bdb41408d383f032e2ba0e,
         type: 3}
       propertyPath: ennemiPrefab
@@ -1137,9 +1223,3 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee0cde2652bdb41408d383f032e2ba0e, type: 3}
---- !u!4 &2241274165093064834 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5464798725444060221, guid: ee0cde2652bdb41408d383f032e2ba0e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6110337438938834111}
-  m_PrefabAsset: {fileID: 0}

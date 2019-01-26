@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276670577909234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 42.869034, y: 3.7206895, z: 0.43544763}
+  m_LocalPosition: {x: 42.869034, y: 3.7206895, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,13 +143,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Shotgun
   inventaire: {fileID: 0}
-  damage: 15
   player: {fileID: 0}
-  ammunition: 30
-  totalammunition: 30
+  damage: 15
+  strratio: 0.2
+  agiratio: 0.2
+  endratio: 0
+  ammunition: 12
+  totalammunition: 12
   range: 5
   projectileSpeed: 17
-  nbBalles: 1
+  nbBalles: 3
   fireRate: 1
   projectilePrefab: {fileID: 1871213557999406, guid: a9c717de480fdd54f83c09863ca8f56b,
     type: 3}

@@ -7,10 +7,16 @@ using UnityEngine.UI;
 
 public class Player : Character {
 
-    //Statistiques du joueur
-    public int strength = 5;
-    public int endurance = 5;
-    public int agility = 5;
+    //Statistiques de base du joueur
+    public int basestrength = 5;
+    public int baseendurance = 5;
+    public int baseagility = 5;
+
+
+    //Statistiques actives du joueur
+    public int strength = 0;
+    public int endurance = 0;
+    public int agility = 0;
 
     //attributs concernant les tirs
     float nextFire = 0.0f;
@@ -22,6 +28,10 @@ public class Player : Character {
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
     public GameObject armeCorpsACorpsEquipee;
+
+    public GameObject armureTeteEquipee;
+    public GameObject armureTorseEquipee;
+    public GameObject armureJambesEquipee;
 
     public InputField iu;
 

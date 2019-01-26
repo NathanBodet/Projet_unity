@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    public int damage;
+    public float damage;
     public float range;
     private Rigidbody2D rigidBody;
     float originCoordX, originCoordY;

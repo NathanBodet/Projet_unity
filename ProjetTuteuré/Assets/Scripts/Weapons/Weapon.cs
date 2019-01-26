@@ -5,6 +5,9 @@ using UnityEngine;
 public class Weapon : Item {
 
     public int damage;
+    public float strratio;
+    public float agiratio;
+    public float endratio;
 
     public void equip(GameObject player)
     {

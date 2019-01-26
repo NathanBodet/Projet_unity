@@ -143,7 +143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: "Batte clout\xE9e"
   inventaire: {fileID: 0}
-  damage: 20
   player: {fileID: 0}
+  damage: 20
+  strratio: 1.5
+  agiratio: 0
+  endratio: 0
   range: 3
   hitRate: 0.5
