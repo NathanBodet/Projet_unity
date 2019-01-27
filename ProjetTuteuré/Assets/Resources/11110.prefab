@@ -1101,11 +1101,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8227724315471835981}
     m_Modifications:
-    - target: {fileID: 3675412096435837902, guid: 7de00240ff3a12f47aaac47829cfc04d,
-        type: 3}
-      propertyPath: m_Name
-      value: SalleManagerRightSize
-      objectReference: {fileID: 0}
     - target: {fileID: 2506382051227422893, guid: 7de00240ff3a12f47aaac47829cfc04d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1161,11 +1156,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3675412096435837902, guid: 7de00240ff3a12f47aaac47829cfc04d,
+        type: 3}
+      propertyPath: m_Name
+      value: SalleManagerRightSize
+      objectReference: {fileID: 0}
     - target: {fileID: 4264274017071565036, guid: 7de00240ff3a12f47aaac47829cfc04d,
         type: 3}
       propertyPath: ennemiPrefab
       value: 
       objectReference: {fileID: 1878536627128534, guid: e5fea17a243c96e4183095cb8a9f5d27,
+        type: 3}
+    - target: {fileID: 4264274017071565036, guid: 7de00240ff3a12f47aaac47829cfc04d,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1915501450987154, guid: bdf4178c391df734eb93a89472e32686,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7de00240ff3a12f47aaac47829cfc04d, type: 3}
