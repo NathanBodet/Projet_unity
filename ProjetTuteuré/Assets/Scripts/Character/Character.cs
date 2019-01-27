@@ -92,7 +92,6 @@ public abstract class Character : MonoBehaviour {
         animator.SetBool("IsAlive", false);
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-        Debug.Log("mort");
     }
 
 

@@ -124,18 +124,22 @@ public class GameManager : MonoBehaviour {
 
     public void initieNiveau(bool detruireRooms)// Initie la map, génère les rooms
     {
-        Debug.Log("Bienvenue au niveau " + numeroNiveau);
+        
         if (detruireRooms)
         {
+            numeroNiveau++;
+            Destroy(roomFin);
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
                     Destroy(roomsInst[i][j]);
+                    
                     roomsFinies[i][j] = false;
                 }
             }
         }
+        Debug.Log("Bienvenue au niveau " + numeroNiveau);
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
         {
@@ -149,13 +153,10 @@ public class GameManager : MonoBehaviour {
                     rooms[i][j] = poolMap.tire(req,roomsSpeciales[i][j]);//tire une room au hasard dans le pool, suivant les conditions req
                     creeRoom(i, j, rooms[i][j]);
                 }
-                
             }
         }
         roomFin = creeRoom(5,4, poolMap.tire("Salle_Fin"));
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Play();
-
-
     }
 
     public GameObject creeRoom(int i, int j, GameObject room)//instanciation d'une room aux coordonnées i,j
@@ -441,7 +442,6 @@ public class GameManager : MonoBehaviour {
             {
                 if (rooms[i][j] != null && roomsInst[i][j].Equals(room))
                 {
-                    Debug.Log("fini !");
                     roomsFinies[i][j] = true;
                 }
             }
