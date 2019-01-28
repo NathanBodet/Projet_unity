@@ -126,6 +126,9 @@ public class InventaireScript : MonoBehaviour {
         GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().strength +
         GetComponent<Player>().armureTorseEquipee.GetComponent<BodyArmor>().strength +
         GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().strength;
+        //Debug.Log(GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().strength);
+        //Debug.Log(GetComponent<Player>().armureTeteEquipee.GetComponent<BodyArmor>().strength);
+        //Debug.Log(GetComponent<Player>().armureTeteEquipee.GetComponent<LegArmor>().strength);
 
         //idem pour l'agilite
         GetComponent<Player>().agility = GetComponent<Player>().baseagility +
@@ -184,7 +187,7 @@ public class InventaireScript : MonoBehaviour {
                 objet.GetComponent<BodyArmor>().equip(gameObject);
             }
             //Pareil pour les armures de jambes
-            else if (objet.tag == "ArmureJambes")
+            else if (objet.tag == "ArmureJambe")
             {
                 GetComponent<Player>().armureJambesEquipee = objet;
                 objet.GetComponent<LegArmor>().equip(gameObject);
