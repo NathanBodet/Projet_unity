@@ -199,4 +199,16 @@ public class InventaireScript : MonoBehaviour {
         }
         
     }
+
+    public bool isInInventaire(GameObject obj)
+    {
+        foreach(GameObject objTest in listeItems)
+        {
+            if (objTest!=null && objTest.Equals(obj))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

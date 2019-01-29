@@ -12,6 +12,9 @@ public class SalleManager : MonoBehaviour {
     public GameObject ennemiPrefab;
     public Vector3 posCentre;
     public int nbEnnemisInSalle;
+    public bool itemsDetruits;
+    public List<GameObject> listeItem;
+    public float timeAfterRoomEnd;//utilisé pour faire déspawn les items après un certain temps
 
     private void Awake()
     {
@@ -27,15 +30,27 @@ public class SalleManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         roomEntre = false;
-
+        listeItem = new List<GameObject>();
+        itemsDetruits = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if(Time.time-timeAfterRoomEnd> 30f && !itemsDetruits)
+        {
+            itemsDetruits = true;
+            foreach(GameObject obj in listeItem)
+            {
+                if (obj != null && (!GameObject.Find("Player").GetComponent<InventaireScript>().isInInventaire(obj)))
+                {
+                    Destroy(obj);
+                }
+            }
+        }
         if (checkEnnemis())
         {
             gameManager.GetComponent<GameManager>().finirRoom(room);
+            timeAfterRoomEnd = Time.time;
             roomEntre = false;
             foreach (Porte por in listePortes)
             {
@@ -54,7 +69,7 @@ public class SalleManager : MonoBehaviour {
         }
         if (!gameManager.GetComponent<GameManager>().isDebut(room))
         {
-            int nbEnnemis = UnityEngine.Random.Range(0, 3);
+            int nbEnnemis = Random.Range(0, 3);
             for (int k = 0; k < nbEnnemis; k++)
             {
                 GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);

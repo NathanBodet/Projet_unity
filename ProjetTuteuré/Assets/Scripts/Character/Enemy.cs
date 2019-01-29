@@ -60,6 +60,7 @@ public class Enemy : Character {
         GetComponent<BoxCollider2D>().enabled = false;
         lifeBar.EnableLifeBar(false);
         manager.RemoveEnemy();
+        dropItem();
     }
 
     public override void Attack()
@@ -87,6 +88,16 @@ public class Enemy : Character {
     {
         lifeBar.EnableLifeBar(true);
         base.TakeDamage(damage, hitVector, force, crit);
+    }
+
+    public void dropItem()
+    {
+        
+        if(Random.Range(0f,100f) > 20)
+        {
+            Debug.Log("Yikes");
+            manager.listeItem.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
+        }
     }
 
 }
