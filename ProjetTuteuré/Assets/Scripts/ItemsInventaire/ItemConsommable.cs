@@ -27,13 +27,13 @@ public class ItemConsommable : Item
                 playerScript.lifeBar.SetProgress(playerScript.currentHealth / playerScript.maxHealth);
                 break;
             case 2:
-                playerScript.agility+= levelPoints;
+                playerScript.baseagility+= levelPoints;
                 break;
             case 3:
-                playerScript.strength+= levelPoints;
+                playerScript.basestrength+= levelPoints;
                 break;
             case 4:
-                playerScript.endurance += levelPoints;
+                playerScript.baseendurance += levelPoints;
                 break;
         }
     }
