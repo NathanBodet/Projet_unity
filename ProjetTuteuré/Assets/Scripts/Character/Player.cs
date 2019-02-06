@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Player : Character {
 
+    public static Player instance;
+
     //Statistiques de base du joueur
     public int basestrength = 5;
     public int baseendurance = 5;
@@ -42,6 +44,9 @@ public class Player : Character {
     public AudioClip gameOverClip;
 
     public float timerStart;
+
+    //gold
+    public int gold = 0;
 
 
     void Awake()
@@ -101,6 +106,9 @@ public class Player : Character {
     protected override void Start()
     {
         base.Start();
+
+        instance = this;
+
         armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
         armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition = armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
         armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
@@ -233,6 +241,23 @@ public class Player : Character {
             yield return new WaitForSeconds(0.3f);
         }
         gameOver = true;
+    }
+
+    public void getGold(int amount)
+    {
+        gold += amount;
+    }
+
+    public void loseGold(int amount)
+    {
+        if(amount > gold)
+        {
+            gold = 0;
+        } else
+        {
+            gold -= amount;
+        }
+
     }
 
 

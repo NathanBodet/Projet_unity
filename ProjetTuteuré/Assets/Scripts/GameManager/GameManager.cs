@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager instance;
+
     GameObject[][] rooms;
     public GameObject player;
     public MapPool poolMap;
@@ -17,9 +19,13 @@ public class GameManager : MonoBehaviour {
     public GameObject[][] roomsInst;
     public AudioClip newLevelClip;
 
+    public bool shopActive; //prevent the player to move
+
 
     // Use this for initialization
     void Start() {
+
+        instance = this;
 
         //Instanciations
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().volume = 0.2f;
@@ -103,6 +109,8 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+
+        //TODO: if shopActive : prevents the player to move
     }
 
     public void rechargerNiveau(int[][] map, bool[][] roomsFinies,int[][] roomsSpec)
