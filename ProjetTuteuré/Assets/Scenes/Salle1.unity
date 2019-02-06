@@ -12954,6 +12954,9 @@ MonoBehaviour:
   buyMenu: {fileID: 1235926058}
   sellMenu: {fileID: 651650485}
   goldText: {fileID: 100894030}
+  itemsForSale: []
+  buyItemButtons: []
+  sellItemButtons: []
 --- !u!1001 &1275169138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15810,6 +15813,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff28d23eb3e9974098a32adc7f96306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemsForSale:
+  - {fileID: 1310476483969403534, guid: 04dbe0fbbdf5db44ab56c0b08eef3e80, type: 3}
+  - {fileID: 8520950257077829993, guid: 65c874b5936c0834f9e5191440557c20, type: 3}
+  - {fileID: 6023164062218156686, guid: af68763dc7da2134bba14832fe0558aa, type: 3}
+  - {fileID: 1657852001114790, guid: 07a588627e2adae4087e48b006aafe1b, type: 3}
 --- !u!1 &1503186087
 GameObject:
   m_ObjectHideFlags: 0
