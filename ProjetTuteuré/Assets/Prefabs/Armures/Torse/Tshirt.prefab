@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8520950257077829996}
   - component: {fileID: 8520950257077829995}
   - component: {fileID: 8520950257077829994}
+  - component: {fileID: 5023590612101358797}
   m_Layer: 0
   m_Name: Tshirt
   m_TagString: ArmureTorse
@@ -147,3 +148,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5023590612101358797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520950257077829993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 1
+  itemName: T-shirt rouge
+  description: Ceci est un t-shirt rouge.
+  price: 100
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 10

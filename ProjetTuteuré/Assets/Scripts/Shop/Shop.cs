@@ -8,16 +8,17 @@ public class Shop : MonoBehaviour
 
     public static Shop instance;
 
-    public GameObject shopMenu;
-    public GameObject buyMenu;
-    public GameObject sellMenu;
+    public GameObject shopMenu, buyMenu, sellMenu;
 
     public Text goldText;
 
-    public GameObject[] itemsForSale;
+    public List<Items> itemsForSale;
 
     public ItemButton[] buyItemButtons;
     public ItemButton[] sellItemButtons;
+
+    public Items selectedItem;
+    public Text buyItemName, buyItemDescription, buyItemPrice;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +32,6 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("Clic");
-            OpenShop();
-        }
     }
 
     public void OpenShop()
@@ -60,8 +56,29 @@ public class Shop : MonoBehaviour
     {
         buyMenu.SetActive(true);
         sellMenu.SetActive(false);
+        
+        for(int i = 0; i < itemsForSale.Count; i++)
+        {
+            buyItemButtons[i].buttonImage.gameObject.SetActive(true);
+            buyItemButtons[i].buttonImage.sprite = itemsForSale[i].GetComponent<SpriteRenderer>().sprite;
+            buyItemButtons[i].amountText.text = Random.Range(1, 3).ToString();
+            buyItemButtons[i].setItemReferenced(itemsForSale[i]);
+        }
 
-        //TODO: parcours des items et display
+        for(int i = itemsForSale.Count; i < buyItemButtons.Length; i++)
+        {
+            buyItemButtons[i].buttonImage.gameObject.SetActive(false);
+            buyItemButtons[i].amountText.text = "";
+            buyItemButtons[i].gameObject.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void SelectBuyItem(Items buyItemSelected)
+    {
+        selectedItem = buyItemSelected;
+        buyItemName.text = selectedItem.itemName;
+        buyItemDescription.text = selectedItem.description;
+        buyItemPrice.text = "Value: " + selectedItem.price.ToString() +"g";
     }
 
     public void OpenSellMenu()

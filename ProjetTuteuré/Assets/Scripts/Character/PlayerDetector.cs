@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider2D))]
 public class PlayerDetector : MonoBehaviour {
 
     public bool playerIsNearby;

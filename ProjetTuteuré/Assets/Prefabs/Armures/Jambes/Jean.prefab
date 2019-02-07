@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4448148805438857443}
   - component: {fileID: 8900210211284676823}
   - component: {fileID: 7826233002292507309}
+  - component: {fileID: 4023401024683269681}
   m_Layer: 0
   m_Name: Jean
   m_TagString: ArmureJambe
@@ -147,3 +148,28 @@ MonoBehaviour:
   strength: 0
   agility: 0
   endurance: 0
+--- !u!114 &4023401024683269681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310476483969403534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 1
+  itemName: Jean
+  description: Ceci est un jean bleu.
+  price: 100
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 10
