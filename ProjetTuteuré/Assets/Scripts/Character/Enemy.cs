@@ -13,6 +13,7 @@ public class Enemy : Character {
     {
         base.Start();
         speed = 4f;
+        maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau * 16 + 100;
         //lifeBar = GameObject.FindGameObjectWithTag("EnemyLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);
     }
@@ -93,7 +94,7 @@ public class Enemy : Character {
     public void dropItem()
     {
         
-        if(Random.Range(0f,100f) > 20)
+        if(Random.Range(0f,100f) > 10)
         {
             manager.listeItem.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
         }

@@ -30,6 +30,7 @@ public class Player : Character {
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
     public GameObject armeCorpsACorpsEquipee;
+    public List<GameObject> objetsProximite;//objets que le joueur peut ramasser
 
     public GameObject armureTeteEquipee;
     public GameObject armureTorseEquipee;
@@ -108,7 +109,7 @@ public class Player : Character {
         base.Start();
 
         instance = this;
-
+        objetsProximite = new List<GameObject>();
         armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
         armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition = armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
         armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
@@ -163,7 +164,7 @@ public class Player : Character {
         }
 
         //input d'attaque
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if(Time.time > nextFire && isAlive)
             {
@@ -183,7 +184,7 @@ public class Player : Character {
         }
 
         //input de switch d'arme
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
         {
             //switch le type d'arme : cooldown de 1s
             if (Time.time > switchCooldown)
@@ -203,6 +204,15 @@ public class Player : Character {
                 }
                 switchCooldown = Time.time + 1f;
                 typeArmeEquipee = !typeArmeEquipee;
+            }
+        }
+
+        //input d'interaction
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(objetsProximite.Count != 0)
+            {
+                objetsProximite[0].GetComponent<Item>().take();
             }
         }
 

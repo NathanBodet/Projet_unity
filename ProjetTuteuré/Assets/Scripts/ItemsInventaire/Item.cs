@@ -13,15 +13,28 @@ public class Item : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (!collision.gameObject.GetComponent<InventaireScript>().isFull())
-            {
-                player = collision.gameObject;
-                collision.gameObject.GetComponent<InventaireScript>().addItem(this.gameObject);
-                Debug.Log("vous avez récupéré : " + this.gameObject.GetComponent<Item>().nom);
-                this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            player = collision.gameObject;
+            player.GetComponent<Player>().objetsProximite.Add(this.gameObject);
+        }
+    }
 
-            }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(player != null)
+        {
+            player.GetComponent<Player>().objetsProximite.Remove(this.gameObject);
+            player = null;
+        }
+    }
+
+    public void take()
+    {
+        if (!player.GetComponent<InventaireScript>().isFull())
+        {
+            player.GetComponent<InventaireScript>().addItem(this.gameObject);
+            Debug.Log("vous avez récupéré : " + this.gameObject.GetComponent<Item>().nom);
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
