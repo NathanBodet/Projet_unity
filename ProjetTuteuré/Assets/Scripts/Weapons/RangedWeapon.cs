@@ -51,6 +51,7 @@ public class RangedWeapon : Weapon {
 
                 //instanciation du projectile et addition du vecteur vitesse
                 projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
+                projectileInstance.GetComponent<Projectile>().isFriendly = true;
                 projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
                 projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
                 float rnd = UnityEngine.Random.Range(0, 100);

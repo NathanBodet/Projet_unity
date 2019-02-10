@@ -11,7 +11,7 @@ public class SalleManager : MonoBehaviour {
     List<Porte> listePortes;
     public GameObject ennemiPrefab;
     public Vector3 posCentre;
-    public int nbEnnemisInSalle;
+    public int nbEnnemisInSalle,ennemisDepart;
     public bool itemsDetruits;
     public List<GameObject> listeItem;
     public float timeAfterRoomEnd;//utilisé pour faire déspawn les items après un certain temps
@@ -64,23 +64,39 @@ public class SalleManager : MonoBehaviour {
     {
         if(GetComponentInChildren<ExitLevel>()!= null)
         {
-            Debug.Log("trouvé");
             GetComponentInChildren<ExitLevel>().player = pl;
         }
         if (!gameManager.GetComponent<GameManager>().isDebut(room))
         {
-            int nbEnnemis = Random.Range(0, 3);
-            for (int k = 0; k < nbEnnemis; k++)
+            if(ennemisDepart != 0)
             {
-                GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
-                enemyInstancie.GetComponent<Enemy>().manager = this;
-                AddEnemy();
-            }
-            roomEntre = true;
-            foreach (Porte por in listePortes)
+                int nbEnnemis = Random.Range(0, 3);
+                for (int k = 0; k < nbEnnemis; k++)
+                {
+                    GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    enemyInstancie.GetComponent<Enemy>().manager = this;
+                    AddEnemy();
+                }
+                roomEntre = true;
+                foreach (Porte por in listePortes)
+                {
+                    if (por != null) { por.close(); }
+                }
+            } else
             {
-                if (por != null) { por.close(); }
+                for (int k = 0; k < ennemisDepart; k++)
+                {
+                    GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    enemyInstancie.GetComponent<Enemy>().manager = this;
+                    AddEnemy();
+                }
+                roomEntre = true;
+                foreach (Porte por in listePortes)
+                {
+                    if (por != null) { por.close(); }
+                }
             }
+            
         }
         
     }
