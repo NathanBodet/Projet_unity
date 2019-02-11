@@ -15,7 +15,7 @@ public class RangedWeapon : Weapon {
     public float projectileSpeed;
     public int nbBalles;//nombres de projectiles tirés en même temps
 
-    public float fireRate = 0.5f;
+    public float fireRate;
     private float nextFire = 0f;
 
     public GameObject projectilePrefab;
@@ -52,7 +52,11 @@ public class RangedWeapon : Weapon {
                 //instanciation du projectile et addition du vecteur vitesse
                 projectileInstance = Instantiate(projectilePrefab, projectilePosition, Quaternion.identity);
                 projectileInstance.GetComponent<Projectile>().isFriendly = true;
-                projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
+                //projectileInstance.transform.rotation = Quaternion.FromToRotation(player.transform.position, projectileDirection);
+                float angle = (float)Math.Atan2(projectileDirection.y,projectileDirection.x);
+                angle = (float)(angle * (180 / Math.PI));
+                //Vector3 rotat = new Vector3(0, 0, angle);
+                projectileInstance.GetComponent<Transform>().Rotate(0, 0, angle);
                 projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
                 float rnd = UnityEngine.Random.Range(0, 100);
 

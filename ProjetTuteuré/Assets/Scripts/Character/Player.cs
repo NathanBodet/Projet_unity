@@ -164,7 +164,7 @@ public class Player : Character {
         }
 
         //input d'attaque
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !this.GetComponent<MenusJeu>().getShowGUI2())
         {
             if(Time.time > nextFire && isAlive)
             {
@@ -184,7 +184,7 @@ public class Player : Character {
         }
 
         //input de switch d'arme
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !this.GetComponent<MenusJeu>().getShowGUI2())
         {
             //switch le type d'arme : cooldown de 1s
             if (Time.time > switchCooldown)

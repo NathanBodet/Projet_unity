@@ -168,5 +168,9 @@ public class MenusJeu : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
         }
 
-    
+  
+    public bool getShowGUI2()
+    {
+        return this.showGUI2;
+    }
 }
