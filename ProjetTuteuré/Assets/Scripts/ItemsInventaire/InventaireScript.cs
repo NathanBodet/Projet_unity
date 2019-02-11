@@ -18,7 +18,47 @@ public class InventaireScript : MonoBehaviour {
         listeItems = new GameObject[10];
         c = player.GetComponent<MenusJeu>().canvas2;
         updateMenuInventaire();
-	}
+        GameObject g = (GameObject)Instantiate(Resources.Load("Batte cloutée"));
+        //addItem(g);
+        GameObject g2 = (GameObject)Instantiate(Resources.Load("Batte cloutée"));
+        //addItem(g2);
+        Debug.Log(g.name);
+        Debug.Log(g2.name);
+    }
+
+    public void save()
+    {
+        Datas datas = (Datas)DataManager.Load("Slot1.sav");
+        datas.nomsItems = new string[listeItems.Length];
+        for (int i = 0; i < listeItems.Length; i++)
+        {
+            if ((listeItems[i]) != null)
+            {
+                datas.nomsItems[i] = listeItems[i].name;
+                Debug.Log(datas.nomsItems[i]);
+            }
+        }
+        DataManager.Save(datas, "Slot1.sav");
+    }
+
+    public void load()
+    {
+        Datas datas = (Datas)DataManager.Load("Slot1.sav");
+        listeItems = new GameObject[10];
+        for (int i = 0; i < datas.nomsItems.Length; i++)
+        {
+            //listeItems[i].name = datas.nomsItems[i];
+            if ((datas.nomsItems[i]) != null)
+            {
+                Debug.Log(datas.nomsItems[i]);
+                String[] ts = new String[2];
+                ts = datas.nomsItems[i].Split('(');
+                GameObject it = (GameObject)Instantiate(Resources.Load(ts[0]));
+                addItem(it);
+            }
+        }
+        //updateMenuInventaire();
+    }
 
     public bool isFull()
     {

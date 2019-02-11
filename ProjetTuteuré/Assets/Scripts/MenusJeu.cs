@@ -42,6 +42,7 @@ public class MenusJeu : MonoBehaviour
                 canvas1.SetActive(true);
                 uiarmes.SetActive(false);
                 lifebar.SetActive(false);
+                Time.timeScale = 0;
             }
             else if (!showGUI && showGUI2 && !showGUI3)
             {

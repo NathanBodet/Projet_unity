@@ -22,4 +22,5 @@ public class Datas
     public bool[][] roomsFinies;
     public int[][] roomsSpec;
     public float timerStart;
+    public string[] nomsItems;
 }
