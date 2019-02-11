@@ -139,17 +139,7 @@ public class InventaireScript : MonoBehaviour {
         GameObject imageDist = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(5).gameObject;
         imageDist.GetComponent<Image>().sprite = player.GetComponent<Player>().armeDistanceEquipee.GetComponent<SpriteRenderer>().sprite;
 
-        //Pareil pour l'armure de tête
-        GameObject imageHead = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(8).gameObject;
-        imageHead.GetComponent<Image>().sprite = player.GetComponent<Player>().armureTeteEquipee.GetComponent<SpriteRenderer>().sprite;
 
-        //Pareil pour l'armure de torse
-        GameObject imageChest = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(9).gameObject;
-        imageChest.GetComponent<Image>().sprite = player.GetComponent<Player>().armureTorseEquipee.GetComponent<SpriteRenderer>().sprite;
-
-        //Pareil pour l'armure de jambes
-        GameObject imageLegs = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(10).gameObject;
-        imageLegs.GetComponent<Image>().sprite = player.GetComponent<Player>().armureJambesEquipee.GetComponent<SpriteRenderer>().sprite;
 
 
         //On update les stats dus au changement d'armure
