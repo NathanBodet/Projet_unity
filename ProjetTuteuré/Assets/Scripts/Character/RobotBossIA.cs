@@ -6,6 +6,7 @@ public class RobotBossIA : MonoBehaviour
 {
     public GameObject bebons;//les bebons qu'il balance
     public GameObject flammes;//les flammes qu'il balance
+    public GameObject orbe;//orbe qu'il balance
     int state,attackType;
     float attackTime,jumpTime,startPos,flammeTime;
     bool attackTir1, attackTir2, attackTir3;//bools indiquant si les deux tirs de l'attaque 0 ont été faits
@@ -23,7 +24,7 @@ public class RobotBossIA : MonoBehaviour
     {
         if (!gameObject.GetComponent<Enemy>().isAlive)
         {
-            gameObject.GetComponent<Animator>().SetBool("hasDied", true);
+            gameObject.GetComponent<Animator>().SetBool("isAlive", false);
             gameObject.GetComponent<EdgeCollider2D>().enabled = false;
             return;
         }
@@ -122,7 +123,11 @@ public class RobotBossIA : MonoBehaviour
                 }
             } else
             {
-
+                if (!attackTir1)
+                {
+                    attackTir1 = true;
+                    Instantiate(orbe, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-2, 0);
+                }
             }
         }
     }
