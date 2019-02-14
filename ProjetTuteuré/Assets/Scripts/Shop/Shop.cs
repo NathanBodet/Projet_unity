@@ -12,12 +12,12 @@ public class Shop : MonoBehaviour
 
     public Text goldText;
 
-    public List<Items> itemsForSale;
+    public List<object[]> itemsForSale;
 
     public ItemButton[] buyItemButtons;
     public ItemButton[] sellItemButtons;
 
-    public Items selectedItem;
+    public GameObject selectedItem;
     public Text buyItemName, buyItemDescription, buyItemPrice;
 
     // Start is called before the first frame update
@@ -59,10 +59,13 @@ public class Shop : MonoBehaviour
         
         for(int i = 0; i < itemsForSale.Count; i++)
         {
+            GameObject item = (GameObject)itemsForSale[i][0];
+            int amount = (int)itemsForSale[i][1];
+
             buyItemButtons[i].buttonImage.gameObject.SetActive(true);
-            buyItemButtons[i].buttonImage.sprite = itemsForSale[i].GetComponent<SpriteRenderer>().sprite;
-            buyItemButtons[i].amountText.text = Random.Range(1, 3).ToString();
-            buyItemButtons[i].setItemReferenced(itemsForSale[i]);
+            buyItemButtons[i].buttonImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
+            buyItemButtons[i].amountText.text = amount.ToString();
+            buyItemButtons[i].setItemReferenced(item);
         }
 
         for(int i = itemsForSale.Count; i < buyItemButtons.Length; i++)
@@ -73,12 +76,26 @@ public class Shop : MonoBehaviour
         }
     }
 
-    public void SelectBuyItem(Items buyItemSelected)
+    public void SelectBuyItem(GameObject buyItemSelected)
     {
         selectedItem = buyItemSelected;
-        buyItemName.text = selectedItem.itemName;
-        buyItemDescription.text = selectedItem.description;
-        buyItemPrice.text = "Value: " + selectedItem.price.ToString() +"g";
+        buyItemName.text = selectedItem.GetComponent<Items>().itemName;
+        buyItemDescription.text = selectedItem.GetComponent<Items>().description;
+        buyItemPrice.text = "Value: " + selectedItem.GetComponent<Items>().price.ToString() +"g";
+    }
+
+    public void BuyItem()
+    {
+        if(selectedItem != null)
+        {
+            if(Player.instance.gold >= selectedItem.GetComponent<Items>().price)
+            {
+                Player.instance.gold -= selectedItem.GetComponent<Items>().price;
+                InventaireScript.instance.addItem(selectedItem);
+            }
+        }
+
+        goldText.text = Player.instance.gold.ToString() + "g";
     }
 
     public void OpenSellMenu()

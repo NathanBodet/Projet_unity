@@ -7,7 +7,7 @@ public class ItemButton : MonoBehaviour
     public Image buttonImage;
     public Text amountText;
     public int buttonValue;
-    private Items itemReferenced;
+    private GameObject itemReferenced;
 
     public void Press()
     {
@@ -20,7 +20,7 @@ public class ItemButton : MonoBehaviour
         }
     }
 
-    public void setItemReferenced(Items item)
+    public void setItemReferenced(GameObject item)
     {
         itemReferenced = item;
     }

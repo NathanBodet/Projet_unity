@@ -9,12 +9,16 @@ using System;
 [RequireComponent(typeof(Button))]
 public class InventaireScript : MonoBehaviour {
 
+    public static InventaireScript instance;
+
     public GameObject[] listeItems;
     public GameObject player;
     GameObject c;
 
 	// Use this for initialization
 	void Start () {
+        instance = this;
+
         listeItems = new GameObject[10];
         c = player.GetComponent<MenusJeu>().canvas2;
         updateMenuInventaire();

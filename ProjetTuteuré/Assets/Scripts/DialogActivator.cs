@@ -12,17 +12,20 @@ public class DialogActivator : MonoBehaviour
 
     private void Start()
     {
-        Vector3 pos = new Vector3(transform.parent.position.x - 0.2f, transform.parent.position.y + 1.2f, transform.parent.position.z);
-        dialogBox.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         dialogBox.SetActive(false);
+    }
+
+    private void Update()
+    {
+        Vector3 pos = new Vector3(transform.parent.position.x - 0.2f, transform.parent.position.y + 1.2f, transform.parent.position.z);
+        dialogBox.transform.position = Camera.main.WorldToScreenPoint(pos);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            Debug.Log("Vu !");
-            ShowDialog(linesEnter);
+            StartCoroutine(ShowDialogue(linesEnter));
         }
     }
 
@@ -30,17 +33,15 @@ public class DialogActivator : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Debug.Log("Mais où est-il ?!");
-            ShowDialog(linesQuit);
+            StartCoroutine(ShowDialogue(linesQuit));
         }
     }
 
-    private IEnumerator ShowDialog(string lines)
+    private IEnumerator ShowDialogue(string lines)
     {
-        Debug.Log("Coucou le dialogue de merde");
         dialogBox.SetActive(true);
-        dialogBox.GetComponentInChildren<Text>().text = lines;
-        yield return new WaitForSeconds(10);
+        dialogBox.GetComponentInChildren<Text>().text = lines.Replace("\\n", "\n");
+        yield return new WaitForSeconds(3f);
         dialogBox.SetActive(false);
     }
 

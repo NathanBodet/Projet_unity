@@ -7,20 +7,20 @@ public class ShopKeeper : MonoBehaviour
 
     private bool canOpen;
 
-    public Items[] itemsInStock = new Items[24];
-    public List<Items> itemsForSale;
+    public GameObject[] itemsInStock = new GameObject[24];
+    public List<object[]> itemsForSale;
 
     // Start is called before the first frame update
     void Start()
     {
-        itemsForSale = new List<Items>();
+        itemsForSale = new List<object[]>();
         selectItemsToSale();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(canOpen && !Shop.instance.shopMenu.activeInHierarchy)
+        if(canOpen && Input.GetKeyDown(KeyCode.B) && !Shop.instance.shopMenu.activeInHierarchy)
         {
             Shop.instance.itemsForSale = itemsForSale;
             Shop.instance.OpenShop();
@@ -52,7 +52,7 @@ public class ShopKeeper : MonoBehaviour
                 int prob = Random.Range(0, 100);
                 if(prob >= 50)
                 {
-                    itemsForSale.Add(itemsInStock[i]);
+                    itemsForSale.Add(new object[]{itemsInStock[i], Random.Range(1, 3)});
                 }
             }
         }

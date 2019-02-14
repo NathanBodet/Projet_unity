@@ -6550,8 +6550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.700012, y: -32.100006}
-  m_SizeDelta: {x: -1066.5, y: -619.12}
+  m_AnchoredPosition: {x: -12.700012, y: -33.9}
+  m_SizeDelta: {x: -1066.5, y: -585.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629236844
 MonoBehaviour:
@@ -6765,7 +6765,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
 --- !u!1 &647121070
 GameObject:
   m_ObjectHideFlags: 0
@@ -9317,6 +9317,10 @@ PrefabInstance:
     - target: {fileID: 778526868, guid: 1c6f284f64715ce499c1824d4d8ed6d9, type: 3}
       propertyPath: m_Name
       value: RobotBoss 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 778526868, guid: 1c6f284f64715ce499c1824d4d8ed6d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 778526875, guid: 1c6f284f64715ce499c1824d4d8ed6d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13889,7 +13893,6 @@ MonoBehaviour:
   buyMenu: {fileID: 1235926058}
   sellMenu: {fileID: 651650485}
   goldText: {fileID: 100894030}
-  itemsForSale: []
   buyItemButtons:
   - {fileID: 1906851822}
   - {fileID: 41712560}
@@ -16806,10 +16809,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsInStock:
-  - {fileID: 2682544246789923088, guid: 07a588627e2adae4087e48b006aafe1b, type: 3}
-  - {fileID: 4023401024683269681, guid: 04dbe0fbbdf5db44ab56c0b08eef3e80, type: 3}
-  - {fileID: 5023590612101358797, guid: 65c874b5936c0834f9e5191440557c20, type: 3}
-  - {fileID: 4631453640563591383, guid: af68763dc7da2134bba14832fe0558aa, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -16830,7 +16829,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  itemsForSale: []
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1500966058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3682697849720032153, guid: 5a77baff8c36b29448c2ad4192bdb8a0,
