@@ -7,15 +7,14 @@ public class RobotBossIA : MonoBehaviour
     public GameObject bebons;//les bebons qu'il balance
     public GameObject flammes;//les flammes qu'il balance
     public GameObject orbe;//orbe qu'il balance
-    int state,attackType;
-    float attackTime,jumpTime,startPos,flammeTime;
+    public int state,attackType;
+    public float attackTime,jumpTime,startPos,flammeTime;
     bool attackTir1, attackTir2, attackTir3;//bools indiquant si les deux tirs de l'attaque 0 ont été faits
 
     // Start is called before the first frame update
     void Start()
     {
-        state = 0;
-        jumpTime = Time.time;
+        state = -1;
         startPos = gameObject.transform.position.y;
     }
 
@@ -25,15 +24,19 @@ public class RobotBossIA : MonoBehaviour
         if (!gameObject.GetComponent<Enemy>().isAlive)
         {
             gameObject.GetComponent<Animator>().SetBool("isAlive", false);
-            gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+            gameObject.GetComponent<EdgeCollider2D>().isTrigger = true;
             return;
         }
         if(state == 0)
         {
-            if(Time.time - jumpTime > 1)
+            if (Time.time - jumpTime > 1)
             {
                 state = 1;
                 GetComponent<Animator>().SetBool("hasFinishedJump", true);
+                attackTime = Time.time;
+                attackTir1 = attackTir2 = attackTir3 = false;
+                flammeTime = 0;
+                attackType = (int)Random.Range(0, 3);
                 return;
             } else
             {
