@@ -91,14 +91,15 @@ public class RobotBossIA : MonoBehaviour
             {
                 if(Time.time-attackTime > flammeTime)
                 {
+                    Vector3 playerPos = GameObject.Find("Player").transform.position;
+
                     flammeTime += 0.2f;
-                    if(Time.time - attackTime < 1)
-                    {
                         
-                        Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 0);
-                        Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 10);
-                        Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, -10);
-                    } else if(Time.time - attackTime < 2)
+                    Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, playerPos.y-gameObject.transform.position.y);
+                    Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 10);
+                    Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, -10);
+                    
+                    /* else if(Time.time - attackTime < 2)
                     {
                         Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 5);
                         Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 15);
@@ -120,7 +121,7 @@ public class RobotBossIA : MonoBehaviour
                         Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, -5);
                         Instantiate(flammes, new Vector3(gameObject.transform.position.x - 3, gameObject.transform.position.y + 1.3f, 0), Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2(-10, -15);
 
-                    }
+                    }*/
 
 
                 }
