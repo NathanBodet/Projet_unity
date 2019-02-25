@@ -7,7 +7,7 @@ public class ItemButton : MonoBehaviour
     public Image buttonImage;
     public Text amountText;
     public int buttonValue;
-    private GameObject itemReferenced;
+    public GameObject itemReferenced;
 
     public void Press()
     {
@@ -16,6 +16,9 @@ public class ItemButton : MonoBehaviour
             if (Shop.instance.buyMenu.activeInHierarchy)
             {
                 Shop.instance.SelectBuyItem(itemReferenced);
+            } else if (Shop.instance.sellMenu.activeInHierarchy)
+            {
+                Shop.instance.SelectSellItem(itemReferenced);
             }
         }
     }

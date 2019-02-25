@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6023164062218156675}
   - component: {fileID: 6023164062218156672}
   - component: {fileID: 6023164062218156673}
+  - component: {fileID: 8069453335935284367}
   m_Layer: 0
   m_Name: Casque
   m_TagString: ArmureTete
@@ -147,3 +148,28 @@ MonoBehaviour:
   strength: 0
   agility: 0
   endurance: 10
+--- !u!114 &8069453335935284367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023164062218156686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 1
+  itemName: Casque
+  description: Un vieux casque rouge, ayant bien servi
+  price: 1000
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0

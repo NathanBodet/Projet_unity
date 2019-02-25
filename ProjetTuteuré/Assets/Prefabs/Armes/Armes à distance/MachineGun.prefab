@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5229220000715620218}
   - component: {fileID: 5229220000715620219}
   - component: {fileID: 5229220000715620216}
+  - component: {fileID: 6712120600744690478}
   m_Layer: 0
   m_Name: MachineGun
   m_TagString: ArmeD
@@ -156,3 +157,28 @@ MonoBehaviour:
   fireRate: 0.2
   projectilePrefab: {fileID: 1577481119012058, guid: 7c3845c06ca423d40a0fec3966f4936d,
     type: 3}
+--- !u!114 &6712120600744690478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229220000715620217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 1
+  isArmour: 0
+  itemName: Machine Gun
+  description: Un gros engin tirant des balles en rafale.
+  price: 500
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0

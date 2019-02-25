@@ -19,6 +19,7 @@ public class Shop : MonoBehaviour
 
     public GameObject selectedItem;
     public Text buyItemName, buyItemDescription, buyItemPrice;
+    public Text sellItemName, sellItemDescription, sellItemPrice;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +57,13 @@ public class Shop : MonoBehaviour
     {
         buyMenu.SetActive(true);
         sellMenu.SetActive(false);
-        
-        for(int i = 0; i < itemsForSale.Count; i++)
+        ShowBuyItems();
+
+    }
+
+    public void ShowBuyItems()
+    {
+        for (int i = 0; i < itemsForSale.Count; i++)
         {
             GameObject item = (GameObject)itemsForSale[i][0];
             int amount = (int)itemsForSale[i][1];
@@ -68,7 +74,7 @@ public class Shop : MonoBehaviour
             buyItemButtons[i].setItemReferenced(item);
         }
 
-        for(int i = itemsForSale.Count; i < buyItemButtons.Length; i++)
+        for (int i = itemsForSale.Count; i < buyItemButtons.Length; i++)
         {
             buyItemButtons[i].buttonImage.gameObject.SetActive(false);
             buyItemButtons[i].amountText.text = "";
@@ -84,14 +90,51 @@ public class Shop : MonoBehaviour
         buyItemPrice.text = "Value: " + selectedItem.GetComponent<Items>().price.ToString() +"g";
     }
 
-    public void BuyItem()
+    public void BuyItemCallBack()
+    {
+        StartCoroutine(BuyItem());
+    }
+
+    public IEnumerator BuyItem()
     {
         if(selectedItem != null)
         {
             if(Player.instance.gold >= selectedItem.GetComponent<Items>().price)
             {
-                Player.instance.gold -= selectedItem.GetComponent<Items>().price;
-                InventaireScript.instance.addItem(selectedItem);
+                ConfirmPopUp.instance.OpenPopupConfirm("Are you sure you want to buy this item?");
+                while(ConfirmPopUp.instance.result == -1)
+                {
+                    yield return null;
+                    if(ConfirmPopUp.instance.result == 1)
+                    {
+                        Player.instance.gold -= selectedItem.GetComponent<Items>().price;
+                        InventaireScript.instance.addItem(selectedItem);
+
+                        for (int i = 0; i < itemsForSale.Count; i++)
+                        {
+                            if (selectedItem == (GameObject)itemsForSale[i][0])
+                            {
+                                int amount = (int)itemsForSale[i][1];
+                                amount--;
+                                itemsForSale[i][1] = amount;
+
+                                if ((int)itemsForSale[i][1] <= 0)
+                                {
+                                    itemsForSale.Remove(itemsForSale[i]);
+                                }
+
+                                break;
+                            }
+                        }
+                        ShowBuyItems();
+                    } else if(ConfirmPopUp.instance.result == 0)
+                    {
+                        break;
+                    }
+                }
+            } else
+            {
+                ConfirmPopUp.instance.OpenPopupSimple("Sorry, you do not have enough money for this item");
             }
         }
 
@@ -102,5 +145,78 @@ public class Shop : MonoBehaviour
     {
         sellMenu.SetActive(true);
         buyMenu.SetActive(false);
+
+        ShowSellItem();
     }
+
+    public void ShowSellItem()
+    {
+        GameObject[] listItems = InventaireScript.instance.listeItems;
+
+        for (int i = 0; i < listItems.Length; i++)
+        {
+            GameObject item = (GameObject)listItems[i];
+
+            if (item != null)
+            {
+                sellItemButtons[i].buttonImage.gameObject.SetActive(true);
+                sellItemButtons[i].buttonImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
+                sellItemButtons[i].amountText.text = "";
+                sellItemButtons[i].setItemReferenced(item);
+            }
+            else
+            {
+                sellItemButtons[i].buttonImage.gameObject.SetActive(false);
+                sellItemButtons[i].amountText.text = "";
+                sellItemButtons[i].gameObject.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        for (int i = listItems.Length; i < sellItemButtons.Length; i++)
+        {
+            sellItemButtons[i].buttonImage.gameObject.SetActive(false);
+            sellItemButtons[i].amountText.text = "";
+            sellItemButtons[i].gameObject.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void SelectSellItem(GameObject sellItemSelected)
+    {
+        selectedItem = sellItemSelected;
+        sellItemName.text = selectedItem.GetComponent<Items>().itemName;
+        sellItemDescription.text = selectedItem.GetComponent<Items>().description;
+        sellItemPrice.text = "Value: " + Mathf.FloorToInt(selectedItem.GetComponent<Items>().price * 0.5f).ToString() + "g";
+    }
+
+    public void SellItemCallBack()
+    {
+        StartCoroutine(SellItem());
+    }
+
+    public IEnumerator SellItem()
+    {
+        ConfirmPopUp.instance.OpenPopupConfirm("Are you sure you want to sell this item?");
+        while(ConfirmPopUp.instance.result == -1)
+        {
+            yield return null;
+
+            if (ConfirmPopUp.instance.result == 1)
+            {
+                if (selectedItem != null)
+                {
+                    Player.instance.gold += Mathf.FloorToInt(selectedItem.GetComponent<Items>().price * 0.5f);
+                    InventaireScript.instance.retirerItem(selectedItem);
+
+                    ShowSellItem();
+                }
+
+                goldText.text = Player.instance.gold.ToString() + "g";
+            } else if (ConfirmPopUp.instance.result == 0)
+            {
+                break;
+            }
+        }
+
+    }
+
 }

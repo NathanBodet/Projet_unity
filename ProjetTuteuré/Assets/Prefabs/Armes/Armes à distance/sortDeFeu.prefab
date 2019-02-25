@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 50794410766379170}
   - component: {fileID: 212521970793063176}
   - component: {fileID: 61762677049326156}
+  - component: {fileID: 3605687060482531516}
   m_Layer: 0
   m_Name: sortDeFeu
   m_TagString: ArmeD
@@ -156,3 +157,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.630911, y: 2.9998999}
   m_EdgeRadius: 0
+--- !u!114 &3605687060482531516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891920190206432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 1
+  isArmour: 0
+  itemName: Parchemin de sort de feu
+  description: "Un vieux parchemin magique permettant \xE0 son propri\xE9taire de
+    lancer des boules de feu (et sans se br\xFBler)"
+  price: 500
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0
