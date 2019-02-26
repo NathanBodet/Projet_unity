@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5259455539318922867}
   - component: {fileID: 5259455539318922866}
   - component: {fileID: 5259455539318922869}
+  - component: {fileID: 936179976074364851}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: ArmeD
@@ -156,3 +157,29 @@ MonoBehaviour:
   fireRate: 3
   projectilePrefab: {fileID: 1577481119012058, guid: 7c3845c06ca423d40a0fec3966f4936d,
     type: 3}
+--- !u!114 &936179976074364851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259455539318922868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 1
+  isArmour: 0
+  itemName: "Fusil de pr\xE9cision"
+  description: "Un fusil de pr\xE9cision s\xFBrement ayant appartenu aux \xE9claireurs
+    de l'arm\xE9e"
+  price: 1000
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0
