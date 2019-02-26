@@ -22,12 +22,6 @@ public class InventaireScript : MonoBehaviour {
         listeItems = new GameObject[10];
         c = player.GetComponent<MenusJeu>().canvas2;
         updateMenuInventaire();
-        GameObject g = (GameObject)Instantiate(Resources.Load("Batte cloutée"));
-        //addItem(g);
-        GameObject g2 = (GameObject)Instantiate(Resources.Load("Batte cloutée"));
-        //addItem(g2);
-        Debug.Log(g.name);
-        Debug.Log(g2.name);
     }
 
     public void save()
