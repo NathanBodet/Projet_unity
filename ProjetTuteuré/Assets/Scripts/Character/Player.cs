@@ -49,6 +49,9 @@ public class Player : Character {
     //gold
     public int gold = 0;
 
+    public bool canMove;
+    public bool canAttack;
+
 
     void Awake()
     {
@@ -109,10 +112,15 @@ public class Player : Character {
         base.Start();
 
         instance = this;
+
+        canMove = true;
+        canAttack = true;
+
         objetsProximite = new List<GameObject>();
         armeDistanceEquipee.GetComponent<RangedWeapon>().equip(this.gameObject);
         armeDistanceEquipee.GetComponent<RangedWeapon>().ammunition = armeDistanceEquipee.GetComponent<RangedWeapon>().totalammunition;
         armeCorpsACorpsEquipee.GetComponent<MeleeWeapon>().equip(this.gameObject);
+
         lifeBar = GameObject.FindGameObjectWithTag("PlayerLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);
     }
@@ -132,7 +140,7 @@ public class Player : Character {
 
     private void FixedUpdate()
     {
-        if (!isAlive)
+        if (!isAlive || !canMove)
         {
             return;
         }
@@ -166,7 +174,7 @@ public class Player : Character {
         //input d'attaque
         if (Input.GetMouseButton(0) && !this.GetComponent<MenusJeu>().getShowGUI2())
         {
-            if(Time.time > nextFire && isAlive)
+            if(Time.time > nextFire && isAlive && canAttack)
             {
                 if (typeArmeEquipee)
                 {
@@ -224,6 +232,12 @@ public class Player : Character {
         rigidBody.velocity = direction.normalized * speed;
     }
 
+    public void Stop()
+    {
+        canMove = false;
+        rigidBody.velocity = Vector2.zero;
+    }
+
     public override void TakeDamage(float damage, Vector3 hitVector,float force, bool crit)
     {
         base.TakeDamage(damage, hitVector,force, crit);
@@ -234,6 +248,8 @@ public class Player : Character {
     public override void Die()
     {
         base.Die();
+        canMove = false;
+        canAttack = false;
         //arrête la musique
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Stop();
         //joue celle du gameover

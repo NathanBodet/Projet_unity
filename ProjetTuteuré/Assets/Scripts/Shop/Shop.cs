@@ -21,6 +21,8 @@ public class Shop : MonoBehaviour
     public Text buyItemName, buyItemDescription, buyItemPrice;
     public Text sellItemName, sellItemDescription, sellItemPrice;
 
+    public InventaireScript inventaire;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,9 @@ public class Shop : MonoBehaviour
         GameManager.instance.shopActive = true;
 
         goldText.text = Player.instance.gold.ToString() + "g";
+
+        Player.instance.Stop();
+        Player.instance.canAttack = false;
     }
 
     public void CloseShop()
@@ -51,6 +56,8 @@ public class Shop : MonoBehaviour
         buyMenu.SetActive(false);
         sellMenu.SetActive(false);
         GameManager.instance.shopActive = false;
+        Player.instance.canMove = true;
+        Player.instance.canAttack = true;
     }
 
     public void OpenBuyMenu()
@@ -102,13 +109,20 @@ public class Shop : MonoBehaviour
             if(Player.instance.gold >= selectedItem.GetComponent<Items>().price)
             {
                 ConfirmPopUp.instance.OpenPopupConfirm("Are you sure you want to buy this item?");
-                while(ConfirmPopUp.instance.result == -1)
+
+                //Tant qu'un choix n'a pas été fait sur la popup
+                while (ConfirmPopUp.instance.result == -1)
                 {
+                    for(int i = 0; i < itemsForSale.Count; i++)
+                    {
+                        buyItemButtons[i].gameObject.GetComponent<Button>().interactable = false;
+                    }
                     yield return null;
+
                     if(ConfirmPopUp.instance.result == 1)
                     {
                         Player.instance.gold -= selectedItem.GetComponent<Items>().price;
-                        InventaireScript.instance.addItem(selectedItem);
+                        inventaire.addItem(selectedItem);
 
                         for (int i = 0; i < itemsForSale.Count; i++)
                         {
@@ -132,7 +146,12 @@ public class Shop : MonoBehaviour
                         break;
                     }
                 }
-            } else
+                for (int i = 0; i < itemsForSale.Count; i++)
+                {
+                    buyItemButtons[i].gameObject.GetComponent<Button>().interactable = true;
+                }
+            }
+            else
             {
                 ConfirmPopUp.instance.OpenPopupSimple("Sorry, you do not have enough money for this item");
             }
@@ -151,7 +170,7 @@ public class Shop : MonoBehaviour
 
     public void ShowSellItem()
     {
-        GameObject[] listItems = InventaireScript.instance.listeItems;
+        GameObject[] listItems = inventaire.listeItems;
 
         for (int i = 0; i < listItems.Length; i++)
         {
@@ -195,28 +214,39 @@ public class Shop : MonoBehaviour
 
     public IEnumerator SellItem()
     {
-        ConfirmPopUp.instance.OpenPopupConfirm("Are you sure you want to sell this item?");
-        while(ConfirmPopUp.instance.result == -1)
+        if(selectedItem != null)
         {
-            yield return null;
-
-            if (ConfirmPopUp.instance.result == 1)
+            ConfirmPopUp.instance.OpenPopupConfirm("Are you sure you want to sell this item?");
+            while (ConfirmPopUp.instance.result == -1)
             {
-                if (selectedItem != null)
+                for (int i = 0; i < inventaire.listeItems.Length; i++)
+                {
+                    sellItemButtons[i].gameObject.GetComponent<Button>().interactable = false;
+                }
+
+                yield return null;
+
+
+                if (ConfirmPopUp.instance.result == 1)
                 {
                     Player.instance.gold += Mathf.FloorToInt(selectedItem.GetComponent<Items>().price * 0.5f);
-                    InventaireScript.instance.retirerItem(selectedItem);
+                    inventaire.retirerItem(selectedItem);
 
                     ShowSellItem();
                 }
+                else if (ConfirmPopUp.instance.result == 0)
+                {
+                    break;
+                }
+            }
 
-                goldText.text = Player.instance.gold.ToString() + "g";
-            } else if (ConfirmPopUp.instance.result == 0)
+            for (int i = 0; i < inventaire.listeItems.Length; i++)
             {
-                break;
+                sellItemButtons[i].gameObject.GetComponent<Button>().interactable = true;
             }
         }
 
+        goldText.text = Player.instance.gold.ToString() + "g";
     }
 
 }
