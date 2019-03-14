@@ -20,8 +20,11 @@ public class InventaireScript : MonoBehaviour {
         instance = this;
 
         listeItems = new GameObject[10];
+        //GameObject i = (GameObject)Instantiate(Resources.Load("Jean"));
         c = player.GetComponent<MenusJeu>().canvas2;
         updateMenuInventaire();
+        //addItem(i);
+        //updateMenuInventaire();
     }
 
     public void save()
