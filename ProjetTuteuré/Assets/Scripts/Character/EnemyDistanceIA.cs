@@ -12,7 +12,8 @@ public class EnemyDistanceIA : MonoBehaviour
         Wait,
         Attack,
         Chase,
-        Roam
+        Roam,
+        Flee
     }
 
     public class DecisionWeight
@@ -48,7 +49,7 @@ public class EnemyDistanceIA : MonoBehaviour
 
     private void Chase()
     {
-        enemy.speed = 10f;
+        enemy.speed = 5f;
         enemy.animator.SetBool("IsMoving", true);
         Vector3 direction = player.transform.position - transform.position;
 
@@ -57,6 +58,21 @@ public class EnemyDistanceIA : MonoBehaviour
 
         direction.Normalize();
 
+        enemy.rigidBody.velocity = direction * enemy.speed;
+
+        decisionDuration = Random.Range(0.2f, 0.4f);
+    }
+
+    private void Flee()
+    {
+        enemy.speed = 5f;
+        enemy.animator.SetBool("IsMoving", true);
+        Vector3 direction = transform.position - player.transform.position;
+
+        enemy.animator.SetFloat("DirectionX", direction.x);
+        enemy.animator.SetFloat("DirectionY", direction.y);
+
+        direction.Normalize();
         enemy.rigidBody.velocity = direction * enemy.speed;
 
         decisionDuration = Random.Range(0.2f, 0.4f);
@@ -92,7 +108,7 @@ public class EnemyDistanceIA : MonoBehaviour
         decisionDuration = Random.Range(0.3f, 0.6f);
     }
 
-    private void DecideWithWeights(int attack, int wait, int chase, int move)
+    private void DecideWithWeights(int attack, int wait, int chase, int move, int flee)
     {
         weights.Clear();
 
@@ -112,8 +128,12 @@ public class EnemyDistanceIA : MonoBehaviour
         {
             weights.Add(new DecisionWeight(move, EnemyAction.Roam));
         }
+        if (flee > 0)
+        {
+            weights.Add(new DecisionWeight(flee, EnemyAction.Flee));
+        }
 
-        int total = attack + chase + wait + move;
+        int total = attack + chase + wait + move + flee;
         int intDecision = Random.Range(0, total - 1);
 
         foreach (DecisionWeight weight in weights)
@@ -154,6 +174,9 @@ public class EnemyDistanceIA : MonoBehaviour
             case EnemyAction.Wait:
                 Wait();
                 break;
+            case EnemyAction.Flee:
+                Flee();
+                break;
         }
     }
 
@@ -168,8 +191,10 @@ public class EnemyDistanceIA : MonoBehaviour
         //no need the actual distance, only the squared distance, because the square root operation is expensive and unnecessary
         float sqrDistance = Vector3.SqrMagnitude(player.transform.position - transform.position);
         //sets true when the distance between the hero and enemy falls between attackReachMin and attackReachMax
-        bool canReach = attackReachMin * attackReachMin < sqrDistance && sqrDistance < attackReachMax * attackReachMax;
-
+        bool canReach = attackReachMin < sqrDistance && sqrDistance < attackReachMax ;
+        //Debug.Log(sqrDistance);
+        //Debug.Log(attackReachMax);
+        //Debug.Log(attackReachMin);
         if (canReach && currentAction == EnemyAction.Chase)
         {
             SetDecision(EnemyAction.Wait);
@@ -181,7 +206,7 @@ public class EnemyDistanceIA : MonoBehaviour
         }
         else
         {
-            //Si entre le player est loin OU si le player et pret mais qu'il y a un mur qui bloque, on passe en mode ROAM
+            //Si le player est loin OU si le player est prêt mais qu'il y a un mur qui bloque, on passe en mode ROAM
             //Comportement très temporaire, mais le test sera utilse plus tard dans le path finding !
             /*
              Debug.Log((playerDetector.playerIsNearby && Physics2D.Raycast(transform.position, direction,
@@ -194,17 +219,26 @@ public class EnemyDistanceIA : MonoBehaviour
                 + System.Math.Pow(player.transform.position.y - transform.position.y, 2)
                ), 1 << 0)))
             {
-                DecideWithWeights(0, 40, 0, 60);
+                DecideWithWeights(0, 30, 0, 70,0);
             }
             else
             {
+                //Debug.Log(canReach);
+
                 if (canReach)
                 {
-                    DecideWithWeights(70, 30, 0, 0);
+                    DecideWithWeights(100, 0, 0, 0,0);
                 }
                 else
                 {
-                    DecideWithWeights(0, 0, 100, 0);
+                    if (sqrDistance > attackReachMax)
+                    {
+                        DecideWithWeights(0, 0, 100, 0, 0);
+                    }
+                    else if (sqrDistance < attackReachMin)
+                    {
+                        DecideWithWeights(0, 0, 0, 0, 100);
+                    }
                 }
             }
         }
