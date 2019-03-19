@@ -17,20 +17,25 @@ public class Projectile : MonoBehaviour {
         originCoordY = transform.position.y;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.collider.tag != "Projectile")
+        
+        if(collision.tag != "Projectile")
         {
-            if (collision.collider.tag == "Enemy" && isFriendly)
+            if (collision.tag == "Enemy" && isFriendly)
             {
-                collision.collider.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
+                
+                collision.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
-            } else if (collision.collider.tag == "Player" && !isFriendly)
+                Destroy(gameObject);
+            } else if (collision.tag == "Player" && !isFriendly)
             {
-                collision.collider.GetComponentInParent<Player>().TakeDamage(damage, Vector3.zero, 50, isCrit);
+                
+                collision.GetComponentInParent<Player>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
         }
         
     }

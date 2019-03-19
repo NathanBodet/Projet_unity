@@ -6,6 +6,7 @@ public class Enemy : Character {
     float deathTime = 0f;
 
     public EnemyAI ai;
+    public EnemyDistanceIA distAi;
 
     public SalleManager manager;
 
@@ -57,14 +58,21 @@ public class Enemy : Character {
     public override void Die()
     {
         base.Die();
-        ai.enabled = false;
+        
         GetComponent<BoxCollider2D>().enabled = false;
         lifeBar.EnableLifeBar(false);
         manager.RemoveEnemy();
         dropItem();
+        if(ai != null)
+        {
+            ai.enabled = false;
+        } else
+        {
+            distAi.enabled = false;
+        }
     }
 
-    public override void Attack()
+    public override void Attack()//1 : cac, 2 : dist
     {
         base.Attack();
         Vector2 directionCoup = new Vector2(GetComponent<Animator>().GetFloat("DirectionX"), GetComponent<Animator>().GetFloat("DirectionY"));
@@ -76,13 +84,25 @@ public class Enemy : Character {
             float rnd = Random.Range(0, 100);
             if (rnd > 20) //coup normal
             {
-                hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup,0.2f, false);
+                hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup, 0.2f, false);
             }
             else // coup critique
             {
-                hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup,0.2f, true);
+                hit.collider.GetComponent<Player>().TakeDamage(20, directionCoup, 0.2f, true);
             }
         }
+    }
+
+    public void Attack(GameObject proj)
+    {
+        base.Attack();
+        Vector3 direction = GameObject.Find("Player").transform.position - transform.position;
+        direction.Normalize();
+        GameObject projectile = Instantiate(proj, gameObject.transform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x * distAi.projectileSpeed, direction.y * distAi.projectileSpeed);
+        projectile.GetComponent<Projectile>().isFriendly = false;
+
+
     }
 
     public override void TakeDamage(float damage, Vector3 hitVector, float force, bool crit)
