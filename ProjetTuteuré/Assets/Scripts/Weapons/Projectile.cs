@@ -35,6 +35,11 @@ public class Projectile : MonoBehaviour {
                 rigidBody.velocity = Vector2.zero;
                 Destroy(gameObject);
             }
+
+            if(collision.tag == "Collision")
+            {
+                Destroy(gameObject);
+            }
             
         }
         

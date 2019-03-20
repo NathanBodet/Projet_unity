@@ -18,7 +18,7 @@ public class SalleManager : MonoBehaviour {
 
     private void Awake()
     {
-        nbEnnemisInSalle = 0;
+        gameManager = GameObject.Find("GameManager");
         listePortes = new List<Porte>();
         listePortes.Add(porteOuest);
         listePortes.Add(porteNord);

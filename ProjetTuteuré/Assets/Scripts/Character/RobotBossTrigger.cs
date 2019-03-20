@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class RobotBossTrigger : MonoBehaviour
 {
-
+    public GameObject boss;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("hé");
         if (collision.gameObject.tag.Equals("Player"))
         {
-            GameObject.Find("RobotBoss").GetComponent<RobotBossIA>().state = 0;
-            GameObject.Find("RobotBoss").GetComponent<RobotBossIA>().jumpTime = Time.time;
-            Debug.Log("c bon");
+            boss.GetComponent<RobotBossIA>().state = 0;
+            boss.GetComponent<RobotBossIA>().jumpTime = Time.time;
             Destroy(this.gameObject);
         }
     }
