@@ -70,23 +70,17 @@ public class MenusJeu : MonoBehaviour
             }
     }
 
-        void OnLevelWasLoaded()
-        {
-            //canvas = GameObject.Find("Canvas");
-            //canvas2 = GameObject.Find("canvas2");
-        }
-
-        public void Continue()
-        {
-            showGUI = false;
-            showGUI3 = false;
-            canvas1.SetActive(false);
-            canvas4.SetActive(false);
-            canvas5.SetActive(false);
-            canvas6.SetActive(false);
-            canvas7.SetActive(false);
-            Time.timeScale = 1;
-        }
+    public void Continue()
+    {
+        showGUI = false;
+        showGUI3 = false;
+        canvas1.SetActive(false);
+        canvas4.SetActive(false);
+        canvas5.SetActive(false);
+        canvas6.SetActive(false);
+        canvas7.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void save()
     {

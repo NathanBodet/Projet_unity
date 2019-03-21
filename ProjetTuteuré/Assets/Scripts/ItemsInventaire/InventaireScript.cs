@@ -194,63 +194,6 @@ public class InventaireScript : MonoBehaviour {
         GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().endurance;
     }
 
-    public void clickButton()
-    {
-        //Cette fonction va être appelée quand on va cliquer sur l'un des 10 boutons de l'inventaire
-        //Debug.Log(EventSystem.current.currentSelectedGameObject.name[9]);
-        var objet = GetComponent<Player>().GetComponent<InventaireScript>().listeItems[(int)char.GetNumericValue(EventSystem.current.currentSelectedGameObject.name[9])];
-
-        if (objet != null && objet != GetComponent<Player>().armeCorpsACorpsEquipee && objet != GetComponent<Player>().armeDistanceEquipee)
-        {
-            //Si on clique sur une arme à distance de tag ArmeD, on l'équipe
-            
-            if (objet.tag == "ArmeD")
-            {
-                GetComponent<Player>().armeDistanceEquipee = objet;
-                objet.GetComponent<RangedWeapon>().equip(gameObject);
-
-            }
-            //Pareil pour les armes au cac
-            else if (objet.tag == "ArmeCAC")
-            {
-                GetComponent<Player>().armeCorpsACorpsEquipee = objet;
-                objet.GetComponent<MeleeWeapon>().equip(gameObject);
-            }
-            //pareil pour les consommables
-            else if(objet.tag == "Consommable")
-            {
-                objet.GetComponent<ItemConsommable>().use();
-                if(objet.GetComponent<ItemConsommable>().consommationsRestantes == 0)
-                {
-                    retirerItem(objet);
-                }
-            }
-            //Pareil pour les armures de tete
-            else if (objet.tag == "ArmureTete")
-            {
-                GetComponent<Player>().armureTeteEquipee = objet;
-                objet.GetComponent<HeadArmor>().equip(gameObject);
-            }
-            //Pareil pour les armures de torse
-            else if (objet.tag == "ArmureTorse")
-            {
-                GetComponent<Player>().armureTorseEquipee = objet;
-                objet.GetComponent<BodyArmor>().equip(gameObject);
-            }
-            //Pareil pour les armures de jambes
-            else if (objet.tag == "ArmureJambe")
-            {
-                GetComponent<Player>().armureJambesEquipee = objet;
-                objet.GetComponent<LegArmor>().equip(gameObject);
-            }
-
-
-            updateMenuInventaire();
-
-        }
-        
-    }
-
     public bool isInInventaire(GameObject obj)
     {
         foreach(GameObject objTest in listeItems)

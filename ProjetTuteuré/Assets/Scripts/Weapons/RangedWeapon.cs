@@ -60,7 +60,7 @@ public class RangedWeapon : Weapon {
                 projectileInstance.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileDirection.x * projectileSpeed, projectileDirection.y * projectileSpeed);
                 float rnd = UnityEngine.Random.Range(0, 100);
 
-                if (rnd > player.gameObject.GetComponent<Player>().agility)//coup normal
+                if (rnd > player.GetComponent<Player>().agility)//coup normal
                 {
                     projectileInstance.GetComponent<Projectile>().damage = 
                         (player.GetComponent<Player>().strength * this.strratio + //ajout des degats en fonction du ratio de degats force du joueur
