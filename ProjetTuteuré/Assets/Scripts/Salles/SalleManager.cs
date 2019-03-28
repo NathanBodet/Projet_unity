@@ -9,7 +9,7 @@ public class SalleManager : MonoBehaviour {
     public GameObject salleTiles, gameManager,room;
     public Porte porteOuest,porteNord,porteEst,porteSud;
     List<Porte> listePortes;
-    public GameObject ennemiPrefab;
+    public GameObject ennemiPrefab,ennemiPrefab2;
     public Vector3 posCentre;
     public int nbEnnemisInSalle,ennemisDepart;
     public bool itemsDetruits;
@@ -62,18 +62,30 @@ public class SalleManager : MonoBehaviour {
 
     public void debut(GameObject pl)
     {
-        if(GetComponentInChildren<ExitLevel>()!= null)
+        if (GetComponentInChildren<ExitLevel>()!= null)
         {
             GetComponentInChildren<ExitLevel>().player = pl;
         }
+        
         if (!gameManager.GetComponent<GameManager>().isDebut(room))
         {
-            if(ennemisDepart != 0)
+            
+            if (ennemisDepart == 0)
             {
+                
                 int nbEnnemis = Random.Range(0, 3);
                 for (int k = 0; k < nbEnnemis; k++)
                 {
-                    GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    int rand = (int)Random.Range(0f, 100f);
+                    GameObject enemyInstancie;
+                    if (rand > 20)
+                    {
+                        enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    }
+                    else
+                    {
+                        enemyInstancie = Instantiate(ennemiPrefab2, posCentre, Quaternion.identity);
+                    }
                     enemyInstancie.GetComponent<Enemy>().manager = this;
                     AddEnemy();
                 }
@@ -84,9 +96,19 @@ public class SalleManager : MonoBehaviour {
                 }
             } else
             {
+                
                 for (int k = 0; k < ennemisDepart; k++)
                 {
-                    GameObject enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    int rand = (int)Random.Range(0f,100f);
+                    GameObject enemyInstancie;
+                    if (rand > 20)
+                    {
+                        enemyInstancie = Instantiate(ennemiPrefab, posCentre, Quaternion.identity);
+                    } else
+                    {
+                        enemyInstancie = Instantiate(ennemiPrefab2, posCentre, Quaternion.identity);
+                    }
+                    
                     enemyInstancie.GetComponent<Enemy>().manager = this;
                     AddEnemy();
                 }

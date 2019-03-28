@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     bool[][] roomsFinies;
     public int[][] mapInit, roomsSpeciales;//0 si salle normale, 1 si salle speciale
     List<int[]> listeFinale;
-    public GameObject ennemiPrefab,roomFin;
+    public GameObject ennemiPrefab,roomFin, etageMarchand;
     public int maxEnnemis,numeroNiveau;
     public GameObject[][] roomsInst;
     public AudioClip newLevelClip;
@@ -133,21 +133,37 @@ public class GameManager : MonoBehaviour {
     public void initieNiveau(bool detruireRooms)// Initie la map, génère les rooms
     {
         
+        
         if (detruireRooms)
         {
+            
             numeroNiveau++;
             Destroy(roomFin);
-            for (int i = 0; i < 5; i++)
+            if (numeroNiveau - 1 % 5 != 0 || numeroNiveau == 1)
             {
-                for (int j = 0; j < 5; j++)
+                for (int i = 0; i < 5; i++)
                 {
-                    Destroy(roomsInst[i][j]);
-                    
-                    roomsFinies[i][j] = false;
+                    for (int j = 0; j < 5; j++)
+                    {
+                        Destroy(roomsInst[i][j]);
+
+                        roomsFinies[i][j] = false;
+                    }
                 }
             }
+            
         }
         Debug.Log("Bienvenue au niveau " + numeroNiveau);
+        if (numeroNiveau%5 == 0 && numeroNiveau != 0)
+        {
+            roomFin = Instantiate(etageMarchand, new Vector3(45, -1, 0), Quaternion.identity);
+            roomFin.transform.localScale = new Vector3(0.05f, 0.05f, 1);
+            Vector3 posCentre = new Vector3(0 * 38.3f + 82, 0 * 28.8f - 58, 0);
+            roomFin.GetComponentInChildren<SalleManager>().posCentre = posCentre;
+            roomFin.GetComponentInChildren<SalleManager>().gameManager = gameObject;
+            roomFin.GetComponentInChildren<SalleManager>().room = roomFin;
+            return;
+        }
         int[] req = new int[4];
         for (int i = 0; i < 5; i++)
         {
@@ -163,7 +179,15 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        roomFin = creeRoom(5,4, poolMap.tire("Salle_Fin"));
+        if(numeroNiveau+1 % 5 == 0)
+        {
+
+        } else
+        {
+            roomFin = creeRoom(5, 4, poolMap.tire("Salle_Fin"));
+            
+        }
+        
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Play();
     }
 

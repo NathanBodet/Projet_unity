@@ -76,7 +76,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -458215005
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
 --- !u!114 &123862843595556404
 MonoBehaviour:
@@ -166,7 +166,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -458215005
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
 --- !u!114 &7700126489754951771
 MonoBehaviour:
@@ -256,7 +256,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &924681336872086906
 MonoBehaviour:
@@ -558,7 +558,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -458215005
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
 --- !u!114 &6222341944175637463
 MonoBehaviour:
@@ -648,7 +648,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &5903819386213742286
 MonoBehaviour:
@@ -738,7 +738,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &2869078805471502139
 MonoBehaviour:
@@ -1092,7 +1092,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &5458562924372555400
 MonoBehaviour:
@@ -1182,7 +1182,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &2506000492987525108
 MonoBehaviour:
@@ -1272,7 +1272,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &5499216670366945097
 MonoBehaviour:
@@ -1362,7 +1362,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 3
 --- !u!114 &1207641369135921190
 MonoBehaviour:
@@ -1640,6 +1640,12 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1915501450987154, guid: bdf4178c391df734eb93a89472e32686,
+        type: 3}
+    - target: {fileID: 4264274017071565036, guid: 6829a1c1253dc0f409d8a59748fbdfee,
+        type: 3}
+      propertyPath: ennemiPrefab2
+      value: 
+      objectReference: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6829a1c1253dc0f409d8a59748fbdfee, type: 3}

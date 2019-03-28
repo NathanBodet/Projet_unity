@@ -12,7 +12,7 @@ public class ItemConsommable : Item
     public void use()
     {
         consommationsRestantes--;
-        playerScript = player.GetComponent<Player>();
+        playerScript = GameObject.Find("Player").GetComponent<Player>();
         switch (typeConsommable)
         {
             case 1:

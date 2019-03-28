@@ -76,7 +76,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &894278513317393817
 MonoBehaviour:
@@ -516,7 +516,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &6719417973462669614
 MonoBehaviour:
@@ -651,7 +651,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &302530517290437368
 MonoBehaviour:
@@ -741,7 +741,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &3285234720679907223
 MonoBehaviour:
@@ -831,7 +831,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 2
 --- !u!114 &5478915269542236617
 MonoBehaviour:
@@ -1180,6 +1180,12 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1915501450987154, guid: bdf4178c391df734eb93a89472e32686,
+        type: 3}
+    - target: {fileID: 4264274017071565036, guid: 87dd94317261f8946b364063fd1b55dc,
+        type: 3}
+      propertyPath: ennemiPrefab2
+      value: 
+      objectReference: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87dd94317261f8946b364063fd1b55dc, type: 3}

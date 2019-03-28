@@ -122,7 +122,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &1796308831211607970
 MonoBehaviour:
@@ -212,7 +212,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &6184415913284548608
 MonoBehaviour:
@@ -302,7 +302,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -458215005
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 2
 --- !u!114 &1503310013930454809
 MonoBehaviour:
@@ -392,7 +392,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &2124709699254127023
 MonoBehaviour:
@@ -482,7 +482,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 3
 --- !u!114 &616090013502816873
 MonoBehaviour:
@@ -676,7 +676,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &6553455964708546247
 MonoBehaviour:
@@ -998,7 +998,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1592119561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!114 &1643660579981112016
 MonoBehaviour:
@@ -1150,7 +1150,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 3
 --- !u!114 &7365572893586257388
 MonoBehaviour:
@@ -1380,7 +1380,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1015307145
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
 --- !u!114 &2722544603450430096
 MonoBehaviour:
@@ -1446,11 +1446,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7995467468880244982}
     m_Modifications:
-    - target: {fileID: 3675412096435837902, guid: 33d27c19007d48041afe7a54eda28a11,
-        type: 3}
-      propertyPath: m_Name
-      value: SalleManagerRightSize 1 - Copie (9)
-      objectReference: {fileID: 0}
     - target: {fileID: 2506382051227422893, guid: 33d27c19007d48041afe7a54eda28a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1506,6 +1501,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3675412096435837902, guid: 33d27c19007d48041afe7a54eda28a11,
+        type: 3}
+      propertyPath: m_Name
+      value: SalleManagerRightSize 1 - Copie (9)
+      objectReference: {fileID: 0}
     - target: {fileID: 4264274017071565036, guid: 33d27c19007d48041afe7a54eda28a11,
         type: 3}
       propertyPath: ennemiPrefab
@@ -1517,6 +1517,12 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1915501450987154, guid: bdf4178c391df734eb93a89472e32686,
+        type: 3}
+    - target: {fileID: 4264274017071565036, guid: 33d27c19007d48041afe7a54eda28a11,
+        type: 3}
+      propertyPath: ennemiPrefab2
+      value: 
+      objectReference: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d27c19007d48041afe7a54eda28a11, type: 3}
