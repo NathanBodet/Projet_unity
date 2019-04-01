@@ -15,12 +15,26 @@ public class MeleeWeapon : Weapon {
     {
         Vector2 directionCoup = new Vector2(player.GetComponent<Animator>().GetFloat("DirectionX"), player.GetComponent<Animator>().GetFloat("DirectionY"));
 
-        Vector2 slashPos = player.GetComponent<Transform>().position;
         Vector3 originDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
+        Vector3 projectileDirection;
+
+        projectileDirection.x = originDirection.x - player.GetComponent<Transform>().position.x;
+        projectileDirection.y = originDirection.y - player.GetComponent<Transform>().position.y;
+        projectileDirection.z = 0;
+        projectileDirection.Normalize();
+        float angle = (float)Math.Atan2(projectileDirection.y, projectileDirection.x);
         GameObject slash;
-        slash = Instantiate(GameObject.Find("Player").GetComponent<Player>().slashPrefab, GameObject.Find("Player").transform.position,Quaternion.identity );
+        slash = Instantiate(GameObject.Find("Player").GetComponent<Player>().slashPrefab, GameObject.Find("Player").transform.position, Quaternion.identity);
+        slash.GetComponent<Transform>().position = new Vector3(slash.GetComponent<Transform>().position.x + ((float)Math.Cos(angle)),
+            slash.GetComponent<Transform>().position.y + ((float)Math.Sin(angle)),
+            slash.GetComponent<Transform>().position.z);
+        angle = (float)(angle * (180 / Math.PI));
+        //Debug.Log(angle);
         
         
+        //Vector3 rotat = new Vector3(0, 0, angle);
+        slash.GetComponent<Transform>().Rotate(0, 0, angle);
+
         float rnd = UnityEngine.Random.Range(0, 100);
         if (rnd > player.gameObject.GetComponent<Player>().agility) //coup normal
         {
@@ -38,10 +52,7 @@ public class MeleeWeapon : Weapon {
                 player.GetComponent<Player>().endurance * this.endratio +
                 this.damage) * 2;
         }
-        float angle = (float)Math.Atan2(originDirection.y, originDirection.x);
-        angle = (float)(angle * (180 / Math.PI));
-        //Vector3 rotat = new Vector3(0, 0, angle);
-        slash.GetComponent<Transform>().Rotate(0, 0, angle);
+        
         slash.GetComponent<Projectile>().isFriendly = true;
     }
     

@@ -192,6 +192,9 @@ public class InventaireScript : MonoBehaviour {
         GetComponent<Player>().armureTeteEquipee.GetComponent<HeadArmor>().endurance +
         GetComponent<Player>().armureTorseEquipee.GetComponent<BodyArmor>().endurance +
         GetComponent<Player>().armureJambesEquipee.GetComponent<LegArmor>().endurance;
+
+        GetComponent<Player>().maxHealth = GetComponent<Player>().baseHealth + GetComponent<Player>().endurance;
+        GetComponent<Player>().activeSpeed = GetComponent<Player>().speed + GetComponent<Player>().agility * 0.1f;
     }
 
     public bool isInInventaire(GameObject obj)

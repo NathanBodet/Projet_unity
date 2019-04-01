@@ -25,6 +25,7 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    public float baseHealth = 100f;
     public float maxHealth = 100f;
     public float currentHealth;
 

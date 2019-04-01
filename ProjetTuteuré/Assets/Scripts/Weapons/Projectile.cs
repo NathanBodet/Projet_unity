@@ -7,14 +7,15 @@ public class Projectile : MonoBehaviour {
     public float damage;
     public float range;
     private Rigidbody2D rigidBody;
-    float originCoordX, originCoordY;
-    public bool isCrit,isFriendly,isDestroyed;
+    float originCoordX, originCoordY, time;
+    public bool isCrit,isFriendly,isSlash;
 
 
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
         originCoordX = transform.position.x;
         originCoordY = transform.position.y;
+        time = Time.time;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,20 +27,20 @@ public class Projectile : MonoBehaviour {
             {
                 collision.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
-                //if (!isDestroyed)
-                //{
+                if (!isSlash)
+                {
                 Destroy(gameObject);
-                //}
+                }
                 
             } else if (collision.tag == "Player" && !isFriendly)
             {
                 
                 collision.GetComponentInParent<Player>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
-                //if (!isDestroyed)
-                //{
+                if (!isSlash)
+                {
                 Destroy(gameObject);
-                //}
+                }
                 
             }
 
@@ -58,6 +59,13 @@ public class Projectile : MonoBehaviour {
         if ((float)System.Math.Sqrt(System.Math.Pow(originCoordX - transform.position.x, 2) + System.Math.Pow(originCoordY - transform.position.y, 2)) > range)
         {
             Destroy(gameObject);
+        }
+        if (isSlash)
+        {
+            if (Time.time - time > 0.1)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

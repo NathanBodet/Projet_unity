@@ -19,6 +19,7 @@ public class Player : Character {
     public int strength = 0;
     public int endurance = 0;
     public int agility = 0;
+    public float activeSpeed = 10f;
 
     //attributs concernant les tirs
     float nextFire = 0.0f;
@@ -230,7 +231,7 @@ public class Player : Character {
 
     public void Move()
     {
-        rigidBody.velocity = direction.normalized * speed;
+        rigidBody.velocity = direction.normalized * activeSpeed;
     }
 
     public void Stop()
