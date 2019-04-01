@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d, type: 3}
-  attackReachMin: 0
+  attackReachMin: 100
   attackReachMax: 150
   attackCooldown: 1
   projectileSpeed: 18
@@ -543,16 +543,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2632910805601978762}
     m_Modifications:
-    - target: {fileID: 3374605751556063424, guid: 98f40ecc65e88fa469a134bb45faa6ac,
-        type: 3}
-      propertyPath: m_Name
-      value: Field Of View
-      objectReference: {fileID: 0}
-    - target: {fileID: 3374605751556063424, guid: 98f40ecc65e88fa469a134bb45faa6ac,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerLifeBar
-      objectReference: {fileID: 0}
     - target: {fileID: 3375565669928070540, guid: 98f40ecc65e88fa469a134bb45faa6ac,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -607,6 +597,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374605751556063424, guid: 98f40ecc65e88fa469a134bb45faa6ac,
+        type: 3}
+      propertyPath: m_Name
+      value: Field Of View
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374605751556063424, guid: 98f40ecc65e88fa469a134bb45faa6ac,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerLifeBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f40ecc65e88fa469a134bb45faa6ac, type: 3}

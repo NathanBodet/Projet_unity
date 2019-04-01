@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour {
             if (collision.tag == "Enemy" && isFriendly)
             {
                 collision.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
-                rigidBody.velocity = Vector2.zero;
+                
                 if (!isSlash)
                 {
                 Destroy(gameObject);
