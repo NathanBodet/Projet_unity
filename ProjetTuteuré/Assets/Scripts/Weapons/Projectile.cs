@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
     public float range;
     private Rigidbody2D rigidBody;
     float originCoordX, originCoordY;
-    public bool isCrit,isFriendly;
+    public bool isCrit,isFriendly,isDestroyed;
 
 
     void Start () {
@@ -24,16 +24,23 @@ public class Projectile : MonoBehaviour {
         {
             if (collision.tag == "Enemy" && isFriendly)
             {
-                
                 collision.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
+                //if (!isDestroyed)
+                //{
                 Destroy(gameObject);
+                //}
+                
             } else if (collision.tag == "Player" && !isFriendly)
             {
                 
                 collision.GetComponentInParent<Player>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 rigidBody.velocity = Vector2.zero;
+                //if (!isDestroyed)
+                //{
                 Destroy(gameObject);
+                //}
+                
             }
 
             if(collision.tag == "Collision")

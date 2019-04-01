@@ -26,6 +26,7 @@ public class Player : Character {
     // attributs concernant le combat
     float switchCooldown = 0.0f;
     public bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
+    public GameObject slashPrefab;
 
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;

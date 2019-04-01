@@ -35,14 +35,12 @@ public class RangedWeapon : Weapon {
         {
             ammunition--;
             Vector2 projectilePosition = player.GetComponent<Transform>().position;
-            float dispertion;
             Vector3 originDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
             GameObject projectileInstance;
             Vector3 projectileDirection;
 
             for (int i = 0; i < nbBalles; i++)
             {
-                dispertion = UnityEngine.Random.Range(0, 1);
                 //récupération des coordonnées de la souris et création du vecteur du projectile tiré
                 projectileDirection.x = originDirection.x - player.GetComponent<Transform>().position.x;
                 projectileDirection.y = originDirection.y - player.GetComponent<Transform>().position.y;
