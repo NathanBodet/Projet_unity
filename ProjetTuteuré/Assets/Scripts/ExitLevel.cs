@@ -13,6 +13,11 @@ public class ExitLevel : MonoBehaviour
     //Win
     public AudioClip winClip;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     private void Update()
     {
         if (aFini)

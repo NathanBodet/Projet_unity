@@ -178,9 +178,11 @@ public class Shop : MonoBehaviour
 
             if (item != null)
             {
+                Debug.Log(item.name);
                 sellItemButtons[i].buttonImage.gameObject.SetActive(true);
                 sellItemButtons[i].buttonImage.sprite = item.GetComponent<SpriteRenderer>().sprite;
                 sellItemButtons[i].amountText.text = "";
+                sellItemButtons[i].gameObject.GetComponent<Button>().interactable = true;
                 sellItemButtons[i].setItemReferenced(item);
             }
             else
@@ -240,10 +242,11 @@ public class Shop : MonoBehaviour
                 }
             }
 
+            /*
             for (int i = 0; i < inventaire.listeItems.Length; i++)
             {
                 sellItemButtons[i].gameObject.GetComponent<Button>().interactable = true;
-            }
+            }*/
         }
 
         goldText.text = Player.instance.gold.ToString() + "g";

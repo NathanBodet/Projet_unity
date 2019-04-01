@@ -10,6 +10,8 @@ public class Enemy : Character {
 
     public SalleManager manager;
 
+    public int borneInfMoney, borneSupMoney;
+
     protected override void Start()
     {
         base.Start();
@@ -70,6 +72,8 @@ public class Enemy : Character {
         {
             distAi.enabled = false;
         }
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().gold += Random.Range(borneInfMoney, borneSupMoney);
     }
 
     public override void Attack()//1 : cac, 2 : dist
