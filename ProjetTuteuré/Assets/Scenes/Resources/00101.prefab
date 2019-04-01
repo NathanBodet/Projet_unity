@@ -1109,6 +1109,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1873964890313310761}
     m_Modifications:
+    - target: {fileID: 3675412096435837902, guid: a15853543ecb06443b53e9e684dd94e3,
+        type: 3}
+      propertyPath: m_Name
+      value: SalleManagerRightSize 1 - Copie (13)
+      objectReference: {fileID: 0}
     - target: {fileID: 2506382051227422893, guid: a15853543ecb06443b53e9e684dd94e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1164,11 +1169,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3675412096435837902, guid: a15853543ecb06443b53e9e684dd94e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SalleManagerRightSize 1 - Copie (13)
-      objectReference: {fileID: 0}
     - target: {fileID: 4264274017071565036, guid: a15853543ecb06443b53e9e684dd94e3,
         type: 3}
       propertyPath: ennemiPrefab
@@ -1187,6 +1187,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
         type: 3}
+    - target: {fileID: 6844308220325201299, guid: a15853543ecb06443b53e9e684dd94e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844308220325201299, guid: a15853543ecb06443b53e9e684dd94e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a15853543ecb06443b53e9e684dd94e3, type: 3}
 --- !u!4 &5772924161157194805 stripped

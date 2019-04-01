@@ -114,7 +114,7 @@ public class Enemy : Character {
     public void dropItem()
     {
         
-        if(Random.Range(0f,100f) > 10)
+        if(Random.Range(0f,100f) > 90)
         {
             manager.listeItem.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
         }

@@ -1117,6 +1117,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1056345945819291816}
     m_Modifications:
+    - target: {fileID: 3675412096435837902, guid: b4b2028f7229a2b42b669dc867482500,
+        type: 3}
+      propertyPath: m_Name
+      value: SalleManagerRightSize 1 - Copie (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 2506382051227422893, guid: b4b2028f7229a2b42b669dc867482500,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1172,11 +1177,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3675412096435837902, guid: b4b2028f7229a2b42b669dc867482500,
-        type: 3}
-      propertyPath: m_Name
-      value: SalleManagerRightSize 1 - Copie (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 4264274017071565036, guid: b4b2028f7229a2b42b669dc867482500,
         type: 3}
       propertyPath: ennemiPrefab
@@ -1195,6 +1195,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
         type: 3}
+    - target: {fileID: 4523864387709644834, guid: b4b2028f7229a2b42b669dc867482500,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523864387709644834, guid: b4b2028f7229a2b42b669dc867482500,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844308220325201299, guid: b4b2028f7229a2b42b669dc867482500,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844308220325201299, guid: b4b2028f7229a2b42b669dc867482500,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b2028f7229a2b42b669dc867482500, type: 3}
 --- !u!4 &649609902088296732 stripped
