@@ -117,7 +117,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1565103557
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300012, guid: d5248c5ae9bbd8a45a0ee99352827eda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -187,12 +187,17 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   sprite: {fileID: 0}
   hitValuePrefab: {fileID: 146428, guid: 10edc0ca7bc3b3a4b822865bb1aa50a0, type: 3}
+  baseHealth: 100
   maxHealth: 1000
   currentHealth: 1000
   isAlive: 1
   lifeBar: {fileID: 114847945892626158, guid: 1647b51017cea2542a9bbe7bc7a6a1d0, type: 3}
   ai: {fileID: 0}
+  distAi: {fileID: 0}
+  isBoss: 1
   manager: {fileID: 0}
+  borneInfMoney: 0
+  borneSupMoney: 0
 --- !u!1 &1700938322
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,3 +268,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528b5a4a9d825334393f783c81532d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 0}

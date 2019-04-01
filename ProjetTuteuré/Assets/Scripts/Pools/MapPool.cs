@@ -14,7 +14,7 @@ public class MapPool : Pool {
             reqTrois[i] = 3;
         }
         bool trouve = false;
-        bool diffzero;
+       
         int[] currComb = getRandComb();
 
 

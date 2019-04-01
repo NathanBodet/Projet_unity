@@ -23,7 +23,7 @@ public class RobotBossIA : MonoBehaviour
     {
         if (!gameObject.GetComponent<Enemy>().isAlive)
         {
-            gameObject.GetComponent<Animator>().SetBool("isAlive", false);
+            gameObject.GetComponent<Animator>().SetBool("IsAlive", false);
             gameObject.GetComponent<EdgeCollider2D>().isTrigger = true;
             return;
         }

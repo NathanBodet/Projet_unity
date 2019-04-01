@@ -16,7 +16,6 @@ public class RangedWeapon : Weapon {
     public int nbBalles;//nombres de projectiles tirés en même temps
 
     public float fireRate;
-    private float nextFire = 0f;
 
     public GameObject projectilePrefab;
 
@@ -27,11 +26,7 @@ public class RangedWeapon : Weapon {
 
     public void Fire()
     {
-        if(ammunition == 0)
-        {
-            Debug.Log("Plus de munitions !");
-        }
-        else
+        if(ammunition != 0)
         {
             ammunition--;
             Vector2 projectilePosition = player.GetComponent<Transform>().position;

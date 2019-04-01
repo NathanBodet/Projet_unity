@@ -7,6 +7,7 @@ public class Enemy : Character {
 
     public EnemyAI ai;
     public EnemyDistanceIA distAi;
+    public bool isBoss;
 
     public SalleManager manager;
 
@@ -60,15 +61,19 @@ public class Enemy : Character {
     public override void Die()
     {
         base.Die();
+        if (!isBoss)
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            manager.RemoveEnemy();
+        }
         
-        GetComponent<BoxCollider2D>().enabled = false;
         lifeBar.EnableLifeBar(false);
-        manager.RemoveEnemy();
+        
         dropItem();
         if(ai != null)
         {
             ai.enabled = false;
-        } else
+        } else if( distAi != null)
         {
             distAi.enabled = false;
         }

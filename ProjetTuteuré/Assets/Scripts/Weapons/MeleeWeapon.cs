@@ -13,8 +13,7 @@ public class MeleeWeapon : Weapon {
 
 	public void Hit()
     {
-        Vector2 directionCoup = new Vector2(player.GetComponent<Animator>().GetFloat("DirectionX"), player.GetComponent<Animator>().GetFloat("DirectionY"));
-
+        
         Vector3 originDirection = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f));//10.0f car si z = 0f, la fonction retourne la position de la caméra
         Vector3 projectileDirection;
 

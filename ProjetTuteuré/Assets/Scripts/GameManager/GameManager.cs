@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour {
                     Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
                 } catch(ArgumentException e)
                 {
-
+                    Debug.Log(e);
                 }
                 
             }
