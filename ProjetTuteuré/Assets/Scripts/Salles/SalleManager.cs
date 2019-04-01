@@ -36,17 +36,6 @@ public class SalleManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Time.time-timeAfterRoomEnd> 30f && !itemsDetruits)
-        {
-            itemsDetruits = true;
-            foreach(GameObject obj in listeItem)
-            {
-                if (obj != null && (!GameObject.Find("Player").GetComponent<InventaireScript>().isInInventaire(obj)))
-                {
-                    Destroy(obj);
-                }
-            }
-        }
         if (checkEnnemis())
         {
             gameManager.GetComponent<GameManager>().finirRoom(room);

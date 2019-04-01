@@ -47,7 +47,7 @@ public class Item : MonoBehaviour {
         GameObject.Find("Player").GetComponent<InventaireScript>().retirerItem(this.gameObject);
         if(gameObject.scene.name == null)
         {
-            Instantiate(gameObject, GameObject.Find("Player").transform.position, Quaternion.identity);
+            GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(Instantiate(gameObject, GameObject.Find("Player").transform.position, Quaternion.identity));
         }
         else
         {

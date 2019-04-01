@@ -116,7 +116,7 @@ public class Enemy : Character {
         
         if(Random.Range(0f,100f) > 90)
         {
-            manager.listeItem.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
+            GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
         }
     }
 

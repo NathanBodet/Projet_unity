@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour {
     bool[][] roomsFinies;
     public int[][] mapInit, roomsSpeciales;//0 si salle normale, 1 si salle speciale
     List<int[]> listeFinale;
-    public GameObject ennemiPrefab,roomFin, etageMarchand;
+    public List<GameObject> listeObjetsDroppés;
+    public GameObject ennemiPrefab,roomFin, etageMarchand,roomBoss1,roomBoss2,roomFinale;
     public int maxEnnemis,numeroNiveau;
     public GameObject[][] roomsInst;
     public AudioClip newLevelClip;
@@ -122,6 +123,10 @@ public class GameManager : MonoBehaviour {
                 Destroy(roomsInst[i][j]);
             }
         }
+        if (roomFinale != null)
+        {
+            Destroy(roomFinale);
+        }
         this.mapInit = map;
         this.roomsFinies = roomsFinies;
         this.roomsSpeciales = roomsSpec;
@@ -132,6 +137,7 @@ public class GameManager : MonoBehaviour {
 
     public void initieNiveau(bool detruireRooms)// Initie la map, génère les rooms
     {
+        removeItems();
         
         
         if (detruireRooms)
@@ -139,6 +145,10 @@ public class GameManager : MonoBehaviour {
             
             numeroNiveau++;
             Destroy(roomFin);
+            if(roomFinale != null)
+            {
+                Destroy(roomFinale);
+            }
             if (numeroNiveau - 1 % 5 != 0 || numeroNiveau == 1)
             {
                 for (int i = 0; i < 5; i++)
@@ -179,9 +189,12 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if(numeroNiveau+1 % 5 == 0)
+        if((numeroNiveau+1) % 5 == 0)
         {
-
+            roomFin = Instantiate(roomBoss2, new Vector3(252.8f, 64.8f, 0), Quaternion.identity);
+            roomFin.transform.localScale = new Vector3(0.05f, 0.05f, 1);
+            roomFinale = Instantiate(poolMap.tire("Salle_Fin"), new Vector3(234.8f, 109.2f, 0), Quaternion.identity);
+            roomFinale.transform.localScale = new Vector3(0.05f, 0.05f, 1);
         } else
         {
             roomFin = creeRoom(5, 4, poolMap.tire("Salle_Fin"));
@@ -499,5 +512,13 @@ public class GameManager : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    public void removeItems()
+    {
+        foreach(GameObject item in listeObjetsDroppés)
+        {
+            Destroy(item);
+        }
     }
 }
