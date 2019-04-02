@@ -138,12 +138,11 @@ public class GameManager : MonoBehaviour {
 
     public void initieNiveau(bool detruireRooms)// Initie la map, génère les rooms
     {
-        removeItems();
         
+        removeItems();
         
         if (detruireRooms)
         {
-            
             numeroNiveau++;
             Destroy(roomFin);
             if(roomFinale != null)
@@ -157,7 +156,6 @@ public class GameManager : MonoBehaviour {
                     for (int j = 0; j < 5; j++)
                     {
                         Destroy(roomsInst[i][j]);
-
                         roomsFinies[i][j] = false;
                     }
                 }
@@ -188,6 +186,7 @@ public class GameManager : MonoBehaviour {
             {
 
                 req = determineContraintes(i, j);//Détermination des conditions de génération req
+                
 
                 if (req != null)
                 {
@@ -238,7 +237,7 @@ public class GameManager : MonoBehaviour {
                     Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
                 } catch(ArgumentException e)
                 {
-                    Debug.Log(e);
+                    
                 }
                 
             }

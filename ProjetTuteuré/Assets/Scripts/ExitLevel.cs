@@ -22,7 +22,9 @@ public class ExitLevel : MonoBehaviour
     {
         if (aFini)
         {
+            GameObject.Find("GameManager").GetComponent<GameManager>().genereMap();
             GameObject.Find("GameManager").GetComponent<GameManager>().initieNiveau(true);
+            
             player.transform.position = new Vector3(85.5f,-59f,0.0f);
             GameObject.Find("Main Camera").transform.position = new Vector3(85.5f, -59, -7);
             aFini = false;

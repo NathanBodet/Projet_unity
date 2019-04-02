@@ -126,7 +126,7 @@ Transform:
   - {fileID: 3065523162000897140}
   - {fileID: 3682697849811718210}
   - {fileID: 4724762848830792}
-  - {fileID: 8344160605071650845}
+  - {fileID: 5939004317610738265}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1954,6 +1954,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1500966057, guid: 5a77baff8c36b29448c2ad4192bdb8a0, type: 3}
+      propertyPath: itemsInStock.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500966057, guid: 5a77baff8c36b29448c2ad4192bdb8a0, type: 3}
+      propertyPath: itemsInStock.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1500966057, guid: 5a77baff8c36b29448c2ad4192bdb8a0, type: 3}
+      propertyPath: itemsInStock.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 402685222251644859, guid: 5a77baff8c36b29448c2ad4192bdb8a0,
         type: 3}
       propertyPath: m_Offset.x
@@ -2061,7 +2073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52496b37db802d8479e83292fbc0eeda, type: 3}
---- !u!4 &8344160605071650845 stripped
+--- !u!4 &5939004317610738265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2425185279056395017, guid: 52496b37db802d8479e83292fbc0eeda,
     type: 3}
