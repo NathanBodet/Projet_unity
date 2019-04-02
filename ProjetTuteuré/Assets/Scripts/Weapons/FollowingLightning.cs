@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowingOrb : MonoBehaviour
+public class FollowingLightning : MonoBehaviour
 {
+
     public GameObject flammeProjectile, player;
     public float airTime;
     public bool hasExploded;
@@ -13,13 +14,13 @@ public class FollowingOrb : MonoBehaviour
     {
         hasExploded = false;
         airTime = Time.time;
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time - airTime > 4 )
+        if (Time.time - airTime > 5)
         {
             if (!hasExploded)
             {
@@ -31,13 +32,19 @@ public class FollowingOrb : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPos, 2 * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hasExploded)
+        if (collision.tag == "Player")
         {
-            explode();
+            player.GetComponent<Player>().TakeDamage(10, Vector3.zero, 50, true);
+            if (!hasExploded)
+            {
+                explode();
+            }
         }
     }
+
 
     private void explode()
     {
