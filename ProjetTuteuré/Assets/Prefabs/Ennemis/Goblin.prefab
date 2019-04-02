@@ -359,11 +359,12 @@ MonoBehaviour:
   hitValuePrefab: {fileID: 146428, guid: 10edc0ca7bc3b3a4b822865bb1aa50a0, type: 3}
   baseHealth: 100
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   isAlive: 0
   lifeBar: {fileID: 114568721042135540}
   ai: {fileID: 114394188595381996}
   distAi: {fileID: 0}
+  isBoss: 0
   manager: {fileID: 0}
   borneInfMoney: 0
   borneSupMoney: 50

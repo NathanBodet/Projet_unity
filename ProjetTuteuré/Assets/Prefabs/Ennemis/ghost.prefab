@@ -243,7 +243,7 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   sprite: {fileID: 0}
   hitValuePrefab: {fileID: 146428, guid: 10edc0ca7bc3b3a4b822865bb1aa50a0, type: 3}
-  baseHealth: 100
+  baseHealth: 150
   maxHealth: 150
   currentHealth: 150
   isAlive: 1
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d, type: 3}
   attackReachMin: 20
-  attackReachMax: 150
+  attackReachMax: 100
   attackCooldown: 1
   projectileSpeed: 18
   playerDetector: {fileID: 848693781358333603}

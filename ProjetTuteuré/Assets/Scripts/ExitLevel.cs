@@ -48,6 +48,7 @@ public class ExitLevel : MonoBehaviour
     {
         for(int i = 0; i < 4; i++)
         {
+            
             winIndicator.SetActive(true);
             yield return new WaitForSeconds(0.3f);
             winIndicator.SetActive(false);

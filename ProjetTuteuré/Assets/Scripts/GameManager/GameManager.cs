@@ -224,13 +224,13 @@ public class GameManager : MonoBehaviour {
         objinst.GetComponentInChildren<SalleManager>().gameManager = gameObject;
         objinst.GetComponentInChildren<SalleManager>().room = objinst;
 
-        //Spawn des ennemis
+        
         if (!(i == 0 && j == 0))
         {
             
             int chanceSpawnObjet = UnityEngine.Random.Range(0, 100);
 
-            if(chanceSpawnObjet <= 15)
+            if(chanceSpawnObjet <= 40)
             {
                 try
                 {

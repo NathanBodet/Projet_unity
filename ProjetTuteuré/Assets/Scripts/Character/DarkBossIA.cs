@@ -14,7 +14,7 @@ public class DarkBossIA : MonoBehaviour
 
     void Start()
     {
-        state = 0;
+        state = -1;
         nbTentacles = 0;
         attackTir1 = true;
         waitTime = Time.time;
