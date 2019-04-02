@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
         
         if(collision.tag != "Projectile")
         {
-            if (collision.tag == "Enemy" && isFriendly)
+            if (collision.tag == "Enemy" && isFriendly && collision.GetComponent<Enemy>().isAlive)
             {
                 collision.GetComponentInParent<Enemy>().TakeDamage(damage, Vector3.zero, 50, isCrit);
                 

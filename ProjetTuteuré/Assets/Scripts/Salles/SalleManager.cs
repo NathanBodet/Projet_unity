@@ -9,10 +9,10 @@ public class SalleManager : MonoBehaviour {
     public GameObject salleTiles, gameManager,room;
     public Porte porteOuest,porteNord,porteEst,porteSud;
     List<Porte> listePortes;
-    public GameObject ennemiPrefab,ennemiPrefab2;
+    public GameObject ennemiPrefab,ennemiPrefab2,boss;
     public Vector3 posCentre;
     public int nbEnnemisInSalle,ennemisDepart;
-    public bool itemsDetruits;
+    public bool itemsDetruits,isRoomBoss;
     public List<GameObject> listeItem;
     public float timeAfterRoomEnd;//utilisé pour faire déspawn les items après un certain temps
 
@@ -36,28 +36,54 @@ public class SalleManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (checkEnnemis())
+        if (isRoomBoss)
         {
-            gameManager.GetComponent<GameManager>().finirRoom(room);
-            timeAfterRoomEnd = Time.time;
-            roomEntre = false;
-            foreach (Porte por in listePortes)
+            if (!boss.GetComponent<Enemy>().isAlive)
             {
-                if(por != null) { por.open(); }
-                
+                gameManager.GetComponent<GameManager>().finirRoom(room);
+                timeAfterRoomEnd = Time.time;
+                roomEntre = false;
+                foreach (Porte por in listePortes)
+                {
+                    if (por != null) { por.open(); }
+
+                }
+            }
+        } else
+        {
+            if (checkEnnemis())
+            {
+                gameManager.GetComponent<GameManager>().finirRoom(room);
+                timeAfterRoomEnd = Time.time;
+                roomEntre = false;
+                foreach (Porte por in listePortes)
+                {
+                    if (por != null) { por.open(); }
+
+                }
             }
         }
 	}
 
     public void debut(GameObject pl)
     {
+        Debug.Log("zefzef");
         if (GetComponentInChildren<ExitLevel>()!= null)
         {
             GetComponentInChildren<ExitLevel>().player = pl;
         }
         
-        if (!gameManager.GetComponent<GameManager>().isDebut(room))
+        if (!gameManager.GetComponent<GameManager>().isDebut(room) || isRoomBoss)
         {
+            if (isRoomBoss)
+            {
+                roomEntre = true;
+                foreach (Porte por in listePortes)
+                {
+                    if (por != null) { por.close(); }
+                }
+                return;
+            }
             
             if (ennemisDepart == 0)
             {
