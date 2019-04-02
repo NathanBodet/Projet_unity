@@ -19,13 +19,14 @@ public class GameManager : MonoBehaviour {
     public int maxEnnemis,numeroNiveau;
     public GameObject[][] roomsInst;
     public AudioClip newLevelClip;
+    String styleSalles;
 
     public bool shopActive; //prevent the player to move
 
 
     // Use this for initialization
     void Start() {
-
+        styleSalles = "0";
         instance = this;
 
         //Instanciations
@@ -166,6 +167,12 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Bienvenue au niveau " + numeroNiveau);
         if (numeroNiveau%5 == 0 && numeroNiveau != 0)
         {
+            if(styleSalles == "0"){
+                styleSalles = "1";
+            } else
+            {
+                styleSalles = "0";
+            }
             roomFin = Instantiate(etageMarchand, new Vector3(45, -1, 0), Quaternion.identity);
             roomFin.transform.localScale = new Vector3(0.05f, 0.05f, 1);
             Vector3 posCentre = new Vector3(0 * 38.3f + 82, 0 * 28.8f - 58, 0);
@@ -184,7 +191,7 @@ public class GameManager : MonoBehaviour {
 
                 if (req != null)
                 {
-                    rooms[i][j] = poolMap.tire(req,roomsSpeciales[i][j]);//tire une room au hasard dans le pool, suivant les conditions req
+                    rooms[i][j] = poolMap.tire(req,roomsSpeciales[i][j],styleSalles);//tire une room au hasard dans le pool, suivant les conditions req
                     creeRoom(i, j, rooms[i][j]);
                 }
             }
