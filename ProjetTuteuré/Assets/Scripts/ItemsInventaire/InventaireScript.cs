@@ -169,6 +169,9 @@ public class InventaireScript : MonoBehaviour {
         GameObject texteAgi = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(3).gameObject;
         texteAgi.GetComponent<Text>().text = "Agility : " + Convert.ToInt32(player.GetComponent<Player>().agility);
 
+        GameObject textGold = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(11).gameObject;
+        textGold.GetComponent<Text>().text = "Gold: " + player.GetComponent<Player>().gold + " g";
+
     }
 
     public void updateStats()
