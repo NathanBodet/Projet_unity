@@ -42,6 +42,7 @@ public class MeleeWeapon : Weapon {
                     player.GetComponent<Player>().agility * this.agiratio + //ajout des degats en fonction du ratio de degats agilite du joueur
                     player.GetComponent<Player>().endurance * this.endratio + //ajout des degats en fonction du ratio de degats endurance du joueur
                     this.damage;
+            slash.GetComponent<Projectile>().isCrit = false;
         }
         else // coup critique
         {
@@ -50,6 +51,7 @@ public class MeleeWeapon : Weapon {
                 player.GetComponent<Player>().agility * this.agiratio +
                 player.GetComponent<Player>().endurance * this.endratio +
                 this.damage) * 2;
+            slash.GetComponent<Projectile>().isCrit = true;
         }
         
         slash.GetComponent<Projectile>().isFriendly = true;

@@ -67,7 +67,6 @@ public class SalleManager : MonoBehaviour {
 
     public void debut(GameObject pl)
     {
-        Debug.Log("zefzef");
         if (GetComponentInChildren<ExitLevel>()!= null)
         {
             GetComponentInChildren<ExitLevel>().player = pl;
@@ -88,7 +87,7 @@ public class SalleManager : MonoBehaviour {
             if (ennemisDepart == 0)
             {
                 
-                int nbEnnemis = Random.Range(0, 3);
+                int nbEnnemis = Random.Range(0, 5);
                 for (int k = 0; k < nbEnnemis; k++)
                 {
                     int rand = (int)Random.Range(0f, 100f);

@@ -76,9 +76,9 @@ EdgeCollider2D:
   m_Points:
   - {x: 0.3216736, y: 0.12243195}
   - {x: 0.0020965578, y: 0.3111847}
-  - {x: -0.30599672, y: 0.09512787}
-  - {x: -0.3101654, y: 0.006968689}
-  - {x: -0.29013368, y: -0.30094606}
+  - {x: -0.23973008, y: 0.054650117}
+  - {x: -0.21444778, y: -0.0445488}
+  - {x: -0.15391998, y: -0.27886733}
   - {x: 0.14179993, y: -0.30135193}
   - {x: 0.31794128, y: -0.07725983}
   - {x: 0.32137147, y: 0.12753601}
@@ -187,9 +187,9 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   sprite: {fileID: 0}
   hitValuePrefab: {fileID: 146428, guid: 10edc0ca7bc3b3a4b822865bb1aa50a0, type: 3}
-  baseHealth: 1000
-  maxHealth: 1000
-  currentHealth: 1000
+  baseHealth: 500
+  maxHealth: 500
+  currentHealth: 500
   isAlive: 1
   lifeBar: {fileID: 114847945892626158, guid: 1647b51017cea2542a9bbe7bc7a6a1d0, type: 3}
   ai: {fileID: 0}
@@ -268,4 +268,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528b5a4a9d825334393f783c81532d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
+  boss: {fileID: 256929322}

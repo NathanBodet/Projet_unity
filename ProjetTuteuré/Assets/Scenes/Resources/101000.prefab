@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 3034391958595450164}
   m_Layer: 0
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Collision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 3384476972529750943}
   - component: {fileID: 542569800269616943}
   m_Layer: 0
-  m_Name: 10100
+  m_Name: 101000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1085,10 +1085,12 @@ MonoBehaviour:
   porteSud: {fileID: 0}
   ennemiPrefab: {fileID: 0}
   ennemiPrefab2: {fileID: 0}
+  boss: {fileID: 0}
   posCentre: {x: 0, y: 0, z: 0}
   nbEnnemisInSalle: 0
   ennemisDepart: 0
   itemsDetruits: 0
+  isRoomBoss: 0
   listeItem: []
   timeAfterRoomEnd: 0
 --- !u!1001 &294771533962128531

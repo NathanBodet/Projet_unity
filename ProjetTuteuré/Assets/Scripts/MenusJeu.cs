@@ -27,12 +27,12 @@ public class MenusJeu : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && showGUI2 == false && showGUI3==false)
+            if (Input.GetKeyDown(KeyCode.Escape) && showGUI2 == false && showGUI3== false && GameObject.Find("Player").GetComponent<Player>().canOpenMenus)
             {
                 showGUI = !showGUI;
             }
 
-            if (Input.GetKeyDown(KeyCode.A) && showGUI == false && showGUI3==false)
+            if (Input.GetKeyDown(KeyCode.A) && showGUI == false && showGUI3==false && GameObject.Find("Player").GetComponent<Player>().canOpenMenus)
             {
                 showGUI2 = !showGUI2;
             }

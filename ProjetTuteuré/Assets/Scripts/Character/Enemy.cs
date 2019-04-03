@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -78,19 +79,19 @@ public class Enemy : Character {
             distAi.enabled = false;
         }
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().gold += Random.Range(borneInfMoney, borneSupMoney);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().gold += UnityEngine.Random.Range(borneInfMoney, borneSupMoney);
     }
 
-    public override void Attack()//1 : cac, 2 : dist
+    public override void Attack(float range)
     {
-        base.Attack();
+        base.Attack(range);
         Vector2 directionCoup = new Vector2(GetComponent<Animator>().GetFloat("DirectionX"), GetComponent<Animator>().GetFloat("DirectionY"));
         directionCoup.Normalize();
         LayerMask mask = LayerMask.GetMask("Player");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionCoup, 1f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionCoup, range , mask);
         if (hit.collider != null && hit.collider.gameObject.tag == "Player")
         {
-            float rnd = Random.Range(0, 100);
+            float rnd = UnityEngine.Random.Range(0, 100);
             if (rnd > 20) //coup normal
             {
                 hit.collider.GetComponent<Player>().TakeDamage(10, directionCoup, 0.2f, false);
@@ -104,7 +105,7 @@ public class Enemy : Character {
 
     public void Attack(GameObject proj)
     {
-        base.Attack();
+        base.Attack(2f);
         Vector3 direction = GameObject.Find("Player").transform.position - transform.position;
         direction.Normalize();
         GameObject projectile = Instantiate(proj, gameObject.transform.position, Quaternion.identity);
@@ -123,9 +124,15 @@ public class Enemy : Character {
     public void dropItem()
     {
         
-        if(Random.Range(0f,100f) > 90)
+        if(UnityEngine.Random.Range(0f,100f) > 90)
         {
-            GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(),this.gameObject.transform.position,Quaternion.identity));
+            GameObject objInst = Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(), this.gameObject.transform.position, Quaternion.identity);
+            GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(objInst);
+            objInst.GetComponent<Items>().price = objInst.GetComponent<Items>().price * 1 + GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau / 10;
+            if (objInst.GetComponent<Weapon>() != null)
+            {
+                objInst.GetComponent<Weapon>().damage = objInst.GetComponent<Weapon>().damage * (int)(Math.Pow(1.023f, GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau));
+            }
         }
     }
 

@@ -267,10 +267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d, type: 3}
-  attackReachMin: 20
+  attackReachMin: 10
   attackReachMax: 100
   attackCooldown: 1
-  projectileSpeed: 18
+  projectileSpeed: 12
   playerDetector: {fileID: 848693781358333603}
   currentAction: 0
 --- !u!1 &5025566814197296108

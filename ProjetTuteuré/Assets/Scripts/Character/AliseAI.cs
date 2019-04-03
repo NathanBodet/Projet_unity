@@ -20,8 +20,7 @@ public class AliseAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Health " + enemy.currentHealth);
-        Debug.Log("Animator " + enemy.animator);
+        
         GetComponent<Animator>().SetFloat("Health", enemy.currentHealth);
 
         state = 1;
@@ -52,7 +51,7 @@ public class AliseAI : MonoBehaviour
             {
                 GetComponent<Animator>().SetBool("IsAttackFinished", true);
                 choice = Random.Range(1, 4);
-                Debug.Log("Choice " + choice);
+               
                 GetComponent<Animator>().SetInteger("Choice", choice);
 
                 isAttackFinished = false;
@@ -66,7 +65,7 @@ public class AliseAI : MonoBehaviour
                         StartCoroutine(Attack2());
                         break;
                     case 3:
-                        Debug.Log("attack 3");
+                        
                         isAttackFinished = true;
                         break;
                 }
@@ -74,7 +73,7 @@ public class AliseAI : MonoBehaviour
 
         } else if(state == 2)
         {
-            Debug.Log("state 2");
+            
             //attaques 2
         }
 
@@ -90,7 +89,7 @@ public class AliseAI : MonoBehaviour
 
     private void Attack1()
     {
-        Debug.Log("Light Ball");
+        
         if (Time.time - timeAttack1 > dureeAttack1)
         {
             timeAttack1 = Time.time;
@@ -101,7 +100,7 @@ public class AliseAI : MonoBehaviour
 
     private IEnumerator Attack2()
     {
-        Debug.Log("Light Stroke");
+        
         for(int i = 0; i < 12; i++)
         {
             Instantiate(lightStrokePrefab, new Vector3(GameObject.FindGameObjectWithTag("Player").transform.position.x, GameObject.FindGameObjectWithTag("Player").transform.position.y + 3.7f, 0), Quaternion.identity);

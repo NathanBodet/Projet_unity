@@ -24,8 +24,8 @@ public class ExitLevel : MonoBehaviour
         {
             GameObject.Find("GameManager").GetComponent<GameManager>().genereMap();
             GameObject.Find("GameManager").GetComponent<GameManager>().initieNiveau(true);
-            
             player.transform.position = new Vector3(85.5f,-59f,0.0f);
+            GameObject.Find("Player").GetComponent<Player>().canOpenMenus = true;
             GameObject.Find("Main Camera").transform.position = new Vector3(85.5f, -59, -7);
             aFini = false;
             fini = false;
@@ -36,6 +36,7 @@ public class ExitLevel : MonoBehaviour
     {
         if(collision.tag == "Player" && !fini)
         {
+            GameObject.Find("Player").GetComponent<Player>().canOpenMenus = false;
             GameObject.Find("GameAudioManager").GetComponent<AudioSource>().Stop();
             StartCoroutine("ShowWin");
             StartCoroutine("PlayFinalAudio");

@@ -25,6 +25,9 @@ public class MainMenu : MonoBehaviour
 
     public void start()
     {
+        DatasNames dtn = (DatasNames)DataManager.LoadNames("names.sav");
+        dtn.m = 0;
+        DataManager.Save(dtn, "names.sav");
         SceneManager.LoadScene("Salle1");
     }
 

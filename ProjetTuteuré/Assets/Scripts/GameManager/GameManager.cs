@@ -59,8 +59,7 @@ public class GameManager : MonoBehaviour {
             roomsInst[i] = new GameObject[6];
         }
         player.GetComponent<Player>().timerStart = (float)((int)(Time.time * 1000)) / 1000;
-        genereMap();
-        initieNiveau(false);
+        
 
         DatasNames datasnames = (DatasNames)DataManager.LoadNames("names.sav");
         if (datasnames != null)
@@ -110,7 +109,10 @@ public class GameManager : MonoBehaviour {
                     }
                 }
             }
+            
         }
+        genereMap();
+        initieNiveau(false);
 
         //TODO: if shopActive : prevents the player to move
     }
@@ -230,11 +232,20 @@ public class GameManager : MonoBehaviour {
             
             int chanceSpawnObjet = UnityEngine.Random.Range(0, 100);
 
-            if(chanceSpawnObjet <= 40)
+            if(chanceSpawnObjet <= 10)
             {
                 try
                 {
-                    Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
+                    GameObject objInst = Instantiate(poolItem.TireAndRemove(), posCentre, Quaternion.identity);
+                    if(objInst.GetComponent<Items>() != null)
+                    {
+                        objInst.GetComponent<Items>().price = objInst.GetComponent<Items>().price * 1 + numeroNiveau / 10;
+                    }
+                    if (objinst.GetComponent<Weapon>()!= null)
+                    {
+                        objinst.GetComponent<Weapon>().damage = objinst.GetComponent<Weapon>().damage * (int)(Math.Pow(1.023f, (float)numeroNiveau-1));
+                    }
+                    listeObjetsDroppés.Add(objinst);
                 } catch(ArgumentException e)
                 {
                     

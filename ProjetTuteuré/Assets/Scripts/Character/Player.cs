@@ -28,6 +28,7 @@ public class Player : Character {
     float switchCooldown = 0.0f;
     public bool typeArmeEquipee = false; // true -> arme de cac, false -> arme a distance
     public GameObject slashPrefab;
+    public bool canOpenMenus;
 
     //attributs concernant l'inventaire
     public GameObject armeDistanceEquipee;
@@ -111,6 +112,7 @@ public class Player : Character {
 
     protected override void Start()
     {
+
         base.Start();
 
         instance = this;

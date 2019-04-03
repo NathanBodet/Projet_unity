@@ -60,13 +60,13 @@ public class EnemyAI : MonoBehaviour {
 
     private void Wait()
     {
-        decisionDuration = Random.Range(0.2f, 0.5f);
+        decisionDuration = Random.Range(0.0f, 0.2f);
         enemy.StopMovement();
     }
 
     private void Attack()
     {
-        enemy.Attack();
+        enemy.Attack(attackReachMax-attackReachMin);
         decisionDuration = Random.Range(0f, 0.5f);
     }
 
@@ -175,6 +175,7 @@ public class EnemyAI : MonoBehaviour {
               + System.Math.Pow(player.transform.position.y - transform.position.y, 2)
              ), 1 << 0)));
                */
+            //int layermask = LayerMask.GetMask("Enemy","");
             if (!playerDetector.playerIsNearby || (playerDetector.playerIsNearby && Physics2D.Raycast(transform.position, direction, 
                 (float)System.Math.Sqrt(System.Math.Pow(player.transform.position.x-transform.position.x,2)
                 + System.Math.Pow(player.transform.position.y - transform.position.y, 2)

@@ -1505,8 +1505,8 @@ MonoBehaviour:
   sprite: {fileID: 0}
   hitValuePrefab: {fileID: 146428, guid: 10edc0ca7bc3b3a4b822865bb1aa50a0, type: 3}
   baseHealth: 100
-  maxHealth: 1000
-  currentHealth: 1000
+  maxHealth: 500
+  currentHealth: 500
   isAlive: 1
   lifeBar: {fileID: 2129805307}
   ai: {fileID: 0}
@@ -2511,16 +2511,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 4264274017071565036, guid: 14a057abb5faee44bb0f27712626e738,
-        type: 3}
-      propertyPath: isRoomBoss
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4264274017071565036, guid: 14a057abb5faee44bb0f27712626e738,
-        type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 1555119898}
     - target: {fileID: 4527100100574989644, guid: 14a057abb5faee44bb0f27712626e738,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2541,6 +2531,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 48.24
       objectReference: {fileID: 0}
+    - target: {fileID: 4264274017071565036, guid: 14a057abb5faee44bb0f27712626e738,
+        type: 3}
+      propertyPath: isRoomBoss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264274017071565036, guid: 14a057abb5faee44bb0f27712626e738,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 1555119898}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a057abb5faee44bb0f27712626e738, type: 3}
 --- !u!4 &2506382051224923697 stripped

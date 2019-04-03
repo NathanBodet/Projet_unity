@@ -36,7 +36,7 @@ public class DarkBossIA : MonoBehaviour
         {
             if (!attackTir1)
             {
-                if(Time.time - tentTime > 0.28 && !aPrisPos)
+                if(Time.time - tentTime > 0.2 && !aPrisPos)
                 {
                     pos = new Vector3(GameObject.Find("Player").transform.position.x, GameObject.Find("Player").transform.position.y + 3.7f, 0);
                     aPrisPos = true;

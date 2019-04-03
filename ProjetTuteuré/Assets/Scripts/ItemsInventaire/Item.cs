@@ -37,6 +37,7 @@ public class Item : MonoBehaviour {
         {
             player.GetComponent<InventaireScript>().addItem(this.gameObject);
             Debug.Log("vous avez récupéré : " + this.gameObject.GetComponent<Item>().nom);
+            GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Remove(gameObject);
             this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
@@ -55,6 +56,7 @@ public class Item : MonoBehaviour {
             this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         }
-        
+        GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(gameObject);
+
     }
 }

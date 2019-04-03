@@ -17,9 +17,9 @@ public class Porte : MonoBehaviour {
 
     public void close()//lorsque le joueur est entré dans la pièce
     {
-        Debug.Log("azdzef");
         GetComponent<BoxCollider2D>().isTrigger = false;
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponentInChildren<EnterDetector>().suicide();
     }
 
     public void open()

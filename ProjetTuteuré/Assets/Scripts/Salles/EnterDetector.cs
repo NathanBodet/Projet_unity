@@ -14,4 +14,9 @@ public class EnterDetector : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    public void suicide()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -27,10 +27,10 @@ public class InventaireScript : MonoBehaviour {
         //updateMenuInventaire();
     }
 
-    public void save()
+    public void save(String saveName)
     {
-        Datas datas = (Datas)DataManager.Load("Slot1.sav");
-        datas.nomsItems = new string[listeItems.Length];
+        Datas datas = (Datas)DataManager.Load(saveName);
+        datas.nomsItems = new String[listeItems.Length];
         for (int i = 0; i < listeItems.Length; i++)
         {
             if ((listeItems[i]) != null)
@@ -39,12 +39,14 @@ public class InventaireScript : MonoBehaviour {
                 Debug.Log(datas.nomsItems[i]);
             }
         }
-        DataManager.Save(datas, "Slot1.sav");
+        DataManager.Save(datas,saveName);
     }
 
-    public void load()
+    public void load(String saveName)
     {
-        Datas datas = (Datas)DataManager.Load("Slot1.sav");
+       
+        Datas datas = (Datas)DataManager.Load(saveName);
+        Debug.Log(datas);
         listeItems = new GameObject[10];
         for (int i = 0; i < datas.nomsItems.Length; i++)
         {
@@ -58,7 +60,6 @@ public class InventaireScript : MonoBehaviour {
                 addItem(it);
             }
         }
-        //updateMenuInventaire();
     }
 
     public bool isFull()

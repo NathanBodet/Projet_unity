@@ -9,8 +9,15 @@ public class RobotBossTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            boss.GetComponent<RobotBossIA>().state = 0;
-            boss.GetComponent<RobotBossIA>().jumpTime = Time.time;
+            if(boss.GetComponent<RobotBossIA>() != null)
+            {
+                boss.GetComponent<RobotBossIA>().state = 0;
+                boss.GetComponent<RobotBossIA>().jumpTime = Time.time;
+            } else
+            {
+                boss.GetComponent<DarkBossIA>().state = 0;
+            }
+            
             Destroy(this.gameObject);
         }
     }

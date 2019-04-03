@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 212521970793063176}
   - component: {fileID: 61762677049326156}
   - component: {fileID: 3605687060482531516}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: sortDeFeu
   m_TagString: ArmeD
   m_Icon: {fileID: 0}
@@ -56,8 +56,8 @@ MonoBehaviour:
   endratio: 0
   ammunition: 50
   totalammunition: 50
-  range: 10
-  projectileSpeed: 5
+  range: 20
+  projectileSpeed: 20
   nbBalles: 1
   fireRate: 0.5
   projectilePrefab: {fileID: 1120882031699534, guid: 157b205d5e26beb49975be3333ef8a4d,
@@ -117,8 +117,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1015307145
-  m_SortingLayer: 4
+  m_SortingLayerID: -458215005
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2075210fea023164ba45efa3a4883db6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

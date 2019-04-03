@@ -68,7 +68,7 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
-    public virtual void Attack()
+    public virtual void Attack(float range)
     {
         animator.SetTrigger("Attacking");
     }
