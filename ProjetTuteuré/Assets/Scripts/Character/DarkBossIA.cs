@@ -20,6 +20,7 @@ public class DarkBossIA : MonoBehaviour
         waitTime = Time.time;
         tentTime = Time.time;
         startPos = new Vector2(gameObject.transform.position.x,gameObject.transform.position.y);
+        GetComponent<Enemy>().maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau/5 * 100 + 500;
     }
 
     
@@ -62,6 +63,7 @@ public class DarkBossIA : MonoBehaviour
                 gameObject.GetComponent<Animator>().SetBool("hasToDisepear", true);
                 gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 state = 1;
+                gameObject.tag = "Untagged";
                 waitTime = Time.time;
 
             }
@@ -69,6 +71,7 @@ public class DarkBossIA : MonoBehaviour
         {
            if(Time.time - waitTime > 3)
             {
+                gameObject.tag = "Enemy";
                 int rand = Random.Range(0, 2);
                 int rand2 = Random.Range(0, 3);
                 gameObject.transform.position = new Vector3(startPos.x+(rand-1)*10,startPos.y-(rand2-1)*10, 0);

@@ -44,6 +44,7 @@ public class EnemyDistanceIA : MonoBehaviour
     {
         weights = new List<DecisionWeight>();
         enemy = GetComponent<Enemy>();
+        GetComponent<Enemy>().maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau * 16 + 150;
         player = GameObject.FindGameObjectWithTag("Player");
     }
 

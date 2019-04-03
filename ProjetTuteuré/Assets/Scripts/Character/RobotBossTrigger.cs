@@ -11,12 +11,16 @@ public class RobotBossTrigger : MonoBehaviour
         {
             if(boss.GetComponent<RobotBossIA>() != null)
             {
-                boss.GetComponent<RobotBossIA>().state = 0;
+                boss.GetComponent<RobotBossIA>().state = 1;
                 boss.GetComponent<RobotBossIA>().jumpTime = Time.time;
+                boss.GetComponent<EdgeCollider2D>().isTrigger = false;
             } else
             {
-                boss.GetComponent<DarkBossIA>().state = 0;
+                boss.GetComponent<DarkBossIA>().state = 1;
+                boss.GetComponent<BoxCollider2D>().isTrigger = false;
+
             }
+            
             
             Destroy(this.gameObject);
         }

@@ -16,6 +16,7 @@ public class RobotBossIA : MonoBehaviour
     {
         state = -1;
         startPos = gameObject.transform.position.y;
+        GetComponent<Enemy>().maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau / 10 * 100 + 400;
     }
 
     // Update is called once per frame

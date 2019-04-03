@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    
+
     Enemy enemy;
     GameObject player;
 
@@ -37,8 +39,10 @@ public class EnemyAI : MonoBehaviour {
     private float decisionDuration;
 
 	void Start () {
+        
         weights = new List<DecisionWeight>();
         enemy = GetComponent<Enemy>();
+        enemy.maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau * 16 + 100;
         player = GameObject.FindGameObjectWithTag("Player");
 	}
 

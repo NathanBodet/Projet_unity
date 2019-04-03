@@ -159,7 +159,7 @@ public class InventaireScript : MonoBehaviour {
 
         //On change la force
         GameObject texteForce = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(1).gameObject;
-        texteForce.GetComponent<Text>().text = "Force : "+Convert.ToInt32(player.GetComponent<Player>().strength);
+        texteForce.GetComponent<Text>().text = "Strength : "+Convert.ToInt32(player.GetComponent<Player>().strength);
 
         //L'endurance
         GameObject texteEndu = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(2).gameObject;
@@ -167,7 +167,7 @@ public class InventaireScript : MonoBehaviour {
 
         //Et l'agilité
         GameObject texteAgi = c.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>().GetChild(3).gameObject;
-        texteAgi.GetComponent<Text>().text = "Agilité : " + Convert.ToInt32(player.GetComponent<Player>().agility);
+        texteAgi.GetComponent<Text>().text = "Agility : " + Convert.ToInt32(player.GetComponent<Player>().agility);
 
     }
 

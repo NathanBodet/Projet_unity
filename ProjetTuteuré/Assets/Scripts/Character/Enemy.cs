@@ -18,7 +18,7 @@ public class Enemy : Character {
     {
         base.Start();
         speed = 4f;
-        maxHealth = GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau * 16 + 100;
+        
         //lifeBar = GameObject.FindGameObjectWithTag("EnemyLifeBar").GetComponent<LifeBar>();
         lifeBar.SetProgress(currentHealth / maxHealth);
     }
@@ -117,8 +117,9 @@ public class Enemy : Character {
 
     public override void TakeDamage(float damage, Vector3 hitVector, float force, bool crit)
     {
-        lifeBar.EnableLifeBar(true);
+        
         base.TakeDamage(damage, hitVector, force, crit);
+        lifeBar.EnableLifeBar(true);
     }
 
     public void dropItem()
@@ -128,7 +129,10 @@ public class Enemy : Character {
         {
             GameObject objInst = Instantiate(GameObject.Find("PoolDropGobelin").GetComponent<Pool>().tire(), this.gameObject.transform.position, Quaternion.identity);
             GameObject.Find("GameManager").GetComponent<GameManager>().listeObjetsDroppés.Add(objInst);
-            objInst.GetComponent<Items>().price = objInst.GetComponent<Items>().price * 1 + GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau / 10;
+            if(objInst.GetComponent<Items>() != null)
+            {
+                objInst.GetComponent<Items>().price = objInst.GetComponent<Items>().price * 1 + GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau / 10;
+            }
             if (objInst.GetComponent<Weapon>() != null)
             {
                 objInst.GetComponent<Weapon>().damage = objInst.GetComponent<Weapon>().damage * (int)(Math.Pow(1.023f, GameObject.Find("GameManager").GetComponent<GameManager>().numeroNiveau));

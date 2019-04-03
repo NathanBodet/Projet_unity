@@ -197,13 +197,19 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if((numeroNiveau+1) % 5 == 0)
+        if((numeroNiveau+1) % 5 == 0 && styleSalles == "1")
         {
             roomFin = Instantiate(roomBoss2, new Vector3(252.8f, 64.8f, 0), Quaternion.identity);
             roomFin.transform.localScale = new Vector3(0.05f, 0.05f, 1);
             roomFinale = Instantiate(poolMap.tire("Salle_Fin"), new Vector3(234.8f, 109.2f, 0), Quaternion.identity);
             roomFinale.transform.localScale = new Vector3(0.05f, 0.05f, 1);
-        } else
+        } else if ((numeroNiveau + 1) % 5 == 0 && styleSalles == "0")
+        {
+            roomFin = Instantiate(roomBoss1, new Vector3(251.2f, 88.4f, 0), Quaternion.identity);
+            roomFinale = Instantiate(poolMap.tire("Salle_Fin"), new Vector3(231.6f, 115.2f, 0), Quaternion.identity);
+            roomFinale.transform.localScale = new Vector3(0.05f, 0.05f, 1);
+        }
+        else
         {
             roomFin = creeRoom(5, 4, poolMap.tire("Salle_Fin"));
             
