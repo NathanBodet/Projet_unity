@@ -176,7 +176,8 @@ public class Shop : MonoBehaviour
         {
             GameObject item = (GameObject)listItems[i];
 
-            if (item != null)
+            if (item != null && item != Player.instance.armeCorpsACorpsEquipee && item != Player.instance.armeDistanceEquipee && item != Player.instance.armureJambesEquipee
+                && item != Player.instance.armureTeteEquipee && item != Player.instance.armureTorseEquipee)
             {
                 Debug.Log(item.name);
                 sellItemButtons[i].buttonImage.gameObject.SetActive(true);

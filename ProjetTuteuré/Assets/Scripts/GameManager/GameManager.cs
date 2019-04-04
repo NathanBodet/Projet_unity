@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     public int[][] mapInit, roomsSpeciales;//0 si salle normale, 1 si salle speciale
     List<int[]> listeFinale;
     public List<GameObject> listeObjetsDroppés;
-    public GameObject ennemiPrefab,roomFin, etageMarchand,roomBoss1,roomBoss2,roomFinale;
+    public GameObject ennemiPrefab,roomFin, etageMarchand,roomBoss1,roomBoss2,roomFinale, salleAlise;
     public int maxEnnemis,numeroNiveau;
     public GameObject[][] roomsInst;
     public AudioClip newLevelClip;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
         //Instanciations
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().volume = 0.2f;
-        numeroNiveau = 1;
+        numeroNiveau = 5;
         roomsSpeciales = new int[5][];
         maxEnnemis = 3;
         mapInit = new int[5][];
@@ -165,7 +165,8 @@ public class GameManager : MonoBehaviour {
             
         }
         Debug.Log("Bienvenue au niveau " + numeroNiveau);
-        if (numeroNiveau%5 == 0 && numeroNiveau != 0)
+
+        if (numeroNiveau%5 == 0 && numeroNiveau != 0 && numeroNiveau != 100)
         {
             if(styleSalles == "0"){
                 styleSalles = "1";
@@ -197,7 +198,13 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if((numeroNiveau+1) % 5 == 0 && styleSalles == "1")
+
+        if (numeroNiveau == 100)
+        {
+            roomFin = Instantiate(salleAlise, new Vector3(228.3f, 169.9f, 0), Quaternion.identity);
+
+        }
+        else if ((numeroNiveau+1) % 5 == 0 && styleSalles == "1")
         {
             roomFin = Instantiate(roomBoss2, new Vector3(252.8f, 64.8f, 0), Quaternion.identity);
             roomFin.transform.localScale = new Vector3(0.05f, 0.05f, 1);

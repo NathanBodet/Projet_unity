@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 440137620604835399}
   - component: {fileID: 440137620604835398}
   - component: {fileID: 440137620604835402}
+  - component: {fileID: 7875312896889656318}
   m_Layer: 12
   m_Name: PotionHeal50
   m_TagString: Consommable
@@ -148,3 +149,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7875312896889656318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440137620604835397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 0
+  itemName: Health potion
+  description: Gives 50 HP
+  price: 300
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0

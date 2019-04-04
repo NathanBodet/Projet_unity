@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3713355231284395011}
   - component: {fileID: 3579743780506390920}
   - component: {fileID: 8637924577412711224}
+  - component: {fileID: 1862026231856592071}
   m_Layer: 12
   m_Name: potionLevelUpAgility
   m_TagString: Consommable
@@ -148,3 +149,28 @@ MonoBehaviour:
   typeConsommable: 2
   healPoints: 0
   levelPoints: 2
+--- !u!114 &1862026231856592071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317554518091390932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 0
+  itemName: Agility Potion
+  description: Give 2 Agility Points
+  price: 1000
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0

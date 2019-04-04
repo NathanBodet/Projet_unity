@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8872949141644181619}
   - component: {fileID: 6413256804300219835}
   - component: {fileID: 5335189279456836555}
+  - component: {fileID: 7697649258322514666}
   m_Layer: 12
   m_Name: potionLevelUpEndurance
   m_TagString: Consommable
@@ -148,3 +149,28 @@ MonoBehaviour:
   typeConsommable: 3
   healPoints: 0
   levelPoints: 2
+--- !u!114 &7697649258322514666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7630497348341259548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4ca81359a91e842adaa41ba00d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isItem: 0
+  isWeapon: 0
+  isArmour: 0
+  itemName: Endurance Potion
+  description: Gives 2 Endurance points
+  price: 1000
+  affectHP: 0
+  affectStr: 0
+  affectStam: 0
+  affectAgi: 0
+  amountToChange: 0
+  weaponStrength: 0
+  armorStrength: 0

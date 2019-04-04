@@ -14,11 +14,15 @@ public class RobotBossTrigger : MonoBehaviour
                 boss.GetComponent<RobotBossIA>().state = 1;
                 boss.GetComponent<RobotBossIA>().jumpTime = Time.time;
                 boss.GetComponent<EdgeCollider2D>().isTrigger = false;
-            } else
+            } else if(boss.GetComponent<DarkBossIA>() != null)
             {
                 boss.GetComponent<DarkBossIA>().state = 1;
                 boss.GetComponent<BoxCollider2D>().isTrigger = false;
-
+            }
+            else
+            {
+                boss.GetComponent<AliseAI>().state = 1;
+                boss.tag = "Enemy";
             }
             
             

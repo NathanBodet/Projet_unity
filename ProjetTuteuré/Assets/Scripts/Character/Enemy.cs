@@ -35,7 +35,7 @@ public class Enemy : Character {
                 deathTime = Time.time;
             } else
             {
-                if(Time.time > deathTime + 10f)
+                if(Time.time > deathTime + 10f && gameObject.name != "Face")
                 {
                     Destroy(gameObject);
                 }
