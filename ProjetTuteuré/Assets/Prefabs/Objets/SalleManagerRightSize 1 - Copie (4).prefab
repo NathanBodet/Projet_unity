@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300016, guid: f323355f6f45b9947b36ff19067ef8da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -198,9 +198,18 @@ MonoBehaviour:
   porteNord: {fileID: 4929755626548700298}
   porteEst: {fileID: 0}
   porteSud: {fileID: 4062912079749296563}
-  ennemiPrefab: {fileID: 0}
+  ennemiPrefab: {fileID: 1878536627128534, guid: e5fea17a243c96e4183095cb8a9f5d27,
+    type: 3}
+  ennemiPrefab2: {fileID: 2632910805601978752, guid: 0b9b549a1af39954594d0b172b3d15ca,
+    type: 3}
+  boss: {fileID: 0}
   posCentre: {x: 0, y: 0, z: 0}
   nbEnnemisInSalle: 0
+  ennemisDepart: 0
+  itemsDetruits: 0
+  isRoomBoss: 0
+  listeItem: []
+  timeAfterRoomEnd: 0
 --- !u!1 &5040681334757637682
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +280,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1742554143
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300016, guid: f323355f6f45b9947b36ff19067ef8da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -538,10 +547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2506382051227422893}
     m_Modifications:
-    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
-      propertyPath: m_Name
-      value: Porte
-      objectReference: {fileID: 0}
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.948788
@@ -585,6 +590,10 @@ PrefabInstance:
     - target: {fileID: 4663356449282278, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771121592838468, guid: f31f391212b15f94ba0f3e95e6c646b8, type: 3}
+      propertyPath: m_Name
+      value: Porte
       objectReference: {fileID: 0}
     - target: {fileID: 114930556007199740, guid: f31f391212b15f94ba0f3e95e6c646b8,
         type: 3}

@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
         //Instanciations
         GameObject.Find("GameAudioManager").GetComponent<AudioSource>().volume = 0.2f;
-        numeroNiveau = 5;
+        numeroNiveau = 1;
         roomsSpeciales = new int[5][];
         maxEnnemis = 3;
         mapInit = new int[5][];
